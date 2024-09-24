@@ -63,6 +63,15 @@ header .navbar .filler {
           flex-grow: 1;
 }
 
+.main-content a {
+  color: #6F5F9C;
+  text-decoration: none;
+}
+
+.main-content a:hover {
+  color: #8a5082;
+}
+
 .leaderboard {
   background-image: linear-gradient(140deg, #bfb8da 20%, #7facd6 50%, #e8b7d4 80%);
   height: 196px;
