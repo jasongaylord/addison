@@ -1,0 +1,81 @@
+@import url("https://fonts.googleapis.com/css2?family=Cabin&family=Indie+Flower&family=Merriweather:wght@900&display=swap");
+html {
+  position: relative;
+  font-family: "Cabin", sans-serif;
+  min-height: 100%;
+  font-size: 14px;
+}
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+header .collage {
+  max-width: 380px;
+  float: left;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 20;
+}
+header .logo {
+  position: relative;
+  text-align: center;
+}
+header .logo a {
+  font-family: "Indie Flower", cursive;
+  font-size: 60px;
+  color: #6F5F9C;
+  text-decoration: none;
+}
+header .logo a:hover {
+  color: #8a5082;
+}
+header .social-icons {
+  position: absolute;
+  float: right;
+  right: 0;
+  top: 20px;
+  color: #6F5F9C;
+}
+header .social-icons a {
+  font-size: 30px;
+  padding: 0 10px;
+}
+header .navbar {
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
+  background-image: linear-gradient(#fff, #ddd);
+  border-top: 1px solid #eee;
+  text-align: right;
+}
+header .navbar a {
+  color: #6F5F9C;
+  font-weight: bold;
+}
+header .navbar .filler {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+.leaderboard {
+  background-image: linear-gradient(140deg, #bfb8da 20%, #7facd6 50%, #e8b7d4 80%);
+  height: 196px;
+}
+
+.main-content {
+  background-color: #ddd;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+}
