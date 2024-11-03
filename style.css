@@ -12,6 +12,8 @@ html {
 }
 
 body {
+  background-color: #0a003d;
+  color: #ffcdde;
   margin-bottom: 60px;
 }
 
@@ -24,6 +26,7 @@ header .collage {
   z-index: 20;
 }
 header .logo {
+  color: #fff;
   position: relative;
   text-align: center;
 }
@@ -48,13 +51,15 @@ header .social-icons a {
   padding: 0 10px;
 }
 header .navbar {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
-  background-image: linear-gradient(#fff, #ddd);
-  border-top: 1px solid #eee;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#4f0166), to(#22004a));
+  background-image: linear-gradient(#4f0166, #22004a);
+
+   /* #fff, #ddd */
+  /* border-top: 1px solid #eee;*/
   text-align: right;
 }
 header .navbar a {
-  color: #6F5F9C;
+  color: #c2a5c7;
   font-weight: bold;
 }
 header .navbar .filler {
@@ -73,15 +78,16 @@ header .navbar .filler {
 }
 
 .leaderboard {
-  background-image: linear-gradient(140deg, #bfb8da 20%, #7facd6 50%, #e8b7d4 80%);
+  background-image: linear-gradient(140deg, #ffe3ef 20%, #b9008a 50%, #2f0051 80%);   /*  #bfb8da 20%, #7facd6 50%, #e8b7d4 80% */
   height: 196px;
 }
 
 .main-content {
-  background-color: #ddd;
+  /* background-color: #ddd; */
 }
 
 .footer {
+  color: #ffcdde;
   position: absolute;
   bottom: 0;
   width: 100%;
