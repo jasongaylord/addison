@@ -53,6 +53,7 @@ body {
 /* bg-white */
 .bg-white {
   background-color: #fff;
+  color:#29004f;
 }
 
   .bg-white .card {
@@ -78,6 +79,7 @@ body {
 }
 
 
+/* footer */
 .footer {
   color: #ffcdde;
   position: absolute;
@@ -86,3 +88,8 @@ body {
   white-space: nowrap;
   line-height: 60px;
 }
+
+  .footer a, a:hover, a:visited {
+    color: #ffcdde;
+    text-decoration: none;
+  }
