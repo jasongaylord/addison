@@ -4,99 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Addison Gaylord</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <header>
-        <div class="container logo mt-3 mb-3">
-            <a asp-area="" asp-controller="Home" asp-action="Index">Addison Gaylord</a>
-            <img src="img/AddisonCollage.png" alt="Addison Gaylord in action playing softball, basketball, and running cross country." class="collage" />
-            <div class="social-icons">
-                <a href="https://www.instagram.com/agaylord_2027" target="_blank"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.x.com/addi_gaylord" target="_blank"><i class="fa-brands fa-x-twitter"></i></a>
+    <header class="navbar navbar-expand-lg bd-navbar sticky-top">
+        <nav class="container-xxl bd-gutter flex-wrap flex-lg-nowrap" aria-label="Main navigation">
+            <div class="d-lg-none" style="width: 4.25rem;"></div>
+            <a class="navbar-brand p-0 me-0 me-lg-2" href="/" aria-label="Addison Gaylord">
+                <img src="img/wyoming-area-icon.png" alt="Addison Gaylord will graduate from Wyoming Area High School in 2027." class="d-inline-block align-text-top" />
+                Addison Gaylord
+            </a>
+            <div class="d-flex">
+                <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <i class="fa-solid fa-circle-ellipsis fa-xl"></i>
+                </button>
             </div>
-        </div>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm">
-            <div class="container-fluid">
-                <div class="container">
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                            aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between text-right">
-                        <ul class="navbar-nav flex-grow-1">
-                            <li class="nav-item filler"></li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#Softball">Softball</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#Basketball">Basketball</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#CrossCountry">Cross Country</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#ContactMe">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
+            <div class="offcanvas offcanvas-lg offcanvas-end flex-grow-1" tabindex="-1" id="navbarSupportedContent" aria-labelledby="navbarSupportedContentLabel">
+                <div class="offcanvas-header px-4 pb-0">
+                    <img src="img/wyoming-area-icon.png" class="me-2" style="width: 36px; height: 36px;" alt="Addison Gaylord will graduate from Wyoming Area High School in 2027." />
+                    <h1 class="offcanvas-title" id="navbarSupportedContentLabel">Addison Gaylord</h1>
+                    <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body nav-menu">
+                    <hr class="d-lg-none text-white-50">
+                    <ul class="navbar-nav flex-row flex-wrap ms-md-auto">
+                        <!-- <li class="nav-item col-6 col-lg-auto">
+                            <a class="nav-link" href="#Softball">Softball</a>
+                        </li>
+                        <li class="nav-item col-6 col-lg-auto">
+                            <a class="nav-link" href="#Basketball">Basketball</a>
+                        </li>
+                        <li class="nav-item col-6 col-lg-auto">
+                            <a class="nav-link" href="#CrossCountry">Cross Country</a>
+                        </li>
+                        <li class="nav-item col-6 col-lg-auto">
+                            <a class="nav-link" href="#ContactMe">Contact</a>
+                        </li> -->
+                        <li class="nav-item col-6 col-lg-auto">
+                            <a class="nav-link" target="_blank" href="downloads/Addison-Gaylord-Recruiting-Sheet.pdf">
+                                <i class="fa-solid fa-download fa-xl"></i>
+                                Recruiting Sheet
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
 
-    <div class="container-fluid leaderboard">
-        <div class="container">
-
+    <div class="leaderboard pt-1">
+        <div class="container col-xxl-8">
+            <div class="row flex-lg-row align-items-center g-5">
+                <div class="col-lg-4">
+                    <img src="img/addison-outlaws.png" class="d-block mx-lg-auto img-fluid" alt="Addison Gaylord currently plays for the 18U National Fischl/Cole PA Outlaws team." width="340" height="300" loading="lazy">
+                </div>
+                <div class="col-lg-8 px-4 py-5">
+                    <h1 class="display-5 fw-bold lh-1 mb-3" id="leaderboard-tag">ADDISON GAYLORD 2027</h1>
+                    <p>WYOMING AREA HIGH SCHOOL | EXETER, PA</p>
+                    <p>POSITIONS: SS, C, UTIL</p>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div class="main-content">
+    <div class="bg-white">
         <div class="container">
-            <main role="main" class="pb-3">
-                <h2>About Me</h2>
-                <p>
-                    NCAA Claringhouse Number: 2409414487<br/>
-                    Graduation Year: 2027<br/>
-                    High School: Wyoming Area<br/>
-                    Grade Point Average: 3.7<br/>
-                    Address: 104 Ida Circle Exeter Pa 18643<br/>
-                    Height: 5'6"
-                </p>
+            <div class="row pt-3">
+                <div class="col">
+                    <div class="card mb-3 rounded-3 shadow-sm">
+                        <div class="card-body">
+                            <i class="fa-solid fa-graduation-cap fa-xl"></i>
+                            <h5 class="card-title">ACADEMICS</h5>
+                            GPA: 3.8
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-3 rounded-3 shadow-sm">
+                        <div class="card-body">
+                            <i class="fa-solid fa-person-simple fa-xl"></i>
+                            <h5 class="card-title">HEIGHT</h5>
+                            5ft 6in
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-3 rounded-3 shadow-sm">
+                        <div class="card-body">
+                            <i class="fa-solid fa-baseball-bat-ball fa-xl"></i>
+                            <h5 class="card-title">BATS</h5>
+                            SWITCH
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-3 rounded-3 shadow-sm">
+                        <div class="card-body">
+                            <i class="fa-solid fa-baseball fa-xl"></i>
+                            <h5 class="card-title">THROWS</h5>
+                            RIGHT
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card mb-3 rounded-3 shadow-sm">
+                        <div class="card-body">
+                            <img src="img/ncaa.png" alt="NCAA Logo" style="width: 27px;">
+                            <h5 class="card-title">NCAA ELIGIBILITY</h5>
+                            2409414487
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 py-3">
+                    <h2>More About Me</h2>
+                    <p>
+                        I'm on track to graduate from Wyoming Area High School in 2027. I'll be entering my junior year of high school in August 2025 with a 3.8 grade point average. I have also been 
+                        elected to the National Honor Society. In college, I hope to pursue a degree in accounting or finance.
+                    </p>
+                    <p>
+                        I've been a starter for both softball and basketball since by freshman year. I was chosen as a first team all-star of the Wyoming Valley Conference in my freshmen year and a 
+                        second team all-star this past year. While my strongest sports passion is softball, I have played basketball since 2nd grade and have been a runner on the cross country team 
+                        since 7th grade. Regardless of sport, you'll typically find me wearing #2.
+                    </p>
+                    <p>
+                        Outside of school and sports, I also enjoy spending time with my family and friends and working at a local ice cream shop. I have been involved in various community service 
+                        projects, including volunteering for a 5K that my sister organizes to raise money for children with hunger.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
 
-                <h4>Softball</h4>
-                <p>
-                    Jersey Number: #2<br/>
-                    Positions: Shortstop/Catcher/Util
-                </p>
-
-                <h4>Basketball</h4>
-                <p>
-                    Jersey Number: #2<br/>
-                </p>
-
-                <h4>Cross Country</h4>
-                <p>
-                    Details upon request
-                </p>
-
-                <h4>Contact Me</h4>
-                <p>
-                    <a href="https://www.instagram.com/agaylord_2027" target="_blank"><i class="fa-brands fa-instagram"></i> @agaylord_2027</a><br/>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col">&copy; 2024 Addison Gaylord</div>
+                <div class="col" style="text-align: right;">
+                    <a href="https://www.instagram.com/agaylord_2027" target="_blank"><i class="fa-brands fa-instagram"></i> @agaylord_2027</a>
+                    <span class="mx-3">|</span>
                     <a href="https://www.x.com/addi_gaylord" target="_blank"><i class="fa-brands fa-x-twitter"></i> @addi_gaylord</a>
-                </p>
-            </main>
-        </div>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2024 Addison Gaylord
+                </div>
+            </div>
         </div>
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/ffda48b653.js" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
 </body>
 </html>

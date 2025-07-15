@@ -12,56 +12,66 @@ html {
 }
 
 body {
+  background-color: #29004f; /* #250d57 #3D1A85; */
+  color: #ffcdde;
   margin-bottom: 60px;
 }
 
-header .collage {
-  max-width: 380px;
-  float: left;
-  position: absolute;
-  left: 0;
-  top: 0;
-  z-index: 20;
-}
-header .logo {
-  position: relative;
-  text-align: center;
-}
-header .logo a {
+/* Navbar */
+.navbar-brand, .offcanvas-title {
   font-family: "Indie Flower", cursive;
-  font-size: 60px;
-  color: #6F5F9C;
   text-decoration: none;
 }
-header .logo a:hover {
-  color: #8a5082;
+
+  .navbar-brand, .navbar-brand:hover  {
+    font-size: 40px;
+    color: #fff;
+  }
+
+.nav-menu .nav-item a {
+  color: #fff;
 }
-header .social-icons {
-  position: absolute;
-  float: right;
-  right: 0;
-  top: 20px;
-  color: #6F5F9C;
+
+.navbar-toggler i {
+  color: #bf7cff;
 }
-header .social-icons a {
-  font-size: 30px;
-  padding: 0 10px;
-}
-header .navbar {
-  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#ddd));
-  background-image: linear-gradient(#fff, #ddd);
-  border-top: 1px solid #eee;
-  text-align: right;
-}
-header .navbar a {
-  color: #6F5F9C;
+
+  .offcanvas.show .nav-item a {
+    color: #29004f;
+  }
+
+/* Leaderboard */
+.leaderboard {
+  background-color: #39006f; /* #3D1A85; */
+  color: #fff;
+  font-size: 1.3rem;
   font-weight: bold;
+  text-align: center;
 }
-header .navbar .filler {
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
+
+  .leaderboard .highlight {
+    color:#bf7cff;
+  }
+
+
+/* bg-white */
+.bg-white {
+  background-color: #fff;
+  color:#29004f;
 }
+
+  .bg-white .card {
+    background: linear-gradient(to bottom, #430083, #29004f);
+    color: #fff;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+  }
+
+    .bg-white .card h5 {
+      color: #bf7cff;
+    }
+
 
 .main-content a {
   color: #6F5F9C;
@@ -72,19 +82,18 @@ header .navbar .filler {
   color: #8a5082;
 }
 
-.leaderboard {
-  background-image: linear-gradient(140deg, #bfb8da 20%, #7facd6 50%, #e8b7d4 80%);
-  height: 196px;
-}
 
-.main-content {
-  background-color: #ddd;
-}
-
+/* footer */
 .footer {
+  color: #ffcdde;
   position: absolute;
   bottom: 0;
   width: 100%;
   white-space: nowrap;
   line-height: 60px;
 }
+
+  .footer a, a:hover, a:visited {
+    color: #ffcdde;
+    text-decoration: none;
+  }
