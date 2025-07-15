@@ -36,6 +36,10 @@ body {
   color: #bf7cff;
 }
 
+  .offcanvas.show .nav-item a {
+    color: #29004f;
+  }
+
 /* Leaderboard */
 .leaderboard {
   background-color: #39006f; /* #3D1A85; */
