@@ -17,6 +17,28 @@ body {
   margin-bottom: 60px;
 }
 
+@media (max-width: 991px) {
+  .for-large {
+    display: none;
+    visibility: hidden;
+  }
+
+  .for-small {
+    visibility: visible;
+  }
+}
+
+@media (min-width: 992px) {
+  .for-large {
+    visibility: visible;
+  }
+
+  .for-small {
+    display: none;
+    visibility: hidden;
+  }
+}
+
 
 /* Navbar */
 header {
