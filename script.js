@@ -7,4 +7,24 @@ window.addEventListener('DOMContentLoaded', function() {
             leaderboardTag.innerHTML = words.join(' ');
         }
     }
+
+    // Photo gallery functionality
+    function initPhotoGallery() {
+        const galleryImages = document.querySelectorAll('.photo-gallery img');
+        const featureImage = document.getElementById('feature-image');
+        const imageCaption = document.getElementById('image-caption');
+        
+        if (featureImage && imageCaption) {
+            galleryImages.forEach(img => {
+                img.addEventListener('click', function() {
+                    featureImage.src = this.src;
+                    featureImage.alt = this.alt;
+                    imageCaption.textContent = this.alt;
+                });
+            });
+        }
+    }
+
+    // Initialize photo gallery
+    initPhotoGallery();
 });
