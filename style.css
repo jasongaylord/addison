@@ -12,19 +12,24 @@ html {
 }
 
 body {
-  background-color: #29004f; /* #250d57 #3D1A85; */
-  color: #ffcdde;
+   /* #250d57 #3D1A85; */
+  /* color: #ffcdde; */
   margin-bottom: 60px;
 }
 
+
 /* Navbar */
+header {
+  background-color: #29004f;
+}
+
 .navbar-brand, .offcanvas-title {
   font-family: "Indie Flower", cursive;
   text-decoration: none;
 }
 
   .navbar-brand, .navbar-brand:hover  {
-    font-size: 40px;
+    font-size: 36px;
     color: #fff;
   }
 
@@ -54,6 +59,7 @@ body {
   }
 
 
+
 /* bg-white */
 .bg-white {
   background-color: #fff;
@@ -73,18 +79,98 @@ body {
     }
 
 
-.main-content a {
-  color: #6F5F9C;
-  text-decoration: none;
+
+/* bg-darkpurple */
+.bg-darkpurple {
+  background-color: #39006f;
+  color: #fff;
 }
 
-.main-content a:hover {
-  color: #8a5082;
+  .bg-darkpurple h4 {
+    color: #bf7cff;
+    text-transform: uppercase;
+  }
+
+  .bg-darkpurple .card {
+    background: linear-gradient(to bottom, #430083, #29004f);
+    color: #fff;
+  }
+
+    .bg-darkpurple .card a, a:visited {
+      color: #fff;
+      text-decoration: none;
+    }
+
+      .bg-darkpurple .card a:hover {
+        color: #ffcdde;
+      }
+
+    .bg-darkpurple .card h4 {
+      color: #bf7cff;
+      text-transform: uppercase;
+    }
+
+
+
+/* bg-purple */
+.bg-purple {
+  background-color: #6f42c1;
+  color: #fff;
 }
+
+
+/* photo-gallery */
+.gallery-image {
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Responsive image class for small screens */
+@media (max-width: 991px) {
+  .img-center-small img {
+    display: block;
+    margin: 0 auto;
+    border-bottom: 2px solid #6f42c1;
+    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); */
+    box-shadow: rgba(0, 0, 0, 0.65) 0px 25px 20px -20px;
+  }
+}
+
+.feature-image-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+#feature-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.image-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  /* background: linear-gradient(to top, rgba(41, 0, 79, 0.9), rgba(41, 0, 79, 0.7), transparent); */
+  color: #fff;
+  padding: 10px 10px 10px;
+  font-size: 1rem;
+  border-radius: 0 0 10px 10px;
+  text-align: center;
+}
+
 
 
 /* footer */
 .footer {
+  background-color: #29004f;
   color: #ffcdde;
   position: absolute;
   bottom: 0;
