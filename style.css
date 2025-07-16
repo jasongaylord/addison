@@ -104,10 +104,11 @@ header {
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(to top, rgba(41, 0, 79, 0.9), rgba(41, 0, 79, 0.7), transparent);
+  background: rgba(0, 0, 0, 0.6);
+  /* background: linear-gradient(to top, rgba(41, 0, 79, 0.9), rgba(41, 0, 79, 0.7), transparent); */
   color: #fff;
-  padding: 15px 10px 10px;
-  font-size: 0.9rem;
+  padding: 10px 10px 10px;
+  font-size: 1rem;
   border-radius: 0 0 10px 10px;
   text-align: center;
 }
