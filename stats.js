@@ -59,6 +59,16 @@ class GameStats {
     isWin() {
         return this.gameResult.startsWith('W');
     }
+
+    // Check if game was lost
+    isLoss() {
+        return this.gameResult.startsWith('L');
+    }
+
+    // Check if game was tied
+    isTie() {
+        return this.gameResult.startsWith('T');
+    }
 }
 
 class SeasonStats {
@@ -95,14 +105,15 @@ class SeasonStats {
             totals.rcs += game.rcs;
             totals.pik += game.pik;
             totals.wins += game.isWin() ? 1 : 0;
-            totals.losses += !game.isWin() ? 1 : 0;
+            totals.losses += game.isLoss() ? 1 : 0;
+            totals.ties += game.isTie() ? 1 : 0;
             return totals;
         }, {
             ab: 0, r: 0, h: 0, rbi: 0, bb: 0, so: 0,
             doubles: 0, triples: 0, hr: 0, gs: 0, sb: 0, cs: 0,
             hbp: 0, e: 0, a: 0, po: 0, dp: 0, tp: 0,
             inn: 0, pb: 0, sba: 0, rcs: 0, pik: 0,
-            wins: 0, losses: 0
+            wins: 0, losses: 0, ties: 0
         });
     }
 
@@ -339,7 +350,7 @@ function calculateCareerTotals(allSeasonData) {
         doubles: 0, triples: 0, hr: 0, gs: 0, sb: 0, cs: 0,
         hbp: 0, e: 0, a: 0, po: 0, dp: 0, tp: 0,
         inn: 0, pb: 0, sba: 0, rcs: 0, pik: 0,
-        wins: 0, losses: 0, games: 0
+        wins: 0, losses: 0, ties: 0, games: 0
     };
     
     Object.values(allSeasonData).forEach(seasonStats => {
@@ -369,6 +380,7 @@ function calculateCareerTotals(allSeasonData) {
         careerTotals.pik += seasonTotals.pik;
         careerTotals.wins += seasonTotals.wins;
         careerTotals.losses += seasonTotals.losses;
+        careerTotals.ties += seasonTotals.ties;
         careerTotals.games += seasonStats.getGamesPlayed();
     });
     
@@ -513,9 +525,9 @@ function populateIndexStatistics(allSeasonData) {
                         <div class="col-md-3 mb-3">
                             <div class="card text-center h-100">
                                 <div class="card-body">
-                                    <h5 class="card-title">Walks per PA</h5>
-                                    <h2 class="text-primary">${calculateCareerWalksPerPA(careerTotals)}</h2>
-                                    <p class="card-text">${careerTotals.bb} walks</p>
+                                    <h5 class="card-title">Record</h5>
+                                    <h2 class="text-primary">${careerTotals.wins}-${careerTotals.losses}-${careerTotals.ties}</h2>
+                                    <p class="card-text">${careerTotals.games} games played</p>
                                 </div>
                             </div>
                         </div>
@@ -647,7 +659,7 @@ function showGameDetails(year) {
         <div class="alert alert-info">
             <h4>${seasonData.season}</h4>
             <p><strong>Team:</strong> ${seasonData.team}</p>
-            <p><strong>Record:</strong> ${totals.wins}-${totals.losses} (${seasonData.getGamesPlayed()} games)</p>
+            <p><strong>Record:</strong> ${totals.wins}-${totals.losses}-${totals.ties} (${seasonData.getGamesPlayed()} games)</p>
         </div>
     `;
     
@@ -745,7 +757,7 @@ function showGameDetails(year) {
                             <td>${game.date}</td>
                             <td>${game.opponent}</td>
                             <td>${game.location}</td>
-                            <td><span class="badge ${game.isWin() ? 'bg-success' : 'bg-danger'}">${game.gameResult}</span></td>
+                            <td><span class="badge ${game.isWin() ? 'bg-success' : game.isLoss() ? 'bg-danger' : 'bg-secondary'}">${game.gameResult}</span></td>
                             <td>${game.ab}</td>
                             <td>${game.h}</td>
                             <td>${game.r}</td>

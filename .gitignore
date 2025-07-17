@@ -397,4 +397,6 @@ FodyWeavers.xsd
 # JetBrains Rider
 *.sln.iml
 tmp_data.csv
-tmp.xlsx
+*.xlsx
+*.py
+.gitignore
