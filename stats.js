@@ -274,6 +274,11 @@ function loadEmbeddedData(filename) {
                     "po": 1,
                     "dp": 0,
                     "tp": 0,
+                    "inn": 7,
+                    "pb": 0,
+                    "sba": 1,
+                    "rcs": 2,
+                    "pik": 0,
                     "game_result": "L 1-5"
                 },
                 {
