@@ -217,7 +217,18 @@ header {
   background-color: #ffcdde;
 }
 
+.statistics .btn {
+  background-color: #ffcdde;
+}
 
+.statistics .btn.active, .statistics .btn:active {
+  background-color: #29004f;
+}
+
+.statistics .btn-outline-primary  {
+  border-color: #29004f;
+  color: #29004f;
+}
 
 /* Custom modal styling */
 .modal-xl {
