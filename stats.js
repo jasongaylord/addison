@@ -528,7 +528,6 @@ function populateIndexStatistics(allSeasonData) {
         html += `
             <div class="row">
                 <div class="col-12">
-                    <h3 class="text-center mb-4">Season Statistics</h3>
                     <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead class="table-dark">

@@ -208,21 +208,16 @@ header {
 
 
 
-/* footer */
-.footer {
-  background-color: #29004f;
-  color: #ffcdde;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px;
+/* Statistics Table styles */
+.statistics .table-dark th { 
+  background-color: #29004f !important;
 }
 
-  .footer a, a:hover, a:visited {
-    color: #ffcdde;
-    text-decoration: none;
-  }
+.statistics .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #ffcdde;
+}
+
+
 
 /* Custom modal styling */
 .modal-xl {
@@ -235,47 +230,47 @@ header {
     border-bottom: 1px solid #dee2e6;
 }
 
-.modal-header .btn-close {
-    filter: invert(1);
-}
+  .modal-header .btn-close {
+      filter: invert(1);
+  }
 
 .modal-body {
     padding: 1.5rem;
 }
 
-.modal-body .table {
-    font-size: 0.9rem;
-}
+  .modal-body .table {
+      font-size: 0.9rem;
+  }
 
-.modal-body .table th {
-    white-space: nowrap;
-    padding: 0.5rem;
-}
+    .modal-body .table th {
+        white-space: nowrap;
+        padding: 0.5rem;
+    }
 
-.modal-body .table td {
-    white-space: nowrap;
-    padding: 0.5rem;
-}
+    .modal-body .table td {
+        white-space: nowrap;
+        padding: 0.5rem;
+    }
 
-.modal-body .card {
-    border: none;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
+  .modal-body .card {
+      border: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
 
-.modal-body .card-body {
-    padding: 0.75rem;
-}
+  .modal-body .card-body {
+      padding: 0.75rem;
+  }
 
-.modal-body .card-title {
-    font-size: 0.8rem;
-    margin-bottom: 0.5rem;
-}
+  .modal-body .card-title {
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+  }
 
-.modal-body .alert-info {
-    background-color: #e7f3ff;
-    border-color: #b8daff;
-    color: #0c5460;
-}
+  .modal-body .alert-info {
+      background-color: #e7f3ff;
+      border-color: #b8daff;
+      color: #0c5460;
+  }
 
 /* Responsive modal adjustments */
 @media (max-width: 768px) {
@@ -306,7 +301,9 @@ header {
     }
 }
 
-.footer {
+
+
+/* .footer {
   position: absolute;
   bottom: 0;
   width: 100%;
@@ -315,4 +312,20 @@ header {
   background-color: #29004f;
   text-align: center;
   color: white;
+} */
+
+/* footer */
+.footer {
+  background-color: #29004f;
+  color: #ffcdde;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
 }
+
+  .footer a, a:hover, a:visited {
+    color: #ffcdde;
+    text-decoration: none;
+  }
