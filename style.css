@@ -140,6 +140,16 @@ header {
   color: #fff;
 }
 
+  .bg-purple .card {
+    background: linear-gradient(to bottom, #430083, #29004f);
+    color: #fff;
+  }
+
+    .bg-purple .card h4 {
+      color: #bf7cff;
+      text-transform: uppercase;
+    }
+
 
 /* photo-gallery */
 .gallery-image {

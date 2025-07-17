@@ -264,9 +264,9 @@
                 ['Grand Slams', totals.gs, 'Walks', totals.bb],
                 ['Strikeouts', totals.so, 'Stolen Bases', totals.sb],
                 ['Caught Stealing', totals.cs, 'Hit by Pitch', totals.hbp],
-                ['Assists', totals.assists, 'Put Outs', totals.putouts],
-                ['Errors', totals.e, 'Double Plays', totals.doublePlays],
-                ['Triple Plays', totals.triplePlays, 'Record', `${totals.wins}-${totals.losses}`]
+                ['Assists', totals.a, 'Put Outs', totals.po],
+                ['Errors', totals.e, 'Double Plays', totals.dp],
+                ['Triple Plays', totals.tp, 'Record', `${totals.wins}-${totals.losses}`]
             ];
             
             statsTableBody.innerHTML = statsData.map(row => 
@@ -290,10 +290,10 @@
                     <td>${game.bb}</td>
                     <td>${game.so}</td>
                     <td>${game.sb}</td>
-                    <td>${game.assists}</td>
-                    <td>${game.putouts}</td>
+                    <td>${game.a}</td>
+                    <td>${game.po}</td>
                     <td>${game.e}</td>
-                    <td>${game.doublePlays}</td>
+                    <td>${game.dp}</td>
                     <td>${game.getBattingAverage()}</td>
                     <td>${game.getFieldingPercentage()}</td>
                     <td><span class="badge ${game.isWin() ? 'bg-success' : 'bg-danger'}">${game.gameResult}</span></td>

@@ -18,10 +18,10 @@ class GameStats {
         this.cs = data.cs || 0;           // Caught stealing
         this.hbp = data.hbp || 0;         // Hit by pitch
         this.e = data.e || 0;             // Errors
-        this.assists = data.assists || 0; // Assists
-        this.putouts = data.putouts || 0; // Put outs
-        this.doublePlays = data.double_plays || 0; // Double plays
-        this.triplePlays = data.triple_plays || 0; // Triple plays
+        this.a = data.a || data.assists || 0; // Assists (support both old and new property names)
+        this.po = data.po || data.putouts || 0; // Put outs
+        this.dp = data.dp || data.double_plays || 0; // Double plays
+        this.tp = data.tp || data.triple_plays || 0; // Triple plays
         this.gameResult = data.game_result || '';
     }
 
@@ -39,9 +39,9 @@ class GameStats {
 
     // Calculate fielding percentage for this game
     getFieldingPercentage() {
-        const totalChances = this.assists + this.putouts + this.e;
+        const totalChances = this.a + this.po + this.e;
         return totalChances > 0 ? 
-            ((this.assists + this.putouts) / totalChances).toFixed(3) : '1.000';
+            ((this.a + this.po) / totalChances).toFixed(3) : '1.000';
     }
 
     // Check if game was won
@@ -74,17 +74,17 @@ class SeasonStats {
             totals.cs += game.cs;
             totals.hbp += game.hbp;
             totals.e += game.e;
-            totals.assists += game.assists;
-            totals.putouts += game.putouts;
-            totals.doublePlays += game.doublePlays;
-            totals.triplePlays += game.triplePlays;
+            totals.a += game.a;
+            totals.po += game.po;
+            totals.dp += game.dp;
+            totals.tp += game.tp;
             totals.wins += game.isWin() ? 1 : 0;
             totals.losses += !game.isWin() ? 1 : 0;
             return totals;
         }, {
             ab: 0, r: 0, h: 0, rbi: 0, bb: 0, so: 0,
             doubles: 0, triples: 0, hr: 0, gs: 0, sb: 0, cs: 0,
-            hbp: 0, e: 0, assists: 0, putouts: 0, doublePlays: 0, triplePlays: 0,
+            hbp: 0, e: 0, a: 0, po: 0, dp: 0, tp: 0,
             wins: 0, losses: 0
         });
     }
@@ -136,9 +136,9 @@ class SeasonStats {
     // Calculate season fielding percentage
     getSeasonFieldingPercentage() {
         const totals = this.getSeasonTotals();
-        const totalChances = totals.assists + totals.putouts + totals.e;
+        const totalChances = totals.a + totals.po + totals.e;
         return totalChances > 0 ? 
-            ((totals.assists + totals.putouts) / totalChances).toFixed(3) : '1.000';
+            ((totals.a + totals.po) / totalChances).toFixed(3) : '1.000';
     }
 
     // Get games count
@@ -188,10 +188,10 @@ function loadEmbeddedData(filename) {
                     "cs": 0,
                     "hbp": 0,
                     "e": 0,
-                    "assists": 2,
-                    "putouts": 3,
-                    "double_plays": 1,
-                    "triple_plays": 0,
+                    "a": 2,
+                    "po": 3,
+                    "dp": 1,
+                    "tp": 0,
                     "game_result": "W 5-0"
                 },
                 {
@@ -212,10 +212,10 @@ function loadEmbeddedData(filename) {
                     "cs": 0,
                     "hbp": 0,
                     "e": 0,
-                    "assists": 1,
-                    "putouts": 2,
-                    "double_plays": 0,
-                    "triple_plays": 0,
+                    "a": 1,
+                    "po": 2,
+                    "dp": 0,
+                    "tp": 0,
                     "game_result": "L 4-12"
                 },
                 {
@@ -236,10 +236,10 @@ function loadEmbeddedData(filename) {
                     "cs": 0,
                     "hbp": 0,
                     "e": 0,
-                    "assists": 3,
-                    "putouts": 1,
-                    "double_plays": 0,
-                    "triple_plays": 0,
+                    "a": 3,
+                    "po": 1,
+                    "dp": 0,
+                    "tp": 0,
                     "game_result": "L 1-5"
                 },
                 {
@@ -260,10 +260,10 @@ function loadEmbeddedData(filename) {
                     "cs": 0,
                     "hbp": 0,
                     "e": 1,
-                    "assists": 0,
-                    "putouts": 4,
-                    "double_plays": 0,
-                    "triple_plays": 0,
+                    "a": 0,
+                    "po": 4,
+                    "dp": 0,
+                    "tp": 0,
                     "game_result": "L 0-13"
                 }
             ]
@@ -298,7 +298,7 @@ function calculateCareerTotals(allSeasonData) {
     const careerTotals = {
         ab: 0, r: 0, h: 0, rbi: 0, bb: 0, so: 0,
         doubles: 0, triples: 0, hr: 0, gs: 0, sb: 0, cs: 0,
-        hbp: 0, e: 0, assists: 0, putouts: 0, doublePlays: 0, triplePlays: 0,
+        hbp: 0, e: 0, a: 0, po: 0, dp: 0, tp: 0,
         wins: 0, losses: 0, games: 0
     };
     
@@ -318,10 +318,10 @@ function calculateCareerTotals(allSeasonData) {
         careerTotals.cs += seasonTotals.cs;
         careerTotals.hbp += seasonTotals.hbp;
         careerTotals.e += seasonTotals.e;
-        careerTotals.assists += seasonTotals.assists;
-        careerTotals.putouts += seasonTotals.putouts;
-        careerTotals.doublePlays += seasonTotals.doublePlays;
-        careerTotals.triplePlays += seasonTotals.triplePlays;
+        careerTotals.a += seasonTotals.a;
+        careerTotals.po += seasonTotals.po;
+        careerTotals.dp += seasonTotals.dp;
+        careerTotals.tp += seasonTotals.tp;
         careerTotals.wins += seasonTotals.wins;
         careerTotals.losses += seasonTotals.losses;
         careerTotals.games += seasonStats.getGamesPlayed();
@@ -369,9 +369,9 @@ function calculateCareerStealingPercentage(careerTotals) {
 
 // Function to calculate career fielding percentage
 function calculateCareerFieldingPercentage(careerTotals) {
-    const totalChances = careerTotals.assists + careerTotals.putouts + careerTotals.e;
+    const totalChances = careerTotals.a + careerTotals.po + careerTotals.e;
     return totalChances > 0 ? 
-        ((careerTotals.assists + careerTotals.putouts) / totalChances).toFixed(3) : '1.000';
+        ((careerTotals.a + careerTotals.po) / totalChances).toFixed(3) : '1.000';
 }
 
 // Function to populate statistics section in index.html
@@ -393,7 +393,6 @@ function populateIndexStatistics(allSeasonData) {
         html += `
             <div class="row mb-4">
                 <div class="col-12">
-                    <h3 class="text-center mb-4">Career Summary</h3>
                     <div class="row">
                         <div class="col-md-3 mb-3">
                             <div class="card text-center h-100">
@@ -427,7 +426,7 @@ function populateIndexStatistics(allSeasonData) {
                                 <div class="card-body">
                                     <h5 class="card-title">Fielding Percentage</h5>
                                     <h2 class="text-primary">${calculateCareerFieldingPercentage(careerTotals)}</h2>
-                                    <p class="card-text">${careerTotals.assists + careerTotals.putouts} chances, ${careerTotals.e} errors</p>
+                                    <p class="card-text">${careerTotals.a + careerTotals.po} chances, ${careerTotals.e} errors</p>
                                 </div>
                             </div>
                         </div>
@@ -496,7 +495,6 @@ function populateIndexStatistics(allSeasonData) {
                                     <th>PO</th>
                                     <th>E</th>
                                     <th>DP</th>
-                                    <th>Details</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -510,7 +508,7 @@ function populateIndexStatistics(allSeasonData) {
             html += `
                 <tr>
                     <td><strong>${year}</strong></td>
-                    <td>${seasonStats.team}</td>
+                    <td><a onclick="showGameDetails('${year}')">${seasonStats.team}</a></td>
                     <td>${seasonStats.getGamesPlayed()}</td>
                     <td>${seasonStats.getSeasonBattingAverage()}</td>
                     <td>${seasonStats.getSeasonOnBasePercentage()}</td>
@@ -527,16 +525,10 @@ function populateIndexStatistics(allSeasonData) {
                     <td>${totals.so}</td>
                     <td>${totals.sb}</td>
                     <td>${totals.cs}</td>
-                    <td>${totals.assists}</td>
-                    <td>${totals.putouts}</td>
+                    <td>${totals.a}</td>
+                    <td>${totals.po}</td>
                     <td>${totals.e}</td>
-                    <td>${totals.doublePlays}</td>
-                    <td>
-                        <button type="button" class="btn btn-sm btn-primary" 
-                                onclick="showGameDetails('${year}')">
-                            View Games
-                        </button>
-                    </td>
+                    <td>${totals.dp}</td>
                 </tr>
             `;
         });
@@ -562,11 +554,10 @@ function populateIndexStatistics(allSeasonData) {
                     <td><strong>${careerTotals.so}</strong></td>
                     <td><strong>${careerTotals.sb}</strong></td>
                     <td><strong>${careerTotals.cs}</strong></td>
-                    <td><strong>${careerTotals.assists}</strong></td>
-                    <td><strong>${careerTotals.putouts}</strong></td>
+                    <td><strong>${careerTotals.a}</strong></td>
+                    <td><strong>${careerTotals.po}</strong></td>
                     <td><strong>${careerTotals.e}</strong></td>
-                    <td><strong>${careerTotals.doublePlays}</strong></td>
-                    <td>-</td>
+                    <td><strong>${careerTotals.dp}</strong></td>
                 </tr>
             </tbody>
         </table>
@@ -700,10 +691,10 @@ function showGameDetails(year) {
                             <td>${game.bb}</td>
                             <td>${game.so}</td>
                             <td>${game.sb}</td>
-                            <td>${game.assists}</td>
-                            <td>${game.putouts}</td>
+                            <td>${game.a}</td>
+                            <td>${game.po}</td>
                             <td>${game.e}</td>
-                            <td>${game.doublePlays}</td>
+                            <td>${game.dp}</td>
                             <td>${game.getBattingAverage()}</td>
                             <td>${game.getFieldingPercentage()}</td>
                         </tr>

@@ -20,10 +20,10 @@
             "cs": 0,
             "hbp": 0,
             "e": 0,
-            "assists": 2,
-            "putouts": 1,
-            "double_plays": 0,
-            "triple_plays": 0,
+            "a": 2,
+            "po": 1,
+            "dp": 0,
+            "tp": 0,
             "game_result": "W 5-0"
         },
         {
@@ -44,10 +44,10 @@
             "cs": 0,
             "hbp": 0,
             "e": 0,
-            "assists": 2,
-            "putouts": 1,
-            "double_plays": 0,
-            "triple_plays": 0,
+            "a": 2,
+            "po": 1,
+            "dp": 0,
+            "tp": 0,
             "game_result": "L 4-12"
         },
         {
@@ -68,10 +68,10 @@
             "cs": 0,
             "hbp": 0,
             "e": 0,
-            "assists": 4,
-            "putouts": 1,
-            "double_plays": 0,
-            "triple_plays": 0,
+            "a": 4,
+            "po": 1,
+            "dp": 0,
+            "tp": 0,
             "game_result": "L 1-5"
         },
         {
@@ -92,10 +92,10 @@
             "cs": 0,
             "hbp": 0,
             "e": 1,
-            "assists": 2,
-            "putouts": 1,
-            "double_plays": 0,
-            "triple_plays": 0,
+            "a": 2,
+            "po": 1,
+            "dp": 0,
+            "tp": 0,
             "game_result": "L 0-13"
         }
     ]
