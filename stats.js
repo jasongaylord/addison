@@ -22,6 +22,11 @@ class GameStats {
         this.po = data.po || data.putouts || 0; // Put outs
         this.dp = data.dp || data.double_plays || 0; // Double plays
         this.tp = data.tp || data.triple_plays || 0; // Triple plays
+        this.inn = data.inn || 0;         // Innings caught
+        this.pb = data.pb || 0;           // Passed balls
+        this.sba = data.sba || 0;         // Stolen bases allowed
+        this.rcs = data.rcs || 0;         // Runners caught stealing
+        this.pik = data.pik || 0;         // Runners picked off
         this.gameResult = data.game_result || '';
     }
 
@@ -42,6 +47,12 @@ class GameStats {
         const totalChances = this.a + this.po + this.e;
         return totalChances > 0 ? 
             ((this.a + this.po) / totalChances).toFixed(3) : '1.000';
+    }
+
+    // Calculate runners caught stealing percentage for this game
+    getRunnersCaughtStealingPercentage() {
+        const totalAttempts = this.sba + this.rcs;
+        return totalAttempts > 0 ? ((this.rcs / totalAttempts) * 100).toFixed(1) : '0.0';
     }
 
     // Check if game was won
@@ -78,6 +89,11 @@ class SeasonStats {
             totals.po += game.po;
             totals.dp += game.dp;
             totals.tp += game.tp;
+            totals.inn += game.inn;
+            totals.pb += game.pb;
+            totals.sba += game.sba;
+            totals.rcs += game.rcs;
+            totals.pik += game.pik;
             totals.wins += game.isWin() ? 1 : 0;
             totals.losses += !game.isWin() ? 1 : 0;
             return totals;
@@ -85,6 +101,7 @@ class SeasonStats {
             ab: 0, r: 0, h: 0, rbi: 0, bb: 0, so: 0,
             doubles: 0, triples: 0, hr: 0, gs: 0, sb: 0, cs: 0,
             hbp: 0, e: 0, a: 0, po: 0, dp: 0, tp: 0,
+            inn: 0, pb: 0, sba: 0, rcs: 0, pik: 0,
             wins: 0, losses: 0
         });
     }
@@ -126,19 +143,26 @@ class SeasonStats {
         return plateAppearances > 0 ? (totals.bb / plateAppearances).toFixed(3) : '0.000';
     }
 
-    // Calculate stealing percentage
-    getStealingPercentage() {
-        const totals = this.getSeasonTotals();
-        const stealingAttempts = totals.sb + totals.cs;
-        return stealingAttempts > 0 ? ((totals.sb / stealingAttempts) * 100).toFixed(1) : '0.0';
-    }
-
     // Calculate season fielding percentage
     getSeasonFieldingPercentage() {
         const totals = this.getSeasonTotals();
         const totalChances = totals.a + totals.po + totals.e;
         return totalChances > 0 ? 
             ((totals.a + totals.po) / totalChances).toFixed(3) : '1.000';
+    }
+
+    // Calculate season runners caught stealing percentage
+    getSeasonRunnersCaughtStealingPercentage() {
+        const totals = this.getSeasonTotals();
+        const totalAttempts = totals.sba + totals.rcs;
+        return totalAttempts > 0 ? ((totals.rcs / totalAttempts) * 100).toFixed(1) : '0.0';
+    }
+
+    // Calculate stealing percentage
+    getStealingPercentage() {
+        const totals = this.getSeasonTotals();
+        const stealingAttempts = totals.sb + totals.cs;
+        return stealingAttempts > 0 ? ((totals.sb / stealingAttempts) * 100).toFixed(1) : '0.0';
     }
 
     // Get games count
@@ -192,6 +216,11 @@ function loadEmbeddedData(filename) {
                     "po": 3,
                     "dp": 1,
                     "tp": 0,
+                    "inn": 5,
+                    "pb": 0,
+                    "sba": 2,
+                    "rcs": 1,
+                    "pik": 0,
                     "game_result": "W 5-0"
                 },
                 {
@@ -216,6 +245,11 @@ function loadEmbeddedData(filename) {
                     "po": 2,
                     "dp": 0,
                     "tp": 0,
+                    "inn": 4,
+                    "pb": 1,
+                    "sba": 3,
+                    "rcs": 0,
+                    "pik": 1,
                     "game_result": "L 4-12"
                 },
                 {
@@ -299,6 +333,7 @@ function calculateCareerTotals(allSeasonData) {
         ab: 0, r: 0, h: 0, rbi: 0, bb: 0, so: 0,
         doubles: 0, triples: 0, hr: 0, gs: 0, sb: 0, cs: 0,
         hbp: 0, e: 0, a: 0, po: 0, dp: 0, tp: 0,
+        inn: 0, pb: 0, sba: 0, rcs: 0, pik: 0,
         wins: 0, losses: 0, games: 0
     };
     
@@ -322,6 +357,11 @@ function calculateCareerTotals(allSeasonData) {
         careerTotals.po += seasonTotals.po;
         careerTotals.dp += seasonTotals.dp;
         careerTotals.tp += seasonTotals.tp;
+        careerTotals.inn += seasonTotals.inn;
+        careerTotals.pb += seasonTotals.pb;
+        careerTotals.sba += seasonTotals.sba;
+        careerTotals.rcs += seasonTotals.rcs;
+        careerTotals.pik += seasonTotals.pik;
         careerTotals.wins += seasonTotals.wins;
         careerTotals.losses += seasonTotals.losses;
         careerTotals.games += seasonStats.getGamesPlayed();
@@ -372,6 +412,12 @@ function calculateCareerFieldingPercentage(careerTotals) {
     const totalChances = careerTotals.a + careerTotals.po + careerTotals.e;
     return totalChances > 0 ? 
         ((careerTotals.a + careerTotals.po) / totalChances).toFixed(3) : '1.000';
+}
+
+// Function to calculate career runners caught stealing percentage
+function calculateCareerRunnersCaughtStealingPercentage(careerTotals) {
+    const totalAttempts = careerTotals.sba + careerTotals.rcs;
+    return totalAttempts > 0 ? ((careerTotals.rcs / totalAttempts) * 100).toFixed(1) : '0.0';
 }
 
 // Function to populate statistics section in index.html
@@ -432,7 +478,7 @@ function populateIndexStatistics(allSeasonData) {
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <div class="card text-center h-100">
                                 <div class="card-body">
                                     <h5 class="card-title">Stealing Percentage</h5>
@@ -441,7 +487,16 @@ function populateIndexStatistics(allSeasonData) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
+                            <div class="card text-center h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">CS% (Catching)</h5>
+                                    <h2 class="text-primary">${calculateCareerRunnersCaughtStealingPercentage(careerTotals)}%</h2>
+                                    <p class="card-text">${careerTotals.rcs} caught, ${careerTotals.sba} allowed</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
                             <div class="card text-center h-100">
                                 <div class="card-body">
                                     <h5 class="card-title">Strikeouts per PA</h5>
@@ -450,7 +505,7 @@ function populateIndexStatistics(allSeasonData) {
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4 mb-3">
+                        <div class="col-md-3 mb-3">
                             <div class="card text-center h-100">
                                 <div class="card-body">
                                     <h5 class="card-title">Walks per PA</h5>
