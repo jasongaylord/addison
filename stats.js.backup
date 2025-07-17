@@ -437,10 +437,81 @@ function calculateCareerRunnersCaughtStealingPercentage(careerTotals) {
     return totalAttempts > 0 ? ((careerTotals.rcs / totalAttempts) * 100).toFixed(1) : '0.0';
 }
 
-// Helper function to render batting career summary cards
-function renderBattingCareerSummary(allSeasonData) {
-    const careerTotals = calculateCareerTotals(allSeasonData);
+// Function to populate statistics section in index.html
+function populateIndexStatistics(allSeasonData) {
+    const statsContainer = document.getElementById('stats-container');
+    if (!statsContainer) return;
+
+    let html = '';
     
+    // Check if we have any season data
+    const seasons = Object.keys(allSeasonData);
+    if (seasons.length === 0) {
+        html = '<div class="alert alert-info">No season data available.</div>';
+    } else {
+        // Calculate career totals
+        const careerTotals = calculateCareerTotals(allSeasonData);
+        
+        // Add toggle buttons
+        html += `
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="btn-group btn-group-toggle" data-bs-toggle="buttons">
+                        <input type="radio" class="btn-check" name="statsView" id="battingView" autocomplete="off" checked>
+                        <label class="btn btn-outline-primary" for="battingView">Batting Statistics</label>
+                        
+                        <input type="radio" class="btn-check" name="statsView" id="fieldingView" autocomplete="off">
+                        <label class="btn btn-outline-primary" for="fieldingView">Fielding/Catching Statistics</label>
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Create career summary cards
+        html += '<div id="career-summary-cards">';
+        html += getBattingCareerSummary(careerTotals);
+        html += '</div>';
+        
+        // Create season/team statistics grid
+        html += '<div id="season-stats-table">';
+        html += getBattingSeasonTable(allSeasonData);
+        html += '</div>';
+    }
+    
+    statsContainer.innerHTML = html;
+    
+    // Add event listeners for toggle buttons
+    if (seasons.length > 0) {
+        document.getElementById('battingView').addEventListener('change', function() {
+            if (this.checked) {
+                showBattingStats(allSeasonData);
+            }
+        });
+        
+        document.getElementById('fieldingView').addEventListener('change', function() {
+            if (this.checked) {
+                showFieldingStats(allSeasonData);
+            }
+        });
+    }
+}
+
+// Function to show batting statistics
+function showBattingStats(allSeasonData) {
+    const careerTotals = calculateCareerTotals(allSeasonData);
+    document.getElementById('career-summary-cards').innerHTML = getBattingCareerSummary(careerTotals);
+    document.getElementById('season-stats-table').innerHTML = getBattingSeasonTable(allSeasonData);
+}
+
+// Function to show fielding/catching statistics
+function showFieldingStats(allSeasonData) {
+    const careerTotals = calculateCareerTotals(allSeasonData);
+    document.getElementById('career-summary-cards').innerHTML = getFieldingCareerSummary(careerTotals);
+    document.getElementById('season-stats-table').innerHTML = getFieldingSeasonTable(allSeasonData);
+}
+
+// Function to get batting career summary cards
+function getBattingCareerSummary(careerTotals) {
     return `
         <div class="row mb-4">
             <div class="col-12">
@@ -475,14 +546,23 @@ function renderBattingCareerSummary(allSeasonData) {
                     <div class="col-md-3 mb-3">
                         <div class="card text-center h-100">
                             <div class="card-body">
+                                <h5 class="card-title">Record</h5>
+                                <h2 class="text-primary">${careerTotals.wins}-${careerTotals.losses}-${careerTotals.ties}</h2>
+                                <p class="card-text">${careerTotals.games} games played</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
                                 <h5 class="card-title">Stealing Percentage</h5>
                                 <h2 class="text-primary">${calculateCareerStealingPercentage(careerTotals)}%</h2>
                                 <p class="card-text">${careerTotals.sb} stolen bases, ${careerTotals.cs} caught stealing</p>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="row">
                     <div class="col-md-3 mb-3">
                         <div class="card text-center h-100">
                             <div class="card-body">
@@ -504,18 +584,9 @@ function renderBattingCareerSummary(allSeasonData) {
                     <div class="col-md-3 mb-3">
                         <div class="card text-center h-100">
                             <div class="card-body">
-                                <h5 class="card-title">Record</h5>
-                                <h2 class="text-primary">${careerTotals.wins}-${careerTotals.losses}-${careerTotals.ties}</h2>
-                                <p class="card-text">${careerTotals.games} games played</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-3">
-                        <div class="card text-center h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">Grand Slams</h5>
-                                <h2 class="text-primary">${careerTotals.gs}</h2>
-                                <p class="card-text">Career grand slams</p>
+                                <h5 class="card-title">RBIs</h5>
+                                <h2 class="text-primary">${careerTotals.rbi}</h2>
+                                <p class="card-text">Runs batted in</p>
                             </div>
                         </div>
                     </div>
@@ -525,10 +596,8 @@ function renderBattingCareerSummary(allSeasonData) {
     `;
 }
 
-// Helper function to render fielding/catching career summary cards
-function renderFieldingCareerSummary(allSeasonData) {
-    const careerTotals = calculateCareerTotals(allSeasonData);
-    
+// Function to get fielding career summary cards
+function getFieldingCareerSummary(careerTotals) {
     return `
         <div class="row mb-4">
             <div class="col-12">
@@ -556,7 +625,7 @@ function renderFieldingCareerSummary(allSeasonData) {
                             <div class="card-body">
                                 <h5 class="card-title">Total Assists</h5>
                                 <h2 class="text-primary">${careerTotals.a}</h2>
-                                <p class="card-text">Career assists</p>
+                                <p class="card-text">Assists made</p>
                             </div>
                         </div>
                     </div>
@@ -565,7 +634,7 @@ function renderFieldingCareerSummary(allSeasonData) {
                             <div class="card-body">
                                 <h5 class="card-title">Total Putouts</h5>
                                 <h2 class="text-primary">${careerTotals.po}</h2>
-                                <p class="card-text">Career putouts</p>
+                                <p class="card-text">Putouts made</p>
                             </div>
                         </div>
                     </div>
@@ -576,7 +645,7 @@ function renderFieldingCareerSummary(allSeasonData) {
                             <div class="card-body">
                                 <h5 class="card-title">Double Plays</h5>
                                 <h2 class="text-primary">${careerTotals.dp}</h2>
-                                <p class="card-text">Career double plays</p>
+                                <p class="card-text">Double plays turned</p>
                             </div>
                         </div>
                     </div>
@@ -585,7 +654,7 @@ function renderFieldingCareerSummary(allSeasonData) {
                             <div class="card-body">
                                 <h5 class="card-title">Triple Plays</h5>
                                 <h2 class="text-primary">${careerTotals.tp}</h2>
-                                <p class="card-text">Career triple plays</p>
+                                <p class="card-text">Triple plays turned</p>
                             </div>
                         </div>
                     </div>
@@ -594,7 +663,7 @@ function renderFieldingCareerSummary(allSeasonData) {
                             <div class="card-body">
                                 <h5 class="card-title">Innings Caught</h5>
                                 <h2 class="text-primary">${careerTotals.inn}</h2>
-                                <p class="card-text">Career innings caught</p>
+                                <p class="card-text">Behind the plate</p>
                             </div>
                         </div>
                     </div>
@@ -603,7 +672,7 @@ function renderFieldingCareerSummary(allSeasonData) {
                             <div class="card-body">
                                 <h5 class="card-title">Passed Balls</h5>
                                 <h2 class="text-primary">${careerTotals.pb}</h2>
-                                <p class="card-text">Career passed balls</p>
+                                <p class="card-text">Passed balls allowed</p>
                             </div>
                         </div>
                     </div>
@@ -613,251 +682,153 @@ function renderFieldingCareerSummary(allSeasonData) {
     `;
 }
 
-// Helper function to render batting season table
-function renderBattingSeasonTable(allSeasonData) {
-    const careerTotals = calculateCareerTotals(allSeasonData);
-    const seasons = Object.keys(allSeasonData);
-    
-    let html = `
-        <div class="row">
-            <div class="col-12">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Season</th>
-                                <th>Team</th>
-                                <th>GP</th>
-                                <th>AVG</th>
-                                <th>OBP</th>
-                                <th>SLG</th>
-                                <th>AB</th>
-                                <th>H</th>
-                                <th>R</th>
-                                <th>RBI</th>
-                                <th>2B</th>
-                                <th>3B</th>
-                                <th>HR</th>
-                                <th>GS</th>
-                                <th>BB</th>
-                                <th>SO</th>
-                                <th>HBP</th>
-                                <th>SB</th>
-                                <th>CS</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-    `;
-    
-    // Add each season's data
-    seasons.forEach(year => {
-        const seasonStats = allSeasonData[year];
-        const totals = seasonStats.getSeasonTotals();
-        
-        html += `
-            <tr>
-                <td><strong>${year}</strong></td>
-                <td><a onclick="showGameDetails('${year}')">${seasonStats.team}</a></td>
-                <td>${seasonStats.getGamesPlayed()}</td>
-                <td>${seasonStats.getSeasonBattingAverage()}</td>
-                <td>${seasonStats.getSeasonOnBasePercentage()}</td>
-                <td>${seasonStats.getSeasonSluggingPercentage()}</td>
-                <td>${totals.ab}</td>
-                <td>${totals.h}</td>
-                <td>${totals.r}</td>
-                <td>${totals.rbi}</td>
-                <td>${totals.doubles}</td>
-                <td>${totals.triples}</td>
-                <td>${totals.hr}</td>
-                <td>${totals.gs}</td>
-                <td>${totals.bb}</td>
-                <td>${totals.so}</td>
-                <td>${totals.hbp}</td>
-                <td>${totals.sb}</td>
-                <td>${totals.cs}</td>
-            </tr>
-        `;
-    });
-    
-    // Add totals row
-    html += `
-            <tr class="table-warning">
-                <td><strong>CAREER TOTALS</strong></td>
-                <td>-</td>
-                <td><strong>${careerTotals.games}</strong></td>
-                <td><strong>${calculateCareerBattingAverage(careerTotals)}</strong></td>
-                <td><strong>${calculateCareerOnBasePercentage(careerTotals)}</strong></td>
-                <td><strong>${calculateCareerSluggingPercentage(careerTotals)}</strong></td>
-                <td><strong>${careerTotals.ab}</strong></td>
-                <td><strong>${careerTotals.h}</strong></td>
-                <td><strong>${careerTotals.r}</strong></td>
-                <td><strong>${careerTotals.rbi}</strong></td>
-                <td><strong>${careerTotals.doubles}</strong></td>
-                <td><strong>${careerTotals.triples}</strong></td>
-                <td><strong>${careerTotals.hr}</strong></td>
-                <td><strong>${careerTotals.gs}</strong></td>
-                <td><strong>${careerTotals.bb}</strong></td>
-                <td><strong>${careerTotals.so}</strong></td>
-                <td><strong>${careerTotals.hbp}</strong></td>
-                <td><strong>${careerTotals.sb}</strong></td>
-                <td><strong>${careerTotals.cs}</strong></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-</div>
-</div>
-    `;
-    
-    return html;
-}
-
-// Helper function to render fielding/catching season table
-function renderFieldingSeasonTable(allSeasonData) {
-    const careerTotals = calculateCareerTotals(allSeasonData);
-    const seasons = Object.keys(allSeasonData);
-    
-    let html = `
-        <div class="row">
-            <div class="col-12">
-                <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Season</th>
-                                <th>Team</th>
-                                <th>GP</th>
-                                <th>FLD%</th>
-                                <th>CS%</th>
-                                <th>A</th>
-                                <th>PO</th>
-                                <th>E</th>
-                                <th>DP</th>
-                                <th>TP</th>
-                                <th>INN</th>
-                                <th>PB</th>
-                                <th>SBA</th>
-                                <th>RCS</th>
-                                <th>PIK</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-    `;
-    
-    // Add each season's data
-    seasons.forEach(year => {
-        const seasonStats = allSeasonData[year];
-        const totals = seasonStats.getSeasonTotals();
-        
-        html += `
-            <tr>
-                <td><strong>${year}</strong></td>
-                <td><a onclick="showGameDetails('${year}')">${seasonStats.team}</a></td>
-                <td>${seasonStats.getGamesPlayed()}</td>
-                <td>${seasonStats.getSeasonFieldingPercentage()}</td>
-                <td>${seasonStats.getSeasonRunnersCaughtStealingPercentage()}%</td>
-                <td>${totals.a}</td>
-                <td>${totals.po}</td>
-                <td>${totals.e}</td>
-                <td>${totals.dp}</td>
-                <td>${totals.tp}</td>
-                <td>${totals.inn}</td>
-                <td>${totals.pb}</td>
-                <td>${totals.sba}</td>
-                <td>${totals.rcs}</td>
-                <td>${totals.pik}</td>
-            </tr>
-        `;
-    });
-    
-    // Add totals row
-    html += `
-            <tr class="table-warning">
-                <td><strong>CAREER TOTALS</strong></td>
-                <td>-</td>
-                <td><strong>${careerTotals.games}</strong></td>
-                <td><strong>${calculateCareerFieldingPercentage(careerTotals)}</strong></td>
-                <td><strong>${calculateCareerRunnersCaughtStealingPercentage(careerTotals)}%</strong></td>
-                <td><strong>${careerTotals.a}</strong></td>
-                <td><strong>${careerTotals.po}</strong></td>
-                <td><strong>${careerTotals.e}</strong></td>
-                <td><strong>${careerTotals.dp}</strong></td>
-                <td><strong>${careerTotals.tp}</strong></td>
-                <td><strong>${careerTotals.inn}</strong></td>
-                <td><strong>${careerTotals.pb}</strong></td>
-                <td><strong>${careerTotals.sba}</strong></td>
-                <td><strong>${careerTotals.rcs}</strong></td>
-                <td><strong>${careerTotals.pik}</strong></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-</div>
-</div>
-    `;
-    
-    return html;
-}
-
-// Function to populate statistics section in index.html
-function populateIndexStatistics(allSeasonData) {
-    const statsContainer = document.getElementById('stats-container');
-    if (!statsContainer) return;
-
-    let html = '';
-    
-    // Check if we have any season data
-    const seasons = Object.keys(allSeasonData);
-    if (seasons.length === 0) {
-        html = '<div class="alert alert-info">No season data available.</div>';
-    } else {
-        // Add radio button toggle for main stats
-        html += `
-            <div class="row mb-3">
-                <div class="col-12">
-                    <div class="d-flex justify-content-center">
-                        <div class="btn-group" role="group" aria-label="Statistics Toggle">
-                            <input type="radio" class="btn-check" name="main-stats-toggle" id="main-batting-toggle" value="batting" checked>
-                            <label class="btn btn-outline-primary" for="main-batting-toggle">Batting Statistics</label>
-                            
-                            <input type="radio" class="btn-check" name="main-stats-toggle" id="main-fielding-toggle" value="fielding">
-                            <label class="btn btn-outline-primary" for="main-fielding-toggle">Fielding/Catching Statistics</label>
+// Function to get batting season table
+function getBattingSeasonTable(allSeasonData) {
+                    <div class="row">
+                        <div class="col-md-3 mb-3">
+                            <div class="card text-center h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Stealing Percentage</h5>
+                                    <h2 class="text-primary">${calculateCareerStealingPercentage(careerTotals)}%</h2>
+                                    <p class="card-text">${careerTotals.sb} stolen bases, ${careerTotals.cs} caught stealing</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card text-center h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">CS% (Catching)</h5>
+                                    <h2 class="text-primary">${calculateCareerRunnersCaughtStealingPercentage(careerTotals)}%</h2>
+                                    <p class="card-text">${careerTotals.rcs} caught, ${careerTotals.sba} allowed</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card text-center h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Strikeouts per PA</h5>
+                                    <h2 class="text-primary">${calculateCareerStrikeoutsPerPA(careerTotals)}</h2>
+                                    <p class="card-text">${careerTotals.so} strikeouts</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3 mb-3">
+                            <div class="card text-center h-100">
+                                <div class="card-body">
+                                    <h5 class="card-title">Record</h5>
+                                    <h2 class="text-primary">${careerTotals.wins}-${careerTotals.losses}-${careerTotals.ties}</h2>
+                                    <p class="card-text">${careerTotals.games} games played</p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         `;
         
-        // Add containers for batting and fielding views
+        // Create season/team statistics grid
         html += `
-            <div id="main-batting-view">
-                ${renderBattingCareerSummary(allSeasonData)}
-                ${renderBattingSeasonTable(allSeasonData)}
-            </div>
-            <div id="main-fielding-view" style="display: none;">
-                ${renderFieldingCareerSummary(allSeasonData)}
-                ${renderFieldingSeasonTable(allSeasonData)}
-            </div>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <table class="table table-striped table-hover">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Season</th>
+                                    <th>Team</th>
+                                    <th>GP</th>
+                                    <th>AVG</th>
+                                    <th>OBP</th>
+                                    <th>SLG</th>
+                                    <th>FLD%</th>
+                                    <th>AB</th>
+                                    <th>H</th>
+                                    <th>R</th>
+                                    <th>RBI</th>
+                                    <th>2B</th>
+                                    <th>3B</th>
+                                    <th>HR</th>
+                                    <th>BB</th>
+                                    <th>SO</th>
+                                    <th>SB</th>
+                                    <th>CS</th>
+                                    <th>A</th>
+                                    <th>PO</th>
+                                    <th>E</th>
+                                    <th>DP</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+        `;
+        
+        // Add each season's data
+        seasons.forEach(year => {
+            const seasonStats = allSeasonData[year];
+            const totals = seasonStats.getSeasonTotals();
+            
+            html += `
+                <tr>
+                    <td><strong>${year}</strong></td>
+                    <td><a onclick="showGameDetails('${year}')">${seasonStats.team}</a></td>
+                    <td>${seasonStats.getGamesPlayed()}</td>
+                    <td>${seasonStats.getSeasonBattingAverage()}</td>
+                    <td>${seasonStats.getSeasonOnBasePercentage()}</td>
+                    <td>${seasonStats.getSeasonSluggingPercentage()}</td>
+                    <td>${seasonStats.getSeasonFieldingPercentage()}</td>
+                    <td>${totals.ab}</td>
+                    <td>${totals.h}</td>
+                    <td>${totals.r}</td>
+                    <td>${totals.rbi}</td>
+                    <td>${totals.doubles}</td>
+                    <td>${totals.triples}</td>
+                    <td>${totals.hr}</td>
+                    <td>${totals.bb}</td>
+                    <td>${totals.so}</td>
+                    <td>${totals.sb}</td>
+                    <td>${totals.cs}</td>
+                    <td>${totals.a}</td>
+                    <td>${totals.po}</td>
+                    <td>${totals.e}</td>
+                    <td>${totals.dp}</td>
+                </tr>
+            `;
+        });
+        
+        // Add totals row
+        html += `
+                <tr class="table-warning">
+                    <td><strong>CAREER TOTALS</strong></td>
+                    <td>-</td>
+                    <td><strong>${careerTotals.games}</strong></td>
+                    <td><strong>${calculateCareerBattingAverage(careerTotals)}</strong></td>
+                    <td><strong>${calculateCareerOnBasePercentage(careerTotals)}</strong></td>
+                    <td><strong>${calculateCareerSluggingPercentage(careerTotals)}</strong></td>
+                    <td><strong>${calculateCareerFieldingPercentage(careerTotals)}</strong></td>
+                    <td><strong>${careerTotals.ab}</strong></td>
+                    <td><strong>${careerTotals.h}</strong></td>
+                    <td><strong>${careerTotals.r}</strong></td>
+                    <td><strong>${careerTotals.rbi}</strong></td>
+                    <td><strong>${careerTotals.doubles}</strong></td>
+                    <td><strong>${careerTotals.triples}</strong></td>
+                    <td><strong>${careerTotals.hr}</strong></td>
+                    <td><strong>${careerTotals.bb}</strong></td>
+                    <td><strong>${careerTotals.so}</strong></td>
+                    <td><strong>${careerTotals.sb}</strong></td>
+                    <td><strong>${careerTotals.cs}</strong></td>
+                    <td><strong>${careerTotals.a}</strong></td>
+                    <td><strong>${careerTotals.po}</strong></td>
+                    <td><strong>${careerTotals.e}</strong></td>
+                    <td><strong>${careerTotals.dp}</strong></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+</div>
         `;
     }
     
     statsContainer.innerHTML = html;
-    
-    // Add event listeners for main stats toggle
-    document.querySelectorAll('input[name="main-stats-toggle"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            const battingView = document.getElementById('main-batting-view');
-            const fieldingView = document.getElementById('main-fielding-view');
-            
-            if (this.value === 'batting') {
-                battingView.style.display = 'block';
-                fieldingView.style.display = 'none';
-            } else {
-                battingView.style.display = 'none';
-                fieldingView.style.display = 'block';
-            }
-        });
-    });
 }
 
 // Function to show game details in modal
@@ -882,134 +853,62 @@ function showGameDetails(year) {
         </div>
     `;
     
-    // Add modal toggle for batting vs fielding/catching
-    const modalToggleHTML = `
-        <div class="row mb-3">
-            <div class="col-12">
-                <div class="d-flex justify-content-center">
-                    <div class="btn-group" role="group" aria-label="Modal Statistics Toggle">
-                        <input type="radio" class="btn-check" name="modal-stats-toggle" id="modal-batting-toggle" value="batting" checked>
-                        <label class="btn btn-outline-primary" for="modal-batting-toggle">Batting Statistics</label>
-                        
-                        <input type="radio" class="btn-check" name="modal-stats-toggle" id="modal-fielding-toggle" value="fielding">
-                        <label class="btn btn-outline-primary" for="modal-fielding-toggle">Fielding/Catching Statistics</label>
-                    </div>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // Update summary stats with toggle and both views
+    // Update summary stats
     document.getElementById('modal-summary-stats').innerHTML = `
-        ${modalToggleHTML}
-        <div id="modal-batting-stats" class="modal-stats-view">
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h6 class="card-title">Batting Average</h6>
-                            <h5 class="text-primary">${seasonData.getSeasonBattingAverage()}</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h6 class="card-title">On-Base %</h6>
-                            <h5 class="text-primary">${seasonData.getSeasonOnBasePercentage()}</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h6 class="card-title">Slugging %</h6>
-                            <h5 class="text-primary">${seasonData.getSeasonSluggingPercentage()}</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h6 class="card-title">K/PA</h6>
-                            <h5 class="text-primary">${seasonData.getStrikeoutsPerPlateAppearance()}</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h6 class="card-title">BB/PA</h6>
-                            <h5 class="text-primary">${seasonData.getWalksPerPlateAppearance()}</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h6 class="card-title">Steal %</h6>
-                            <h5 class="text-primary">${seasonData.getStealingPercentage()}%</h5>
-                        </div>
+        <div class="row">
+            <div class="col-md-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">Batting Average</h6>
+                        <h5 class="text-primary">${seasonData.getSeasonBattingAverage()}</h5>
                     </div>
                 </div>
             </div>
-        </div>
-        <div id="modal-fielding-stats" class="modal-stats-view" style="display: none;">
-            <div class="row">
-                <div class="col-md-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h6 class="card-title">Fielding %</h6>
-                            <h5 class="text-primary">${seasonData.getSeasonFieldingPercentage()}</h5>
-                        </div>
+            <div class="col-md-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">On-Base %</h6>
+                        <h5 class="text-primary">${seasonData.getSeasonOnBasePercentage()}</h5>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h6 class="card-title">CS %</h6>
-                            <h5 class="text-primary">${seasonData.getSeasonRunnersCaughtStealingPercentage()}%</h5>
-                        </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">Slugging %</h6>
+                        <h5 class="text-primary">${seasonData.getSeasonSluggingPercentage()}</h5>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h6 class="card-title">Assists</h6>
-                            <h5 class="text-primary">${totals.a}</h5>
-                        </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">Fielding %</h6>
+                        <h5 class="text-primary">${seasonData.getSeasonFieldingPercentage()}</h5>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h6 class="card-title">Putouts</h6>
-                            <h5 class="text-primary">${totals.po}</h5>
-                        </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">K/PA</h6>
+                        <h5 class="text-primary">${seasonData.getStrikeoutsPerPlateAppearance()}</h5>
                     </div>
                 </div>
-                <div class="col-md-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h6 class="card-title">Errors</h6>
-                            <h5 class="text-primary">${totals.e}</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="card text-center">
-                        <div class="card-body">
-                            <h6 class="card-title">Double Plays</h6>
-                            <h5 class="text-primary">${totals.dp}</h5>
-                        </div>
+            </div>
+            <div class="col-md-2">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h6 class="card-title">Steal %</h6>
+                        <h5 class="text-primary">${seasonData.getStealingPercentage()}%</h5>
                     </div>
                 </div>
             </div>
         </div>
     `;
     
-    // Create batting game results table
-    const battingGameResultsHTML = `
+    // Update game results table
+    const gameResultsHTML = `
         <div class="table-responsive">
             <table class="table table-striped table-hover">
                 <thead class="table-dark">
@@ -1025,14 +924,21 @@ function showGameDetails(year) {
                         <th>2B</th>
                         <th>3B</th>
                         <th>HR</th>
-                        <th>GS</th>
                         <th>BB</th>
                         <th>SO</th>
-                        <th>HBP</th>
                         <th>SB</th>
-                        <th>CS</th>
+                        <th>A</th>
+                        <th>PO</th>
+                        <th>E</th>
+                        <th>DP</th>
+                        <th>INN</th>
+                        <th>PB</th>
+                        <th>SBA</th>
+                        <th>RCS</th>
+                        <th>PIK</th>
                         <th>AVG</th>
-                        <th>OBP</th>
+                        <th>FLD%</th>
+                        <th>CS%</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1049,62 +955,19 @@ function showGameDetails(year) {
                             <td>${game.doubles}</td>
                             <td>${game.triples}</td>
                             <td>${game.hr}</td>
-                            <td>${game.gs}</td>
                             <td>${game.bb}</td>
                             <td>${game.so}</td>
-                            <td>${game.hbp}</td>
                             <td>${game.sb}</td>
-                            <td>${game.cs}</td>
-                            <td>${game.getBattingAverage()}</td>
-                            <td>${game.getOnBasePercentage()}</td>
-                        </tr>
-                    `).join('')}
-                </tbody>
-            </table>
-        </div>
-    `;
-    
-    // Create fielding/catching game results table
-    const fieldingGameResultsHTML = `
-        <div class="table-responsive">
-            <table class="table table-striped table-hover">
-                <thead class="table-dark">
-                    <tr>
-                        <th>Date</th>
-                        <th>Opponent</th>
-                        <th>Location</th>
-                        <th>Result</th>
-                        <th>A</th>
-                        <th>PO</th>
-                        <th>E</th>
-                        <th>DP</th>
-                        <th>TP</th>
-                        <th>INN</th>
-                        <th>PB</th>
-                        <th>SBA</th>
-                        <th>RCS</th>
-                        <th>PIK</th>
-                        <th>FLD%</th>
-                        <th>CS%</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    ${seasonData.games.map(game => `
-                        <tr>
-                            <td>${game.date}</td>
-                            <td>${game.opponent}</td>
-                            <td>${game.location}</td>
-                            <td><span class="badge ${game.isWin() ? 'bg-success' : game.isLoss() ? 'bg-danger' : 'bg-secondary'}">${game.gameResult}</span></td>
                             <td>${game.a}</td>
                             <td>${game.po}</td>
                             <td>${game.e}</td>
                             <td>${game.dp}</td>
-                            <td>${game.tp}</td>
                             <td>${game.inn}</td>
                             <td>${game.pb}</td>
                             <td>${game.sba}</td>
                             <td>${game.rcs}</td>
                             <td>${game.pik}</td>
+                            <td>${game.getBattingAverage()}</td>
                             <td>${game.getFieldingPercentage()}</td>
                             <td>${game.getRunnersCaughtStealingPercentage()}%</td>
                         </tr>
@@ -1114,37 +977,7 @@ function showGameDetails(year) {
         </div>
     `;
     
-    // Update game results with both views
-    document.getElementById('modal-game-results').innerHTML = `
-        <div id="modal-batting-game-results" class="modal-game-results-view">
-            ${battingGameResultsHTML}
-        </div>
-        <div id="modal-fielding-game-results" class="modal-game-results-view" style="display: none;">
-            ${fieldingGameResultsHTML}
-        </div>
-    `;
-    
-    // Add event listeners for modal toggle
-    document.querySelectorAll('input[name="modal-stats-toggle"]').forEach(radio => {
-        radio.addEventListener('change', function() {
-            const battingStats = document.getElementById('modal-batting-stats');
-            const fieldingStats = document.getElementById('modal-fielding-stats');
-            const battingGameResults = document.getElementById('modal-batting-game-results');
-            const fieldingGameResults = document.getElementById('modal-fielding-game-results');
-            
-            if (this.value === 'batting') {
-                battingStats.style.display = 'block';
-                fieldingStats.style.display = 'none';
-                battingGameResults.style.display = 'block';
-                fieldingGameResults.style.display = 'none';
-            } else {
-                battingStats.style.display = 'none';
-                fieldingStats.style.display = 'block';
-                battingGameResults.style.display = 'none';
-                fieldingGameResults.style.display = 'block';
-            }
-        });
-    });
+    document.getElementById('modal-game-results').innerHTML = gameResultsHTML;
     
     // Show the modal
     const modal = new bootstrap.Modal(document.getElementById('gameDetailsModal'));
