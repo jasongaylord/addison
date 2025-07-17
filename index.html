@@ -219,6 +219,45 @@
         </div>
     </div>
 
+    <div class="bg-purple" id="statistics">
+        <div class="container pt-3">
+            <div class="row py-3">
+                <div class="col-12">
+                    <div class="card p-3 mb-3">
+                        <h2 class="text-center mb-4">Season Statistics</h2>
+                        <div id="stats-container">
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading statistics...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Details Modal -->
+    <div class="modal fade" id="gameDetailsModal" tabindex="-1" aria-labelledby="gameDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gameDetailsModalLabel">Game-by-Game Results</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-season-info" class="mb-3"></div>
+                    <div id="modal-summary-stats" class="mb-4"></div>
+                    <div id="modal-game-results"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="bg-darkpurple" id="contact-block">
         <div class="container pt-3">
             <div class="row py-3">
@@ -280,6 +319,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/ffda48b653.js" crossorigin="anonymous"></script>
+    <script src="stats.js"></script>
     <script src="script.js"></script>
 </body>
 </html>

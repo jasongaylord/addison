@@ -205,3 +205,96 @@ header {
     color: #ffcdde;
     text-decoration: none;
   }
+
+/* Custom modal styling */
+.modal-xl {
+    max-width: 95%;
+}
+
+.modal-header {
+    background-color: #29004f;
+    color: white;
+    border-bottom: 1px solid #dee2e6;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-body .table {
+    font-size: 0.9rem;
+}
+
+.modal-body .table th {
+    white-space: nowrap;
+    padding: 0.5rem;
+}
+
+.modal-body .table td {
+    white-space: nowrap;
+    padding: 0.5rem;
+}
+
+.modal-body .card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.modal-body .card-body {
+    padding: 0.75rem;
+}
+
+.modal-body .card-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+
+.modal-body .alert-info {
+    background-color: #e7f3ff;
+    border-color: #b8daff;
+    color: #0c5460;
+}
+
+/* Responsive modal adjustments */
+@media (max-width: 768px) {
+    .modal-xl {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .modal-body .table {
+        font-size: 0.8rem;
+    }
+    
+    .modal-body .table th,
+    .modal-body .table td {
+        padding: 0.25rem;
+    }
+    
+    .modal-body .card-body {
+        padding: 0.5rem;
+    }
+    
+    .modal-body .card-title {
+        font-size: 0.7rem;
+    }
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #29004f;
+  text-align: center;
+  color: white;
+}
