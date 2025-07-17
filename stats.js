@@ -730,8 +730,14 @@ function showGameDetails(year) {
                         <th>PO</th>
                         <th>E</th>
                         <th>DP</th>
+                        <th>INN</th>
+                        <th>PB</th>
+                        <th>SBA</th>
+                        <th>RCS</th>
+                        <th>PIK</th>
                         <th>AVG</th>
                         <th>FLD%</th>
+                        <th>CS%</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -755,8 +761,14 @@ function showGameDetails(year) {
                             <td>${game.po}</td>
                             <td>${game.e}</td>
                             <td>${game.dp}</td>
+                            <td>${game.inn}</td>
+                            <td>${game.pb}</td>
+                            <td>${game.sba}</td>
+                            <td>${game.rcs}</td>
+                            <td>${game.pik}</td>
                             <td>${game.getBattingAverage()}</td>
                             <td>${game.getFieldingPercentage()}</td>
+                            <td>${game.getRunnersCaughtStealingPercentage()}%</td>
                         </tr>
                     `).join('')}
                 </tbody>
