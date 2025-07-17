@@ -102,16 +102,16 @@
                             <div class="col-md-2">
                                 <div class="card mb-3 rounded-3 shadow-sm">
                                     <div class="card-body">
-                                        <h5 class="card-title">K/PA</h5>
-                                        <div class="h3" id="k-pa">Loading...</div>
+                                        <h5 class="card-title">FIELDING %</h5>
+                                        <div class="h3" id="fld">Loading...</div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-2">
                                 <div class="card mb-3 rounded-3 shadow-sm">
                                     <div class="card-body">
-                                        <h5 class="card-title">BB/PA</h5>
-                                        <div class="h3" id="bb-pa">Loading...</div>
+                                        <h5 class="card-title">K/PA</h5>
+                                        <div class="h3" id="k-pa">Loading...</div>
                                     </div>
                                 </div>
                             </div>
@@ -160,12 +160,18 @@
                                     <th>HR</th>
                                     <th>BB</th>
                                     <th>SO</th>
+                                    <th>SB</th>
+                                    <th>A</th>
+                                    <th>PO</th>
+                                    <th>E</th>
+                                    <th>DP</th>
                                     <th>AVG</th>
+                                    <th>FLD%</th>
                                     <th>Result</th>
                                 </tr>
                             </thead>
                             <tbody id="game-results-body">
-                                <tr><td colspan="14" class="text-center">Loading game results...</td></tr>
+                                <tr><td colspan="20" class="text-center">Loading game results...</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -224,13 +230,13 @@
                 document.getElementById('batting-avg').textContent = 'N/A';
                 document.getElementById('obp').textContent = 'N/A';
                 document.getElementById('slg').textContent = 'N/A';
+                document.getElementById('fld').textContent = 'N/A';
                 document.getElementById('k-pa').textContent = 'N/A';
-                document.getElementById('bb-pa').textContent = 'N/A';
                 document.getElementById('steal-pct').textContent = 'N/A';
                 
                 // Clear tables
                 document.getElementById('stats-table-body').innerHTML = '<tr><td colspan="4" class="text-center">No data available</td></tr>';
-                document.getElementById('game-results-body').innerHTML = '<tr><td colspan="14" class="text-center">No data available</td></tr>';
+                document.getElementById('game-results-body').innerHTML = '<tr><td colspan="20" class="text-center">No data available</td></tr>';
                 return;
             }
             
@@ -244,8 +250,8 @@
             document.getElementById('batting-avg').textContent = displayData.getSeasonBattingAverage();
             document.getElementById('obp').textContent = displayData.getSeasonOnBasePercentage();
             document.getElementById('slg').textContent = displayData.getSeasonSluggingPercentage();
+            document.getElementById('fld').textContent = displayData.getSeasonFieldingPercentage();
             document.getElementById('k-pa').textContent = displayData.getStrikeoutsPerPlateAppearance();
-            document.getElementById('bb-pa').textContent = displayData.getWalksPerPlateAppearance();
             document.getElementById('steal-pct').textContent = displayData.getStealingPercentage() + '%';
             
             // Populate detailed statistics table
@@ -258,7 +264,9 @@
                 ['Grand Slams', totals.gs, 'Walks', totals.bb],
                 ['Strikeouts', totals.so, 'Stolen Bases', totals.sb],
                 ['Caught Stealing', totals.cs, 'Hit by Pitch', totals.hbp],
-                ['Errors', totals.e, 'Record', `${totals.wins}-${totals.losses}`]
+                ['Assists', totals.assists, 'Put Outs', totals.putouts],
+                ['Errors', totals.e, 'Double Plays', totals.doublePlays],
+                ['Triple Plays', totals.triplePlays, 'Record', `${totals.wins}-${totals.losses}`]
             ];
             
             statsTableBody.innerHTML = statsData.map(row => 
@@ -281,7 +289,13 @@
                     <td>${game.hr}</td>
                     <td>${game.bb}</td>
                     <td>${game.so}</td>
+                    <td>${game.sb}</td>
+                    <td>${game.assists}</td>
+                    <td>${game.putouts}</td>
+                    <td>${game.e}</td>
+                    <td>${game.doublePlays}</td>
                     <td>${game.getBattingAverage()}</td>
+                    <td>${game.getFieldingPercentage()}</td>
                     <td><span class="badge ${game.isWin() ? 'bg-success' : 'bg-danger'}">${game.gameResult}</span></td>
                 </tr>`
             ).join('');

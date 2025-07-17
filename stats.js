@@ -188,6 +188,10 @@ function loadEmbeddedData(filename) {
                     "cs": 0,
                     "hbp": 0,
                     "e": 0,
+                    "assists": 2,
+                    "putouts": 3,
+                    "double_plays": 1,
+                    "triple_plays": 0,
                     "game_result": "W 5-0"
                 },
                 {
@@ -208,6 +212,10 @@ function loadEmbeddedData(filename) {
                     "cs": 0,
                     "hbp": 0,
                     "e": 0,
+                    "assists": 1,
+                    "putouts": 2,
+                    "double_plays": 0,
+                    "triple_plays": 0,
                     "game_result": "L 4-12"
                 },
                 {
@@ -228,6 +236,10 @@ function loadEmbeddedData(filename) {
                     "cs": 0,
                     "hbp": 0,
                     "e": 0,
+                    "assists": 3,
+                    "putouts": 1,
+                    "double_plays": 0,
+                    "triple_plays": 0,
                     "game_result": "L 1-5"
                 },
                 {
@@ -248,6 +260,10 @@ function loadEmbeddedData(filename) {
                     "cs": 0,
                     "hbp": 0,
                     "e": 1,
+                    "assists": 0,
+                    "putouts": 4,
+                    "double_plays": 0,
+                    "triple_plays": 0,
                     "game_result": "L 0-13"
                 }
             ]
@@ -534,6 +550,7 @@ function populateIndexStatistics(allSeasonData) {
                     <td><strong>${calculateCareerBattingAverage(careerTotals)}</strong></td>
                     <td><strong>${calculateCareerOnBasePercentage(careerTotals)}</strong></td>
                     <td><strong>${calculateCareerSluggingPercentage(careerTotals)}</strong></td>
+                    <td><strong>${calculateCareerFieldingPercentage(careerTotals)}</strong></td>
                     <td><strong>${careerTotals.ab}</strong></td>
                     <td><strong>${careerTotals.h}</strong></td>
                     <td><strong>${careerTotals.r}</strong></td>
@@ -545,6 +562,10 @@ function populateIndexStatistics(allSeasonData) {
                     <td><strong>${careerTotals.so}</strong></td>
                     <td><strong>${careerTotals.sb}</strong></td>
                     <td><strong>${careerTotals.cs}</strong></td>
+                    <td><strong>${careerTotals.assists}</strong></td>
+                    <td><strong>${careerTotals.putouts}</strong></td>
+                    <td><strong>${careerTotals.e}</strong></td>
+                    <td><strong>${careerTotals.doublePlays}</strong></td>
                     <td>-</td>
                 </tr>
             </tbody>
@@ -610,16 +631,16 @@ function showGameDetails(year) {
             <div class="col-md-2">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h6 class="card-title">K/PA</h6>
-                        <h5 class="text-primary">${seasonData.getStrikeoutsPerPlateAppearance()}</h5>
+                        <h6 class="card-title">Fielding %</h6>
+                        <h5 class="text-primary">${seasonData.getSeasonFieldingPercentage()}</h5>
                     </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="card text-center">
                     <div class="card-body">
-                        <h6 class="card-title">BB/PA</h6>
-                        <h5 class="text-primary">${seasonData.getWalksPerPlateAppearance()}</h5>
+                        <h6 class="card-title">K/PA</h6>
+                        <h5 class="text-primary">${seasonData.getStrikeoutsPerPlateAppearance()}</h5>
                     </div>
                 </div>
             </div>
@@ -654,7 +675,12 @@ function showGameDetails(year) {
                         <th>BB</th>
                         <th>SO</th>
                         <th>SB</th>
+                        <th>A</th>
+                        <th>PO</th>
+                        <th>E</th>
+                        <th>DP</th>
                         <th>AVG</th>
+                        <th>FLD%</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -674,7 +700,12 @@ function showGameDetails(year) {
                             <td>${game.bb}</td>
                             <td>${game.so}</td>
                             <td>${game.sb}</td>
+                            <td>${game.assists}</td>
+                            <td>${game.putouts}</td>
+                            <td>${game.e}</td>
+                            <td>${game.doublePlays}</td>
                             <td>${game.getBattingAverage()}</td>
+                            <td>${game.getFieldingPercentage()}</td>
                         </tr>
                     `).join('')}
                 </tbody>
