@@ -190,7 +190,15 @@ async function loadJsonData(filename) {
             throw new Error(`Failed to load ${filename}: ${response.status}`);
         }
         const data = await response.json();
-        return new SeasonStats(data);
+        
+        // Handle new structure with multiple teams
+        if (data.teams && Array.isArray(data.teams)) {
+            // Return array of SeasonStats objects for each team
+            return data.teams.map(teamData => new SeasonStats(teamData));
+        } else {
+            // Handle old structure with single team
+            return new SeasonStats(data);
+        }
     } catch (error) {
         console.error(`Error loading ${filename}:`, error);
         // Fallback to embedded data if fetch fails
@@ -201,10 +209,12 @@ async function loadJsonData(filename) {
 // Fallback function with embedded data
 function loadEmbeddedData(filename) {
     const embeddedData = {
-        '2025.json': {
-            "team": "PA Outlaws 18U National Cole",
-            "season": "Summer 2025",
-            "games": [
+        'sophmore.json': {
+            teams: [
+                {
+                    "team": "PA Outlaws 18U National Cole",
+                    "season": "Summer 2025",
+                    "games": [
                 {
                     "opponent": "NJ Stars Fastpitch Prosser 18U",
                     "date": "6/1/2025 10:15am",
@@ -318,25 +328,43 @@ function loadEmbeddedData(filename) {
                 }
             ]
         }
+        ]
+        }
     };
     
     if (embeddedData[filename]) {
-        return new SeasonStats(embeddedData[filename]);
+        // Handle new structure
+        if (embeddedData[filename].teams) {
+            return embeddedData[filename].teams.map(teamData => new SeasonStats(teamData));
+        } else {
+            return new SeasonStats(embeddedData[filename]);
+        }
     }
     return null;
 }
 
 // Function to load all JSON files from data folder
 async function loadAllSeasonData() {
-    const dataFiles = ['2025.json', '2024.json', '2023.json']; // Add more files as needed
+    const dataFiles = ['sophmore.json', '2024.json', '2023.json']; // Add more files as needed
     const seasonData = {};
     
     for (const filename of dataFiles) {
-        const seasonStats = await loadJsonData(filename);
-        if (seasonStats) {
-            const year = filename.replace('.json', '');
-            seasonData[year] = seasonStats;
-            console.log(`Loaded ${year} season data:`, seasonStats);
+        const result = await loadJsonData(filename);
+        if (result) {
+            // Handle both single team and multiple teams
+            if (Array.isArray(result)) {
+                // Multiple teams in one file - use season name as key
+                result.forEach((seasonStats) => {
+                    const key = seasonStats.season || `${filename.replace('.json', '')}_team_${seasonStats.team}`;
+                    seasonData[key] = seasonStats;
+                    console.log(`Loaded ${key} season data:`, seasonStats);
+                });
+            } else {
+                // Single team
+                const year = filename.replace('.json', '');
+                seasonData[year] = result;
+                console.log(`Loaded ${year} season data:`, result);
+            }
         }
     }
     
@@ -1161,8 +1189,8 @@ document.addEventListener('DOMContentLoaded', function() {
         populateIndexStatistics(allSeasonData);
         
         // Example usage:
-        if (allSeasonData['2025']) {
-            const season2025 = allSeasonData['2025'];
+        if (allSeasonData['Summer 2025']) {
+            const season2025 = allSeasonData['Summer 2025'];
             console.log(`${season2025.season} Stats:`);
             console.log(`Team: ${season2025.team}`);
             console.log(`Games Played: ${season2025.getGamesPlayed()}`);

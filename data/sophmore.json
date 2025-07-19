@@ -1,7 +1,9 @@
 {
-    "team": "PA Outlaws 18U National Cole",
-    "season": "Summer 2025",
-    "games": [
+    "teams": [
+        {
+            "team": "PA Outlaws 18U National Cole",
+            "season": "Summer 2025",
+            "games": [
         {
             "opponent": "NJ Stars Fastpitch Prosser 18U",
             "date": "06/1/2025 10:15am",
@@ -553,5 +555,13 @@
             "pik": 0,
             "game_result": "L 4-8"
         }
-   ]
+    ]
+},
+{
+    "team": "Wyoming Area Lady Warriors",
+    "season": "Spring 2025",
+    "games": [
+    ]
+}
+]
 }
