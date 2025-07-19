@@ -223,9 +223,16 @@ header {
 
 .statistics .btn.active, .statistics .btn:active {
   background-color: #29004f;
+  color: #ffcdde;
 }
 
-.statistics .btn-outline-primary  {
+.btn-check:checked+.btn {
+  background-color: #29004f;
+  border-color: #29004f;
+  color: #ffcdde;
+}
+
+.statistics .btn-outline-primary, .statistics .btn-outline-primary:hover {
   border-color: #29004f;
   color: #29004f;
 }
