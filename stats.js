@@ -381,18 +381,35 @@ function groupSeasonsByHighSchoolYear(allSeasonData) {
     };
     
     Object.entries(allSeasonData).forEach(([seasonKey, seasonStats]) => {
-        // Determine high school year based on season or file name
-        if (seasonKey.includes('2024') || seasonStats.season.includes('2024')) {
+        const season = seasonStats.season;
+        console.log(`Grouping season: ${season} (key: ${seasonKey})`);
+        
+        // Freshman year: Fall 2023, Spring 2024, Summer 2024
+        if (season === 'Fall 2023' || season === 'Spring 2024' || season === 'Summer 2024') {
             highSchoolYears['Freshman (2024)'].push({key: seasonKey, stats: seasonStats});
-        } else if (seasonKey.includes('2025') || seasonStats.season.includes('2025')) {
+            console.log(`  -> Added to Freshman (2024)`);
+        }
+        // Sophomore year: Fall 2024, Spring 2025, Summer 2025
+        else if (season === 'Fall 2024' || season === 'Spring 2025' || season === 'Summer 2025') {
             highSchoolYears['Sophomore (2025)'].push({key: seasonKey, stats: seasonStats});
-        } else if (seasonKey.includes('2026') || seasonStats.season.includes('2026')) {
+            console.log(`  -> Added to Sophomore (2025)`);
+        }
+        // Junior year: Fall 2025, Spring 2026, Summer 2026
+        else if (season === 'Fall 2025' || season === 'Spring 2026' || season === 'Summer 2026') {
             highSchoolYears['Junior (2026)'].push({key: seasonKey, stats: seasonStats});
-        } else if (seasonKey.includes('2027') || seasonStats.season.includes('2027')) {
+            console.log(`  -> Added to Junior (2026)`);
+        }
+        // Senior year: Fall 2026, Spring 2027, Summer 2027
+        else if (season === 'Fall 2026' || season === 'Spring 2027' || season === 'Summer 2027') {
             highSchoolYears['Senior (2027)'].push({key: seasonKey, stats: seasonStats});
+            console.log(`  -> Added to Senior (2027)`);
+        }
+        else {
+            console.log(`  -> No matching high school year for season: ${season}`);
         }
     });
     
+    console.log('Grouped high school years:', highSchoolYears);
     return highSchoolYears;
 }
 
