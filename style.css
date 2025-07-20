@@ -355,3 +355,29 @@ header {
     color: #ffcdde;
     text-decoration: none;
   }
+
+/* Career Totals Table Styling */
+.table-career-totals {
+    background: linear-gradient(to bottom, #430083, #29004f);
+    color: #fff;
+}
+
+.table-career-totals th,
+.table-career-totals td {
+    color: #fff !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    background: transparent !important;
+}
+
+.table-career-totals thead th {
+    background: transparent !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.table-career-totals tbody tr {
+    background: transparent !important;
+}
+
+.table-career-totals tbody tr td {
+    background: transparent !important;
+}

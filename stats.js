@@ -345,7 +345,7 @@ function loadEmbeddedData(filename) {
 
 // Function to load all JSON files from data folder
 async function loadAllSeasonData() {
-    const dataFiles = ['sophmore.json', '2024.json', '2023.json']; // Add more files as needed
+    const dataFiles = ['freshman.json', 'sophmore.json', 'junior.json', 'senior.json']; // High school years
     const seasonData = {};
     
     for (const filename of dataFiles) {
@@ -369,6 +369,31 @@ async function loadAllSeasonData() {
     }
     
     return seasonData;
+}
+
+// Function to group seasons by high school year
+function groupSeasonsByHighSchoolYear(allSeasonData) {
+    const highSchoolYears = {
+        'Freshman (2024)': [],
+        'Sophomore (2025)': [],
+        'Junior (2026)': [],
+        'Senior (2027)': []
+    };
+    
+    Object.entries(allSeasonData).forEach(([seasonKey, seasonStats]) => {
+        // Determine high school year based on season or file name
+        if (seasonKey.includes('2024') || seasonStats.season.includes('2024')) {
+            highSchoolYears['Freshman (2024)'].push({key: seasonKey, stats: seasonStats});
+        } else if (seasonKey.includes('2025') || seasonStats.season.includes('2025')) {
+            highSchoolYears['Sophomore (2025)'].push({key: seasonKey, stats: seasonStats});
+        } else if (seasonKey.includes('2026') || seasonStats.season.includes('2026')) {
+            highSchoolYears['Junior (2026)'].push({key: seasonKey, stats: seasonStats});
+        } else if (seasonKey.includes('2027') || seasonStats.season.includes('2027')) {
+            highSchoolYears['Senior (2027)'].push({key: seasonKey, stats: seasonStats});
+        }
+    });
+    
+    return highSchoolYears;
 }
 
 // Function to calculate career totals from all seasons
@@ -739,17 +764,20 @@ function renderFieldingCareerSummary(allSeasonData) {
 // Helper function to render batting season table
 function renderBattingSeasonTable(allSeasonData) {
     const careerTotals = calculateCareerTotals(allSeasonData);
-    const seasons = Object.keys(allSeasonData);
+    const highSchoolYears = groupSeasonsByHighSchoolYear(allSeasonData);
     
-    let html = `
-        <div class="row">
+    let html = '';
+    
+    // Add career totals table first
+    html += `
+        <div class="row mb-4">
             <div class="col-12">
+                <h4 class="mb-3">Career Totals</h4>
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead class="table-dark">
+                    <table class="table table-striped table-hover table-career-totals">
+                        <thead>
                             <tr>
-                                <th>Season</th>
-                                <th>Team</th>
+                                <th>Career</th>
                                 <th>GP</th>
                                 <th>AVG</th>
                                 <th>OBP</th>
@@ -770,67 +798,164 @@ function renderBattingSeasonTable(allSeasonData) {
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
+                                <td><strong>TOTALS</strong></td>
+                                <td><strong>${careerTotals.games}</strong></td>
+                                <td><strong>${calculateCareerBattingAverage(careerTotals)}</strong></td>
+                                <td><strong>${calculateCareerOnBasePercentage(careerTotals)}</strong></td>
+                                <td><strong>${calculateCareerSluggingPercentage(careerTotals)}</strong></td>
+                                <td><strong>${careerTotals.ab}</strong></td>
+                                <td><strong>${careerTotals.h}</strong></td>
+                                <td><strong>${careerTotals.r}</strong></td>
+                                <td><strong>${careerTotals.rbi}</strong></td>
+                                <td><strong>${careerTotals.doubles}</strong></td>
+                                <td><strong>${careerTotals.triples}</strong></td>
+                                <td><strong>${careerTotals.hr}</strong></td>
+                                <td><strong>${careerTotals.gs}</strong></td>
+                                <td><strong>${careerTotals.bb}</strong></td>
+                                <td><strong>${careerTotals.so}</strong></td>
+                                <td><strong>${careerTotals.hbp}</strong></td>
+                                <td><strong>${careerTotals.sb}</strong></td>
+                                <td><strong>${careerTotals.cs}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     `;
     
-    // Add each season's data
-    seasons.forEach(year => {
-        const seasonStats = allSeasonData[year];
-        const totals = seasonStats.getSeasonTotals();
-        
-        html += `
-            <tr>
-                <td><strong>${year}</strong></td>
-                <td><a onclick="showGameDetails('${year}')">${seasonStats.team}</a></td>
-                <td>${seasonStats.getGamesPlayed()}</td>
-                <td>${seasonStats.getSeasonBattingAverage()}</td>
-                <td>${seasonStats.getSeasonOnBasePercentage()}</td>
-                <td>${seasonStats.getSeasonSluggingPercentage()}</td>
-                <td>${totals.ab}</td>
-                <td>${totals.h}</td>
-                <td>${totals.r}</td>
-                <td>${totals.rbi}</td>
-                <td>${totals.doubles}</td>
-                <td>${totals.triples}</td>
-                <td>${totals.hr}</td>
-                <td>${totals.gs}</td>
-                <td>${totals.bb}</td>
-                <td>${totals.so}</td>
-                <td>${totals.hbp}</td>
-                <td>${totals.sb}</td>
-                <td>${totals.cs}</td>
-            </tr>
-        `;
+    // Define the order of high school years (sophomore first, then freshman)
+    const yearOrder = ['Sophomore (2025)', 'Freshman (2024)', 'Junior (2026)', 'Senior (2027)'];
+    
+    // Create separate table for each high school year in the specified order
+    yearOrder.forEach(yearLabel => {
+        const seasons = highSchoolYears[yearLabel];
+        if (seasons && seasons.length > 0) {
+            // Calculate year totals
+            const yearTotals = {
+                ab: 0, r: 0, h: 0, rbi: 0, bb: 0, so: 0,
+                doubles: 0, triples: 0, hr: 0, gs: 0, sb: 0, cs: 0,
+                hbp: 0, games: 0
+            };
+            
+            html += `
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h4 class="mb-3">${yearLabel}</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Season</th>
+                                        <th>Team</th>
+                                        <th>GP</th>
+                                        <th>AVG</th>
+                                        <th>OBP</th>
+                                        <th>SLG</th>
+                                        <th>AB</th>
+                                        <th>H</th>
+                                        <th>R</th>
+                                        <th>RBI</th>
+                                        <th>2B</th>
+                                        <th>3B</th>
+                                        <th>HR</th>
+                                        <th>GS</th>
+                                        <th>BB</th>
+                                        <th>SO</th>
+                                        <th>HBP</th>
+                                        <th>SB</th>
+                                        <th>CS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+            `;
+            
+            // Add individual season rows
+            seasons.forEach(({key, stats}) => {
+                const totals = stats.getSeasonTotals();
+                yearTotals.ab += totals.ab;
+                yearTotals.r += totals.r;
+                yearTotals.h += totals.h;
+                yearTotals.rbi += totals.rbi;
+                yearTotals.bb += totals.bb;
+                yearTotals.so += totals.so;
+                yearTotals.doubles += totals.doubles;
+                yearTotals.triples += totals.triples;
+                yearTotals.hr += totals.hr;
+                yearTotals.gs += totals.gs;
+                yearTotals.sb += totals.sb;
+                yearTotals.cs += totals.cs;
+                yearTotals.hbp += totals.hbp;
+                yearTotals.games += stats.getGamesPlayed();
+                
+                html += `
+                    <tr>
+                        <td><a onclick="showGameDetails('${key}')">${stats.season}</a></td>
+                        <td>${stats.team}</td>
+                        <td>${stats.getGamesPlayed()}</td>
+                        <td>${stats.getSeasonBattingAverage()}</td>
+                        <td>${stats.getSeasonOnBasePercentage()}</td>
+                        <td>${stats.getSeasonSluggingPercentage()}</td>
+                        <td>${totals.ab}</td>
+                        <td>${totals.h}</td>
+                        <td>${totals.r}</td>
+                        <td>${totals.rbi}</td>
+                        <td>${totals.doubles}</td>
+                        <td>${totals.triples}</td>
+                        <td>${totals.hr}</td>
+                        <td>${totals.gs}</td>
+                        <td>${totals.bb}</td>
+                        <td>${totals.so}</td>
+                        <td>${totals.hbp}</td>
+                        <td>${totals.sb}</td>
+                        <td>${totals.cs}</td>
+                    </tr>
+                `;
+            });
+            
+            // Add year total row if there are multiple seasons
+            if (seasons.length > 1) {
+                const yearAvg = yearTotals.ab > 0 ? (yearTotals.h / yearTotals.ab).toFixed(3) : '0.000';
+                const yearOBP = (yearTotals.ab + yearTotals.bb + yearTotals.hbp) > 0 ? 
+                    ((yearTotals.h + yearTotals.bb + yearTotals.hbp) / (yearTotals.ab + yearTotals.bb + yearTotals.hbp)).toFixed(3) : '0.000';
+                const yearSLG = yearTotals.ab > 0 ? 
+                    ((yearTotals.h + yearTotals.doubles + (yearTotals.triples * 2) + (yearTotals.hr * 3)) / yearTotals.ab).toFixed(3) : '0.000';
+                
+                html += `
+                    <tr class="table-summary">
+                        <td><strong>YEAR TOTAL</strong></td>
+                        <td>-</td>
+                        <td><strong>${yearTotals.games}</strong></td>
+                        <td><strong>${yearAvg}</strong></td>
+                        <td><strong>${yearOBP}</strong></td>
+                        <td><strong>${yearSLG}</strong></td>
+                        <td><strong>${yearTotals.ab}</strong></td>
+                        <td><strong>${yearTotals.h}</strong></td>
+                        <td><strong>${yearTotals.r}</strong></td>
+                        <td><strong>${yearTotals.rbi}</strong></td>
+                        <td><strong>${yearTotals.doubles}</strong></td>
+                        <td><strong>${yearTotals.triples}</strong></td>
+                        <td><strong>${yearTotals.hr}</strong></td>
+                        <td><strong>${yearTotals.gs}</strong></td>
+                        <td><strong>${yearTotals.bb}</strong></td>
+                        <td><strong>${yearTotals.so}</strong></td>
+                        <td><strong>${yearTotals.hbp}</strong></td>
+                        <td><strong>${yearTotals.sb}</strong></td>
+                        <td><strong>${yearTotals.cs}</strong></td>
+                    </tr>
+                `;
+            }
+            
+            html += `
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
     });
-    
-    // Add totals row
-    html += `
-            <tr class="table-summary">
-                <td><strong>CAREER TOTALS</strong></td>
-                <td>-</td>
-                <td><strong>${careerTotals.games}</strong></td>
-                <td><strong>${calculateCareerBattingAverage(careerTotals)}</strong></td>
-                <td><strong>${calculateCareerOnBasePercentage(careerTotals)}</strong></td>
-                <td><strong>${calculateCareerSluggingPercentage(careerTotals)}</strong></td>
-                <td><strong>${careerTotals.ab}</strong></td>
-                <td><strong>${careerTotals.h}</strong></td>
-                <td><strong>${careerTotals.r}</strong></td>
-                <td><strong>${careerTotals.rbi}</strong></td>
-                <td><strong>${careerTotals.doubles}</strong></td>
-                <td><strong>${careerTotals.triples}</strong></td>
-                <td><strong>${careerTotals.hr}</strong></td>
-                <td><strong>${careerTotals.gs}</strong></td>
-                <td><strong>${careerTotals.bb}</strong></td>
-                <td><strong>${careerTotals.so}</strong></td>
-                <td><strong>${careerTotals.hbp}</strong></td>
-                <td><strong>${careerTotals.sb}</strong></td>
-                <td><strong>${careerTotals.cs}</strong></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-</div>
-</div>
-    `;
     
     return html;
 }
@@ -838,17 +963,20 @@ function renderBattingSeasonTable(allSeasonData) {
 // Helper function to render fielding/catching season table
 function renderFieldingSeasonTable(allSeasonData) {
     const careerTotals = calculateCareerTotals(allSeasonData);
-    const seasons = Object.keys(allSeasonData);
+    const highSchoolYears = groupSeasonsByHighSchoolYear(allSeasonData);
     
-    let html = `
-        <div class="row">
+    let html = '';
+    
+    // Add career totals table first
+    html += `
+        <div class="row mb-4">
             <div class="col-12">
+                <h4 class="mb-3">Career Totals</h4>
                 <div class="table-responsive">
-                    <table class="table table-striped table-hover">
-                        <thead class="table-dark">
+                    <table class="table table-striped table-hover table-career-totals">
+                        <thead>
                             <tr>
-                                <th>Season</th>
-                                <th>Team</th>
+                                <th>Career</th>
                                 <th>GP</th>
                                 <th>FLD%</th>
                                 <th>CS%</th>
@@ -865,59 +993,142 @@ function renderFieldingSeasonTable(allSeasonData) {
                             </tr>
                         </thead>
                         <tbody>
+                            <tr>
+                                <td><strong>TOTALS</strong></td>
+                                <td><strong>${careerTotals.games}</strong></td>
+                                <td><strong>${calculateCareerFieldingPercentage(careerTotals)}</strong></td>
+                                <td><strong>${calculateCareerRunnersCaughtStealingPercentage(careerTotals)}%</strong></td>
+                                <td><strong>${careerTotals.a}</strong></td>
+                                <td><strong>${careerTotals.po}</strong></td>
+                                <td><strong>${careerTotals.e}</strong></td>
+                                <td><strong>${careerTotals.dp}</strong></td>
+                                <td><strong>${careerTotals.tp}</strong></td>
+                                <td><strong>${careerTotals.inn}</strong></td>
+                                <td><strong>${careerTotals.pb}</strong></td>
+                                <td><strong>${careerTotals.sba}</strong></td>
+                                <td><strong>${careerTotals.rcs}</strong></td>
+                                <td><strong>${careerTotals.pik}</strong></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     `;
     
-    // Add each season's data
-    seasons.forEach(year => {
-        const seasonStats = allSeasonData[year];
-        const totals = seasonStats.getSeasonTotals();
-        
-        html += `
-            <tr>
-                <td><strong>${year}</strong></td>
-                <td><a onclick="showGameDetails('${year}')">${seasonStats.team}</a></td>
-                <td>${seasonStats.getGamesPlayed()}</td>
-                <td>${seasonStats.getSeasonFieldingPercentage()}</td>
-                <td>${seasonStats.getSeasonRunnersCaughtStealingPercentage()}%</td>
-                <td>${totals.a}</td>
-                <td>${totals.po}</td>
-                <td>${totals.e}</td>
-                <td>${totals.dp}</td>
-                <td>${totals.tp}</td>
-                <td>${totals.inn}</td>
-                <td>${totals.pb}</td>
-                <td>${totals.sba}</td>
-                <td>${totals.rcs}</td>
-                <td>${totals.pik}</td>
-            </tr>
-        `;
+    // Create separate table for each high school year in order: Sophomore, then Freshman
+    const yearOrder = ['Sophomore (2025)', 'Freshman (2024)', 'Junior (2026)', 'Senior (2027)'];
+    
+    yearOrder.forEach(yearLabel => {
+        const seasons = highSchoolYears[yearLabel];
+        if (seasons && seasons.length > 0) {
+            // Calculate year totals
+            const yearTotals = {
+                a: 0, po: 0, e: 0, dp: 0, tp: 0, inn: 0, pb: 0,
+                sba: 0, rcs: 0, pik: 0, games: 0
+            };
+            
+            html += `
+                <div class="row mb-4">
+                    <div class="col-12">
+                        <h4 class="mb-3">${yearLabel}</h4>
+                        <div class="table-responsive">
+                            <table class="table table-striped table-hover">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <th>Season</th>
+                                        <th>Team</th>
+                                        <th>GP</th>
+                                        <th>FLD%</th>
+                                        <th>CS%</th>
+                                        <th>A</th>
+                                        <th>PO</th>
+                                        <th>E</th>
+                                        <th>DP</th>
+                                        <th>TP</th>
+                                        <th>INN</th>
+                                        <th>PB</th>
+                                        <th>SBA</th>
+                                        <th>RCS</th>
+                                        <th>PIK</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+            `;
+            
+            // Add individual season rows
+            seasons.forEach(({key, stats}) => {
+                const totals = stats.getSeasonTotals();
+                yearTotals.a += totals.a;
+                yearTotals.po += totals.po;
+                yearTotals.e += totals.e;
+                yearTotals.dp += totals.dp;
+                yearTotals.tp += totals.tp;
+                yearTotals.inn += totals.inn;
+                yearTotals.pb += totals.pb;
+                yearTotals.sba += totals.sba;
+                yearTotals.rcs += totals.rcs;
+                yearTotals.pik += totals.pik;
+                yearTotals.games += stats.getGamesPlayed();
+                
+                html += `
+                    <tr>
+                        <td><a onclick="showGameDetails('${key}')">${stats.season}</a></td>
+                        <td>${stats.team}</td>
+                        <td>${stats.getGamesPlayed()}</td>
+                        <td>${stats.getSeasonFieldingPercentage()}</td>
+                        <td>${stats.getSeasonRunnersCaughtStealingPercentage()}%</td>
+                        <td>${totals.a}</td>
+                        <td>${totals.po}</td>
+                        <td>${totals.e}</td>
+                        <td>${totals.dp}</td>
+                        <td>${totals.tp}</td>
+                        <td>${totals.inn}</td>
+                        <td>${totals.pb}</td>
+                        <td>${totals.sba}</td>
+                        <td>${totals.rcs}</td>
+                        <td>${totals.pik}</td>
+                    </tr>
+                `;
+            });
+            
+            // Add year total row if there are multiple seasons
+            if (seasons.length > 1) {
+                const yearFLD = (yearTotals.a + yearTotals.po + yearTotals.e) > 0 ? 
+                    ((yearTotals.a + yearTotals.po) / (yearTotals.a + yearTotals.po + yearTotals.e)).toFixed(3) : '1.000';
+                const yearCS = (yearTotals.sba + yearTotals.rcs) > 0 ? 
+                    ((yearTotals.rcs / (yearTotals.sba + yearTotals.rcs)) * 100).toFixed(1) : '0.0';
+                
+                html += `
+                    <tr class="table-info">
+                        <td><strong>YEAR TOTAL</strong></td>
+                        <td>-</td>
+                        <td><strong>${yearTotals.games}</strong></td>
+                        <td><strong>${yearFLD}</strong></td>
+                        <td><strong>${yearCS}%</strong></td>
+                        <td><strong>${yearTotals.a}</strong></td>
+                        <td><strong>${yearTotals.po}</strong></td>
+                        <td><strong>${yearTotals.e}</strong></td>
+                        <td><strong>${yearTotals.dp}</strong></td>
+                        <td><strong>${yearTotals.tp}</strong></td>
+                        <td><strong>${yearTotals.inn}</strong></td>
+                        <td><strong>${yearTotals.pb}</strong></td>
+                        <td><strong>${yearTotals.sba}</strong></td>
+                        <td><strong>${yearTotals.rcs}</strong></td>
+                        <td><strong>${yearTotals.pik}</strong></td>
+                    </tr>
+                `;
+            }
+            
+            html += `
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
     });
-    
-    // Add totals row
-    html += `
-            <tr class="table-warning">
-                <td><strong>CAREER TOTALS</strong></td>
-                <td>-</td>
-                <td><strong>${careerTotals.games}</strong></td>
-                <td><strong>${calculateCareerFieldingPercentage(careerTotals)}</strong></td>
-                <td><strong>${calculateCareerRunnersCaughtStealingPercentage(careerTotals)}%</strong></td>
-                <td><strong>${careerTotals.a}</strong></td>
-                <td><strong>${careerTotals.po}</strong></td>
-                <td><strong>${careerTotals.e}</strong></td>
-                <td><strong>${careerTotals.dp}</strong></td>
-                <td><strong>${careerTotals.tp}</strong></td>
-                <td><strong>${careerTotals.inn}</strong></td>
-                <td><strong>${careerTotals.pb}</strong></td>
-                <td><strong>${careerTotals.sba}</strong></td>
-                <td><strong>${careerTotals.rcs}</strong></td>
-                <td><strong>${careerTotals.pik}</strong></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
-</div>
-</div>
-    `;
     
     return html;
 }
