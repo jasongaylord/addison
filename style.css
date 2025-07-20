@@ -245,6 +245,31 @@ header {
   background-color: #ccc;
 }
 
+/* Table cell alignment - center stats data, left-align season/team */
+.table th:not(:first-child):not(:nth-child(2)),
+.table td:not(:first-child):not(:nth-child(2)) {
+    text-align: center;
+}
+
+/* Ensure season and team columns stay left-aligned */
+.table th:first-child,
+.table th:nth-child(2),
+.table td:first-child,
+.table td:nth-child(2) {
+    text-align: left;
+}
+
+/* Special handling for career totals table */
+.table-career-totals th:not(:first-child),
+.table-career-totals td:not(:first-child) {
+    text-align: center;
+}
+
+.table-career-totals th:first-child,
+.table-career-totals td:first-child {
+    text-align: left;
+}
+
 /* Custom modal styling */
 .modal-xl {
     max-width: 95%;

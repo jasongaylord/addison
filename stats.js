@@ -22,7 +22,7 @@ class GameStats {
         this.po = data.po || data.putouts || 0; // Put outs
         this.dp = data.dp || data.double_plays || 0; // Double plays
         this.tp = data.tp || data.triple_plays || 0; // Triple plays
-        this.inn = data.inn || 0;         // Innings caught
+        this.inn = convertSoftballInnings(data.inn || 0); // Innings caught (converted from softball notation)
         this.pb = data.pb || 0;           // Passed balls
         this.sba = data.sba || 0;         // Stolen bases allowed
         this.rcs = data.rcs || 0;         // Runners caught stealing
@@ -382,34 +382,25 @@ function groupSeasonsByHighSchoolYear(allSeasonData) {
     
     Object.entries(allSeasonData).forEach(([seasonKey, seasonStats]) => {
         const season = seasonStats.season;
-        console.log(`Grouping season: ${season} (key: ${seasonKey})`);
         
         // Freshman year: Fall 2023, Spring 2024, Summer 2024
         if (season === 'Fall 2023' || season === 'Spring 2024' || season === 'Summer 2024') {
             highSchoolYears['Freshman (2024)'].push({key: seasonKey, stats: seasonStats});
-            console.log(`  -> Added to Freshman (2024)`);
         }
         // Sophomore year: Fall 2024, Spring 2025, Summer 2025
         else if (season === 'Fall 2024' || season === 'Spring 2025' || season === 'Summer 2025') {
             highSchoolYears['Sophomore (2025)'].push({key: seasonKey, stats: seasonStats});
-            console.log(`  -> Added to Sophomore (2025)`);
         }
         // Junior year: Fall 2025, Spring 2026, Summer 2026
         else if (season === 'Fall 2025' || season === 'Spring 2026' || season === 'Summer 2026') {
             highSchoolYears['Junior (2026)'].push({key: seasonKey, stats: seasonStats});
-            console.log(`  -> Added to Junior (2026)`);
         }
         // Senior year: Fall 2026, Spring 2027, Summer 2027
         else if (season === 'Fall 2026' || season === 'Spring 2027' || season === 'Summer 2027') {
             highSchoolYears['Senior (2027)'].push({key: seasonKey, stats: seasonStats});
-            console.log(`  -> Added to Senior (2027)`);
-        }
-        else {
-            console.log(`  -> No matching high school year for season: ${season}`);
         }
     });
     
-    console.log('Grouped high school years:', highSchoolYears);
     return highSchoolYears;
 }
 
@@ -590,7 +581,7 @@ function renderCareerSummary(allSeasonData) {
                             <div class="card-body">
                                 <h5 class="card-title">CS% (Catching)</h5>
                                 <h2 class="text-primary">${calculateCareerRunnersCaughtStealingPercentage(careerTotals)}%</h2>
-                                <p class="card-text">${careerTotals.rcs} caught, ${careerTotals.sba} allowed</p>
+                                <p class="card-text">${careerTotals.rcs} caught, ${careerTotals.sba} allowed, ${formatSoftballInnings(careerTotals.inn)} innings</p>
                             </div>
                         </div>
                     </div>
@@ -758,7 +749,7 @@ function renderFieldingCareerSummary(allSeasonData) {
                         <div class="card text-center h-100">
                             <div class="card-body">
                                 <h5 class="card-title">Innings Caught</h5>
-                                <h2 class="text-primary">${careerTotals.inn}</h2>
+                                <h2 class="text-primary">${formatSoftballInnings(careerTotals.inn)}</h2>
                                 <p class="card-text">Career innings caught</p>
                             </div>
                         </div>
@@ -1020,7 +1011,7 @@ function renderFieldingSeasonTable(allSeasonData) {
                                 <td><strong>${careerTotals.e}</strong></td>
                                 <td><strong>${careerTotals.dp}</strong></td>
                                 <td><strong>${careerTotals.tp}</strong></td>
-                                <td><strong>${careerTotals.inn}</strong></td>
+                                <td><strong>${formatSoftballInnings(careerTotals.inn)}</strong></td>
                                 <td><strong>${careerTotals.pb}</strong></td>
                                 <td><strong>${careerTotals.sba}</strong></td>
                                 <td><strong>${careerTotals.rcs}</strong></td>
@@ -1100,7 +1091,7 @@ function renderFieldingSeasonTable(allSeasonData) {
                         <td>${totals.e}</td>
                         <td>${totals.dp}</td>
                         <td>${totals.tp}</td>
-                        <td>${totals.inn}</td>
+                        <td>${formatSoftballInnings(totals.inn)}</td>
                         <td>${totals.pb}</td>
                         <td>${totals.sba}</td>
                         <td>${totals.rcs}</td>
@@ -1117,7 +1108,7 @@ function renderFieldingSeasonTable(allSeasonData) {
                     ((yearTotals.rcs / (yearTotals.sba + yearTotals.rcs)) * 100).toFixed(1) : '0.0';
                 
                 html += `
-                    <tr class="table-info">
+                    <tr class="table-summary">
                         <td><strong>YEAR TOTAL</strong></td>
                         <td>-</td>
                         <td><strong>${yearTotals.games}</strong></td>
@@ -1128,7 +1119,7 @@ function renderFieldingSeasonTable(allSeasonData) {
                         <td><strong>${yearTotals.e}</strong></td>
                         <td><strong>${yearTotals.dp}</strong></td>
                         <td><strong>${yearTotals.tp}</strong></td>
-                        <td><strong>${yearTotals.inn}</strong></td>
+                        <td><strong>${formatSoftballInnings(yearTotals.inn)}</strong></td>
                         <td><strong>${yearTotals.pb}</strong></td>
                         <td><strong>${yearTotals.sba}</strong></td>
                         <td><strong>${yearTotals.rcs}</strong></td>
@@ -1456,7 +1447,7 @@ function showGameDetails(year) {
                             <td>${game.e}</td>
                             <td>${game.dp}</td>
                             <td>${game.tp}</td>
-                            <td>${game.inn}</td>
+                            <td>${formatSoftballInnings(game.inn)}</td>
                             <td>${game.pb}</td>
                             <td>${game.sba}</td>
                             <td>${game.rcs}</td>
@@ -1505,6 +1496,67 @@ function showGameDetails(year) {
     // Show the modal
     const modal = new bootstrap.Modal(document.getElementById('gameDetailsModal'));
     modal.show();
+}
+
+// Utility functions for softball innings conversion
+// In softball, innings are recorded in thirds: .1 = 1/3, .2 = 2/3
+
+/**
+ * Convert softball innings notation to actual decimal value
+ * @param {number} inningsValue - The innings value from JSON (e.g., 2.1, 5.2, etc.)
+ * @returns {number} - The actual decimal value (e.g., 2.33, 5.67, etc.)
+ */
+function convertSoftballInnings(inningsValue) {
+    if (!inningsValue || inningsValue === 0) return 0;
+    
+    const wholeInnings = Math.floor(inningsValue);
+    const fraction = inningsValue - wholeInnings;
+    
+    // Handle common softball fraction notations
+    if (fraction === 0.1) {
+        return wholeInnings + (1/3); // .1 = 1/3
+    } else if (fraction === 0.2) {
+        return wholeInnings + (2/3); // .2 = 2/3
+    } else if (Math.abs(fraction - 0.33) < 0.01 || Math.abs(fraction - 0.3) < 0.01) {
+        return wholeInnings + (1/3); // .33 or .3 = 1/3
+    } else if (Math.abs(fraction - 0.67) < 0.01 || Math.abs(fraction - 0.66) < 0.01) {
+        return wholeInnings + (2/3); // .67 or .66 = 2/3
+    }
+    
+    // If it's already a proper decimal, return as-is
+    return inningsValue;
+}
+
+/**
+ * Format innings for display in softball notation
+ * @param {number} actualInnings - The actual decimal innings value
+ * @returns {string} - The formatted innings for display (e.g., "2.1", "5.2", etc.)
+ */
+function formatSoftballInnings(actualInnings) {
+    if (!actualInnings || actualInnings === 0) return "0";
+    
+    const wholeInnings = Math.floor(actualInnings);
+    const fraction = actualInnings - wholeInnings;
+    
+    // Convert decimal fractions back to softball notation
+    if (Math.abs(fraction - (1/3)) < 0.01) {
+        return wholeInnings + ".1";
+    } else if (Math.abs(fraction - (2/3)) < 0.01) {
+        return wholeInnings + ".2";
+    } else if (fraction === 0) {
+        return wholeInnings.toString();
+    }
+    
+    // For any other values, round to nearest third
+    if (fraction < (1/6)) {
+        return wholeInnings.toString();
+    } else if (fraction < 0.5) {
+        return wholeInnings + ".1";
+    } else if (fraction < (5/6)) {
+        return wholeInnings + ".2";
+    } else {
+        return (wholeInnings + 1).toString();
+    }
 }
 
 // Initialize data loading when DOM is ready
