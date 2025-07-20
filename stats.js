@@ -51,7 +51,7 @@ class GameStats {
 
     // Calculate runners caught stealing percentage for this game
     getRunnersCaughtStealingPercentage() {
-        const totalAttempts = this.sba + this.rcs;
+        const totalAttempts = this.sba; // + this.rcs;
         return totalAttempts > 0 ? ((this.rcs / totalAttempts) * 100).toFixed(1) : '0.0';
     }
 
@@ -434,6 +434,10 @@ function calculateCareerSluggingPercentage(careerTotals) {
     return (totalBases / careerTotals.ab).toFixed(3);
 }
 
+function calculateCareerOPSPercentage(careerTotals) {
+    return (parseFloat(calculateCareerOnBasePercentage(careerTotals)) + parseFloat(calculateCareerSluggingPercentage(careerTotals))).toFixed(3);
+}
+
 // Function to calculate career strikeouts per plate appearance
 function calculateCareerStrikeoutsPerPA(careerTotals) {
     const plateAppearances = careerTotals.ab + careerTotals.bb + careerTotals.hbp;
@@ -464,6 +468,96 @@ function calculateCareerRunnersCaughtStealingPercentage(careerTotals) {
     const totalAttempts = careerTotals.sba + careerTotals.rcs;
     return totalAttempts > 0 ? ((careerTotals.rcs / totalAttempts) * 100).toFixed(1) : '0.0';
 }
+
+
+// Helper function to render career summary cards
+function renderCareerSummary(allSeasonData) {
+    const careerTotals = calculateCareerTotals(allSeasonData);
+    
+    return `
+        <div class="row mb-4">
+            <div class="col-12">
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Batting Average</h5>
+                                <h2 class="text-primary">${calculateCareerBattingAverage(careerTotals)}</h2>
+                                <p class="card-text">${careerTotals.h} hits in ${careerTotals.ab} at-bats</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">On-Base Percentage</h5>
+                                <h2 class="text-primary">${calculateCareerOnBasePercentage(careerTotals)}</h2>
+                                <p class="card-text">${careerTotals.ab + careerTotals.bb + careerTotals.hbp} plate appearances</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Slugging Percentage</h5>
+                                <h2 class="text-primary">${calculateCareerSluggingPercentage(careerTotals)}</h2>
+                                <p class="card-text">${careerTotals.doubles} 2B, ${careerTotals.triples} 3B, ${careerTotals.hr} HR</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">OPS Percentage</h5>
+                                <h2 class="text-primary">${calculateCareerOPSPercentage(careerTotals)}</h2>
+                                <p class="card-text"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Strikeouts per PA</h5>
+                                <h2 class="text-primary">${calculateCareerStrikeoutsPerPA(careerTotals)}</h2>
+                                <p class="card-text">${careerTotals.so} strikeouts</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Stealing Percentage</h5>
+                                <h2 class="text-primary">${calculateCareerStealingPercentage(careerTotals)}%</h2>
+                                <p class="card-text">${careerTotals.sb} stolen bases, ${careerTotals.cs} caught stealing</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">Fielding Percentage</h5>
+                                <h2 class="text-primary">${calculateCareerFieldingPercentage(careerTotals)}</h2>
+                                <p class="card-text">${careerTotals.a + careerTotals.po} chances, ${careerTotals.e} errors</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <div class="card text-center h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">CS% (Catching)</h5>
+                                <h2 class="text-primary">${calculateCareerRunnersCaughtStealingPercentage(careerTotals)}%</h2>
+                                <p class="card-text">${careerTotals.rcs} caught, ${careerTotals.sba} allowed</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    `;
+}
+
 
 // Helper function to render batting career summary cards
 function renderBattingCareerSummary(allSeasonData) {
@@ -547,6 +641,7 @@ function renderBattingCareerSummary(allSeasonData) {
                             </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </div>
@@ -839,6 +934,13 @@ function populateIndexStatistics(allSeasonData) {
     if (seasons.length === 0) {
         html = '<div class="alert alert-info">No season data available.</div>';
     } else {
+        // Add summary cards
+        html += `
+            <div id="summary-cards">
+                ${renderCareerSummary(allSeasonData)}
+            </div>
+        `;
+
         // Add radio button toggle for main stats
         html += `
             <div class="row mb-3">
@@ -859,11 +961,9 @@ function populateIndexStatistics(allSeasonData) {
         // Add containers for batting and fielding views
         html += `
             <div id="main-batting-view">
-                ${renderBattingCareerSummary(allSeasonData)}
                 ${renderBattingSeasonTable(allSeasonData)}
             </div>
             <div id="main-fielding-view" style="display: none;">
-                ${renderFieldingCareerSummary(allSeasonData)}
                 ${renderFieldingSeasonTable(allSeasonData)}
             </div>
         `;
