@@ -140,6 +140,26 @@ header {
   color: #fff;
 }
 
+  .bg-purple .card {
+    background: linear-gradient(to bottom, #430083, #29004f);
+    color: #fff;
+  }
+
+    .bg-purple .card h4 {
+      color: #bf7cff;
+      text-transform: uppercase;
+    }
+
+    .statistics h5.card-title {
+      color: #bf7cff;
+      text-transform: uppercase;
+    }
+
+    .statistics h2.text-primary {
+      color: #fff !important;
+      font-weight: bold;
+    }
+
 
 /* photo-gallery */
 .gallery-image {
@@ -156,7 +176,6 @@ header {
     display: block;
     margin: 0 auto;
     border-bottom: 2px solid #6f42c1;
-    /* box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3); */
     box-shadow: rgba(0, 0, 0, 0.65) 0px 25px 20px -20px;
   }
 }
@@ -180,7 +199,6 @@ header {
   left: 0;
   right: 0;
   background: rgba(0, 0, 0, 0.6);
-  /* background: linear-gradient(to top, rgba(41, 0, 79, 0.9), rgba(41, 0, 79, 0.7), transparent); */
   color: #fff;
   padding: 10px 10px 10px;
   font-size: 1rem;
@@ -189,6 +207,138 @@ header {
 }
 
 
+
+/* Statistics Table styles */
+.statistics .table-dark th { 
+  background-color: #29004f !important;
+}
+
+.statistics .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+  background-color: #ffcdde;
+}
+
+.statistics .btn {
+  background-color: #bf7cff;
+}
+
+.statistics .btn.active, .statistics .btn:active {
+  background-color: #29004f;
+  color: #ffcdde;
+}
+
+.statistics .btn-check:checked+.btn {
+  background-color: #29004f;
+  border-color: #29004f;
+  color: #ffcdde;
+}
+
+.statistics .btn:hover {
+  background-color: #ffcdde;
+}
+
+.statistics .btn-outline-primary, .statistics .btn-outline-primary:hover {
+  border-color: #29004f;
+  color: #29004f;
+}
+
+.statistics .table-summary td {
+  background-color: #ccc;
+}
+
+/* Custom modal styling */
+.modal-xl {
+    max-width: 95%;
+}
+
+.modal-header {
+    background-color: #29004f;
+    color: white;
+    border-bottom: 1px solid #dee2e6;
+}
+
+  .modal-header .btn-close {
+      filter: invert(1);
+  }
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+  .modal-body .table {
+      font-size: 0.9rem;
+  }
+
+    .modal-body .table th {
+        white-space: nowrap;
+        padding: 0.5rem;
+    }
+
+    .modal-body .table td {
+        white-space: nowrap;
+        padding: 0.5rem;
+    }
+
+  .modal-body .card {
+      border: none;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+
+  .modal-body .card-body {
+      padding: 0.75rem;
+  }
+
+  .modal-body .card-title {
+      font-size: 0.8rem;
+      margin-bottom: 0.5rem;
+  }
+
+  .modal-body .alert-info {
+      background-color: #e7f3ff;
+      border-color: #b8daff;
+      color: #0c5460;
+  }
+
+/* Responsive modal adjustments */
+@media (max-width: 768px) {
+    .modal-xl {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .modal-body {
+        padding: 1rem;
+    }
+    
+    .modal-body .table {
+        font-size: 0.8rem;
+    }
+    
+    .modal-body .table th,
+    .modal-body .table td {
+        padding: 0.25rem;
+    }
+    
+    .modal-body .card-body {
+        padding: 0.5rem;
+    }
+    
+    .modal-body .card-title {
+        font-size: 0.7rem;
+    }
+}
+
+
+
+/* .footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 60px;
+  line-height: 60px;
+  background-color: #29004f;
+  text-align: center;
+  color: white;
+} */
 
 /* footer */
 .footer {

@@ -186,7 +186,7 @@
                         elected to the National Honor Society. In college, I hope to pursue a degree in accounting or finance.
                     </p>
                     <p>
-                        I've been a starter for both softball and basketball since by freshman year. I was chosen as a first team all-star of the Wyoming Valley Conference in my freshmen year and a 
+                        I've been a starter for both softball and basketball since my freshman year. I was chosen as a first team all-star of the Wyoming Valley Conference in my freshmen year and a 
                         second team all-star this past year. While my strongest sports passion is softball, I have played basketball since 2nd grade and have been a runner on the cross country team 
                         since 7th grade. Regardless of sport, you'll typically find me wearing #2.
                     </p>
@@ -214,6 +214,44 @@
                         <img src="img/gallery/addison-2025.jpg" alt="Addison Gaylord's Wyoming Area Warriors Softball pose." class="img-fluid" style="width: 100%;" id="feature-image" />
                         <div class="image-caption" id="image-caption">Addison Gaylord's Wyoming Area Warriors Softball pose.</div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-purple" id="statistics">
+        <div class="container pt-3">
+            <div class="row py-3">
+                <div class="col-12">
+                    <div class="p-3 mb-3">
+                        <div id="stats-container" class="statistics">
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading statistics...</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Game Details Modal -->
+    <div class="modal fade" id="gameDetailsModal" tabindex="-1" aria-labelledby="gameDetailsModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="gameDetailsModalLabel">Game-by-Game Results</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-season-info" class="mb-3"></div>
+                    <div id="modal-summary-stats" class="mb-4"></div>
+                    <div id="modal-game-results" class="statistics"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
@@ -280,6 +318,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/ffda48b653.js" crossorigin="anonymous"></script>
+    <script src="stats.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
