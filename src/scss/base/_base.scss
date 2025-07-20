@@ -1,0 +1,18 @@
+// Import Google Fonts
+@import url("https://fonts.googleapis.com/css2?family=Cabin&family=Indie+Flower&family=Merriweather:wght@900&display=swap");
+
+// Base HTML & Body styles
+html {
+  position: relative;
+  font-family: $font-primary;
+  min-height: 100%;
+  font-size: 14px;
+
+  @include respond-to(md) {
+    font-size: 16px;
+  }
+}
+
+body {
+  margin-bottom: $footer-height;
+}

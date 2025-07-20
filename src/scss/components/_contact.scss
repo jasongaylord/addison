@@ -1,0 +1,61 @@
+@use 'sass:color';
+
+// Contact section styling
+.contact-section {
+  padding: 3rem 0;
+  background-color: $background-gray;
+}
+
+.contact-title {
+  color: $primary-purple;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+.contact-card {
+  background: $card-bg;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  
+  .contact-info {
+    color: $text-white;
+    margin-bottom: 1rem;
+    
+    h5 {
+      color: $primary-purple;
+      margin-bottom: 0.5rem;
+    }
+    
+    p {
+      margin-bottom: 0.25rem;
+    }
+  }
+  
+  .contact-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    
+    .btn {
+      min-width: 120px;
+    }
+  }
+}
+
+// Download buttons
+.btn-download {
+  background-color: $primary-purple;
+  border-color: $primary-purple;
+  color: $text-white;
+  
+  &:hover {
+    background-color: color.scale($primary-purple, $lightness: -10%);
+    border-color: color.scale($primary-purple, $lightness: -10%);
+    color: $text-white;
+  }
+}

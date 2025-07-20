@@ -1,0 +1,70 @@
+// Mixins for responsive design
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  }
+  @if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  }
+  @if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  }
+  @if $breakpoint == xxl {
+    @media (min-width: $breakpoint-xxl) { @content; }
+  }
+}
+
+@mixin respond-below($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: #{$breakpoint-sm - 1px}) { @content; }
+  }
+  @if $breakpoint == md {
+    @media (max-width: #{$breakpoint-md - 1px}) { @content; }
+  }
+  @if $breakpoint == lg {
+    @media (max-width: #{$breakpoint-lg - 1px}) { @content; }
+  }
+  @if $breakpoint == xl {
+    @media (max-width: #{$breakpoint-xl - 1px}) { @content; }
+  }
+  @if $breakpoint == xxl {
+    @media (max-width: #{$breakpoint-xxl - 1px}) { @content; }
+  }
+}
+
+// Card hover effect mixin
+@mixin card-hover-effect {
+  transition: transform $transition-fast, box-shadow $transition-fast;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-normal !important;
+  }
+}
+
+// Visibility utility mixin
+@mixin responsive-visibility($show-above: null, $hide-below: null) {
+  @if $show-above {
+    @include respond-below($show-above) {
+      display: none;
+      visibility: hidden;
+    }
+    @include respond-to($show-above) {
+      visibility: visible;
+    }
+  }
+
+  @if $hide-below {
+    @include respond-below($hide-below) {
+      visibility: visible;
+    }
+    @include respond-to($hide-below) {
+      display: none;
+      visibility: hidden;
+    }
+  }
+}

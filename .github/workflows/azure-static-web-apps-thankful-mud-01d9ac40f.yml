@@ -19,6 +19,22 @@ jobs:
         with:
           submodules: true
           lfs: false
+      
+      # Setup Node.js for SASS compilation
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+      
+      # Install dependencies
+      - name: Install dependencies
+        run: npm install
+      
+      # Build CSS from SASS
+      - name: Build CSS from SASS
+        run: npm run build:css
+      
       - name: Build And Deploy
         id: builddeploy
         uses: Azure/static-web-apps-deploy@v1

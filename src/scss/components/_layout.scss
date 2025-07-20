@@ -1,0 +1,140 @@
+// Layout sections and specialized components
+
+// Leaderboard section
+.leaderboard {
+  background-color: $leaderboard-purple;
+  color: $text-white;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-align: center;
+
+  .highlight {
+    color: $highlight-purple;
+  }
+}
+
+// Background variations
+.bg-white {
+  background-color: $background-white;
+  color: $primary-purple;
+
+  .card {
+    background: linear-gradient(to bottom, $gradient-dark, $primary-purple);
+    color: $text-white;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-align: center;
+
+    h5 {
+      color: $highlight-purple;
+    }
+  }
+}
+
+.bg-darkpurple {
+  background-color: $leaderboard-purple;
+  color: $text-white;
+
+  h4 {
+    color: $highlight-purple;
+    text-transform: uppercase;
+  }
+
+  .card {
+    background: linear-gradient(to bottom, $gradient-dark, $primary-purple);
+    color: $text-white;
+
+    a, 
+    a:visited {
+      color: $text-white;
+      text-decoration: none;
+
+      &:hover {
+        color: $text-light;
+      }
+    }
+
+    h4 {
+      color: $highlight-purple;
+      text-transform: uppercase;
+    }
+  }
+}
+
+.bg-purple {
+  background-color: #6f42c1;
+  color: $text-white;
+
+  .card {
+    background: linear-gradient(to bottom, $gradient-dark, $primary-purple);
+    color: $text-white;
+
+    h4 {
+      color: $highlight-purple;
+      text-transform: uppercase;
+    }
+  }
+}
+
+// Photo gallery
+.gallery-image {
+  cursor: pointer;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+// Responsive image class for small screens
+@include respond-below(lg) {
+  .img-center-small img {
+    display: block;
+    margin: 0 auto;
+    border-bottom: 2px solid #6f42c1;
+    box-shadow: rgba(0, 0, 0, 0.65) 0px 25px 20px -20px;
+  }
+}
+
+.feature-image-container {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+}
+
+#feature-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.image-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+  color: $text-white;
+  padding: 10px 10px 10px;
+  font-size: 1rem;
+  border-radius: 0 0 10px 10px;
+  text-align: center;
+}
+
+// Footer
+.footer {
+  background-color: $primary-purple;
+  color: $text-light;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  white-space: nowrap;
+  line-height: 60px;
+
+  a, 
+  a:hover, 
+  a:visited {
+    color: $text-light;
+    text-decoration: none;
+  }
+}

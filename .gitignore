@@ -399,6 +399,9 @@ FodyWeavers.xsd
 
 # Other Ignores
 .gitignore
+package-lock.json
 *.csv
 *.py
 *.xlsx
+style-original*.*
+style.css.map
