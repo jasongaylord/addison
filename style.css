@@ -218,7 +218,7 @@ header {
 }
 
 .statistics .btn {
-  background-color: #ffcdde;
+  background-color: #bf7cff;
 }
 
 .statistics .btn.active, .statistics .btn:active {
@@ -226,15 +226,23 @@ header {
   color: #ffcdde;
 }
 
-.btn-check:checked+.btn {
+.statistics .btn-check:checked+.btn {
   background-color: #29004f;
   border-color: #29004f;
   color: #ffcdde;
 }
 
+.statistics .btn:hover {
+  background-color: #ffcdde;
+}
+
 .statistics .btn-outline-primary, .statistics .btn-outline-primary:hover {
   border-color: #29004f;
   color: #29004f;
+}
+
+.statistics .table-summary td {
+  background-color: #ccc;
 }
 
 /* Custom modal styling */

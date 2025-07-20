@@ -804,7 +804,7 @@ function renderBattingSeasonTable(allSeasonData) {
     
     // Add totals row
     html += `
-            <tr class="table-warning">
+            <tr class="table-summary">
                 <td><strong>CAREER TOTALS</strong></td>
                 <td>-</td>
                 <td><strong>${careerTotals.games}</strong></td>
