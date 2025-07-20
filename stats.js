@@ -923,7 +923,7 @@ function renderBattingSeasonTable(allSeasonData) {
                     ((yearTotals.h + yearTotals.doubles + (yearTotals.triples * 2) + (yearTotals.hr * 3)) / yearTotals.ab).toFixed(3) : '0.000';
                 
                 html += `
-                    <tr class="table-info">
+                    <tr class="table-summary">
                         <td><strong>YEAR TOTAL</strong></td>
                         <td>-</td>
                         <td><strong>${yearTotals.games}</strong></td>
