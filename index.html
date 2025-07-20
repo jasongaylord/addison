@@ -279,6 +279,25 @@
         </div>
     </div>
 
+
+    <!-- Threads Integration -->
+    <div class="bg-white" id="ThreadsIntegration">
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-12">
+                    <div id="threads-posts" class="p-3">
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading Threads posts...</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <div class="bg-darkpurple" id="contact-block">
         <div class="container pt-3">
             <div class="row py-3">
@@ -341,7 +360,30 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/ffda48b653.js" crossorigin="anonymous"></script>
+    <script src="threads-reader.js"></script>
     <script src="stats.js"></script>
     <script src="script.js"></script>
+    
+    <script>
+        // Initialize Threads integration when page loads
+        document.addEventListener('DOMContentLoaded', async function() {
+            try {
+                // Load Threads posts using the development/mock data
+                await loadThreadsPosts('threads-posts');
+            } catch (error) {
+                console.error('Error loading Threads posts:', error);
+                // Show error message if loading fails
+                const container = document.getElementById('threads-posts');
+                if (container) {
+                    container.innerHTML = `
+                        <div class="text-center text-muted">
+                            <i class="fab fa-threads fa-2x mb-3"></i>
+                            <p>Unable to load Threads posts at this time.</p>
+                        </div>
+                    `;
+                }
+            }
+        });
+    </script>
 </body>
 </html>

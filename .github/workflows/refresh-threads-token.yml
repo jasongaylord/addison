@@ -1,0 +1,99 @@
+name: Refresh Threads App Access Token
+
+on:
+  schedule:
+    # Run every 30 days at 2 AM UTC
+    - cron: '0 2 */30 * *'
+  workflow_dispatch: # Allow manual triggering
+
+jobs:
+  refresh-token:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.GHA_TOKEN }}
+
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '18'
+
+    - name: Create data directory if it doesn't exist
+      run: mkdir -p data
+
+    - name: Refresh Threads App Access Token
+      env:
+        THREADS_APP_ID: ${{ secrets.THREADS_APP_ID }}
+        THREADS_APP_SECRET: ${{ secrets.THREADS_APP_SECRET }}
+      run: |
+        # Generate new app access token
+        RESPONSE=$(curl -s -X GET "https://graph.threads.net/oauth/access_token?client_id=${THREADS_APP_ID}&client_secret=${THREADS_APP_SECRET}&grant_type=client_credentials")
+        
+        # Check if the request was successful
+        if echo "$RESPONSE" | jq -e '.access_token' > /dev/null; then
+          ACCESS_TOKEN=$(echo "$RESPONSE" | jq -r '.access_token')
+          TOKEN_TYPE=$(echo "$RESPONSE" | jq -r '.token_type')
+          
+          # Create threads.json with the new token and metadata
+          cat > data/threads.json << EOF
+        {
+          "access_token": "$ACCESS_TOKEN",
+          "token_type": "$TOKEN_TYPE",
+          "generated_at": "$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ")",
+          "expires_in_days": 30,
+          "app_id": "${THREADS_APP_ID}",
+          "last_updated": "$(date -u +"%Y-%m-%dT%H:%M:%S.%3NZ")"
+        }
+        EOF
+          
+          echo "✅ Successfully generated new Threads App Access Token"
+          echo "Token: ${ACCESS_TOKEN:0:20}..."
+        else
+          echo "❌ Failed to generate access token"
+          echo "Response: $RESPONSE"
+          exit 1
+        fi
+
+    - name: Validate token format
+      run: |
+        # Verify the token has the expected format TH|APP_ID|TOKEN
+        TOKEN=$(jq -r '.access_token' data/threads.json)
+        if [[ $TOKEN =~ ^TH\|[0-9]+\|.+ ]]; then
+          echo "✅ Token format is valid"
+        else
+          echo "❌ Token format is invalid: $TOKEN"
+          exit 1
+        fi
+
+    - name: Commit and push updated token
+      run: |
+        # Configure git
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        
+        # Add and commit the changes
+        git add data/threads.json
+        
+        # Check if there are changes to commit
+        if git diff --staged --quiet; then
+          echo "No changes to commit"
+        else
+          git commit -m "🔄 Refresh Threads App Access Token - $(date -u +"%Y-%m-%d %H:%M:%S UTC")"
+          git push
+          echo "✅ Successfully updated and committed new access token"
+        fi
+
+    - name: Create summary
+      run: |
+        echo "## 🧵 Threads Token Refresh Summary" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "- **Status**: ✅ Success" >> $GITHUB_STEP_SUMMARY
+        echo "- **Generated At**: $(jq -r '.generated_at' data/threads.json)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Token Type**: $(jq -r '.token_type' data/threads.json)" >> $GITHUB_STEP_SUMMARY
+        echo "- **App ID**: $(jq -r '.app_id' data/threads.json)" >> $GITHUB_STEP_SUMMARY
+        echo "- **Next Refresh**: $(date -d '+30 days' -u +"%Y-%m-%d %H:%M:%S UTC")" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "The Threads App Access Token has been successfully refreshed and stored in \`data/threads.json\`." >> $GITHUB_STEP_SUMMARY

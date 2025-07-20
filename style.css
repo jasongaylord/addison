@@ -459,3 +459,18 @@ header {
 .table-career-totals tbody tr td {
     background: transparent !important;
 }
+
+/* Threads Cards Styling */
+.threads-card {
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.threads-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+.threads-card .card-body {
+    min-height: 200px;
+}
