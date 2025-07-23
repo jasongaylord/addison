@@ -704,9 +704,9 @@
                     "opponent": "Carolina Elite 2025/2026 (Maddaluna)",
                     "date": "07/23/2025 9:00am",
                     "location": "Johnson City, TN",
-                    "ab": 0,
+                    "ab": 2,
                     "r": 0,
-                    "h": 0,
+                    "h": 1,
                     "rbi": 0,
                     "bb": 0,
                     "so": 0,
@@ -718,8 +718,8 @@
                     "cs": 0,
                     "hbp": 0,
                     "e": 0,
-                    "a": 0,
-                    "po": 0,
+                    "a": 2,
+                    "po": 1,
                     "dp": 0,
                     "tp": 0,
                     "inn": 0,
@@ -727,7 +727,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "TBD"
+                    "game_result": "In Progress"
                 },
                 {
                     "opponent": "Bownet FL 18u",
