@@ -762,7 +762,7 @@
                     "opponent": "Langhorne Lightning, Premier",
                     "date": "07/24/2025 1:00pm",
                     "location": "Johnson City, TN",
-                    "ab": 2,
+                    "ab": 3,
                     "r": 1,
                     "h": 1,
                     "rbi": 1,
@@ -776,7 +776,7 @@
                     "cs": 0,
                     "hbp": 0,
                     "e": 0,
-                    "a": 1,
+                    "a": 3,
                     "po": 0,
                     "dp": 0,
                     "tp": 0,
@@ -785,7 +785,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "In Progress"
+                    "game_result": "W 2-0"
                 }
             ]
         },
