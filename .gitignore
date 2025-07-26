@@ -399,7 +399,7 @@ FodyWeavers.xsd
 
 # Other Ignores
 .gitignore
-package-lock.json
+#package-lock.json
 *.csv
 *.py
 *.xlsx
