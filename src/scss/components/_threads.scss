@@ -1,0 +1,92 @@
+// Threads container styling
+.threads-container {
+  padding: 2rem 0;
+  background-color: $background-gray;
+}
+
+// Threads cards grid
+.threads-cards {
+  display: grid;
+  gap: 1.5rem;
+  
+  @include respond-below(sm) {
+    grid-template-columns: 1fr;
+  }
+  
+  @include respond-to(sm) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  @include respond-to(lg) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+// Individual thread card
+.thread-card {
+  background: $card-bg;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .card-text {
+    color: $text-white;
+    margin-bottom: 1rem;
+    line-height: 1.5;
+  }
+
+  .card-timestamp {
+    color: $primary-purple;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin: 0;
+  }
+}
+
+// Legacy threads card styling
+.threads-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
+  }
+
+  .card-body {
+    min-height: 200px;
+  }
+}
+
+// Threads section heading
+.threads-title {
+  color: $primary-purple;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+// Threads loading and error states
+.threads-loading {
+  text-align: center;
+  color: $text-muted;
+  padding: 2rem 0;
+}
+
+.threads-error {
+  text-align: center;
+  color: $danger-color;
+  padding: 2rem 0;
+}

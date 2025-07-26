@@ -1,0 +1,8 @@
+// Responsive visibility utilities
+.for-large {
+  @include responsive-visibility($show-above: lg);
+}
+
+.for-small {
+  @include responsive-visibility($hide-below: lg);
+}

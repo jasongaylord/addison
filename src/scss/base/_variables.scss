@@ -1,0 +1,43 @@
+// Colors
+$primary-purple: #29004f;
+$dark-purple: #250d57;
+$light-purple: #3D1A85;
+$accent-purple: #8E44AD;
+$leaderboard-purple: #39006f;
+$gradient-dark: #430083;
+$highlight-purple: #bf7cff;
+$background-white: #ffffff;
+$background-gray: #f8f9fa;
+$text-white: #ffffff;
+$text-light: #ffcdde;
+$text-muted: #6c757d;
+$card-bg: #2c3e50;
+$danger-color: #dc3545;
+
+// Fonts
+$font-primary: "Cabin", sans-serif;
+$font-display: "Merriweather", serif;
+$font-accent: "Indie Flower", cursive;
+
+// Breakpoints
+$breakpoint-sm: 576px;
+$breakpoint-md: 768px;
+$breakpoint-lg: 992px;
+$breakpoint-xl: 1200px;
+$breakpoint-xxl: 1400px;
+
+// Spacing
+$footer-height: 60px;
+$card-min-height: 200px;
+
+// Transitions
+$transition-fast: 0.2s ease-in-out;
+$transition-normal: 0.3s ease-in-out;
+
+// Shadows
+$shadow-light: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+$shadow-normal: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+
+// Z-index
+$z-index-sticky: 1020;
+$z-index-modal: 1050;

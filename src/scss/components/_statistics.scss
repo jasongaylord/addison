@@ -1,0 +1,224 @@
+// Statistics section styling
+.stats-section {
+  padding: 3rem 0;
+  background-color: $background-white;
+}
+
+.stats-title {
+  color: $primary-purple;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-weight: 600;
+}
+
+// Statistics card styling for statistics section
+.statistics {
+  h5.card-title {
+    color: $highlight-purple;
+    text-transform: uppercase;
+  }
+
+  h2.text-primary {
+    color: $text-white !important;
+    font-weight: bold;
+  }
+
+  // Table styling
+  .table-dark th {
+    background-color: $primary-purple !important;
+  }
+
+  .table-hover tbody tr:hover td,
+  .table-hover tbody tr:hover th {
+    background-color: $text-light;
+  }
+
+  .btn {
+    background-color: $highlight-purple;
+
+    &.active,
+    &:active {
+      background-color: $primary-purple;
+      color: $text-light;
+    }
+
+    &:hover {
+      background-color: $text-light;
+    }
+  }
+
+  .btn-check:checked + .btn {
+    background-color: $primary-purple;
+    border-color: $primary-purple;
+    color: $text-light;
+  }
+
+  .btn-outline-primary,
+  .btn-outline-primary:hover {
+    border-color: $primary-purple;
+    color: $primary-purple;
+  }
+
+  .table-summary td {
+    background-color: #ccc;
+  }
+}
+
+// Table cell alignment - center stats data, left-align season/team
+.table th:not(:first-child):not(:nth-child(2)),
+.table td:not(:first-child):not(:nth-child(2)) {
+  text-align: center;
+}
+
+// Ensure season and team columns stay left-aligned
+.table th:first-child,
+.table th:nth-child(2),
+.table td:first-child,
+.table td:nth-child(2) {
+  text-align: left;
+}
+
+// Special handling for career totals table
+.table-career-totals {
+  background: linear-gradient(to bottom, $gradient-dark, $primary-purple);
+  color: $text-white;
+
+  th,
+  td {
+    color: $text-white !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+    background: transparent !important;
+  }
+
+  thead th {
+    background: transparent !important;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+  }
+
+  tbody tr {
+    background: transparent !important;
+
+    td {
+      background: transparent !important;
+    }
+  }
+
+  th:not(:first-child),
+  td:not(:first-child) {
+    text-align: center;
+  }
+
+  th:first-child,
+  td:first-child {
+    text-align: left;
+  }
+}
+
+// Statistics cards
+.stats-card {
+  background: $card-bg;
+  border-radius: 12px;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
+  .card-title {
+    color: $primary-purple;
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .stat-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+    color: $text-white;
+    
+    .stat-label {
+      font-weight: 500;
+    }
+    
+    .stat-value {
+      font-weight: 600;
+      color: $primary-purple;
+    }
+  }
+}
+
+// Custom modal styling
+.modal-xl {
+  max-width: 95%;
+}
+
+.modal-header {
+  background-color: $primary-purple;
+  color: $text-white;
+  border-bottom: 1px solid #dee2e6;
+
+  .btn-close {
+    filter: invert(1);
+  }
+}
+
+.modal-body {
+  padding: 1.5rem;
+
+  .table {
+    font-size: 0.9rem;
+
+    th,
+    td {
+      white-space: nowrap;
+      padding: 0.5rem;
+    }
+  }
+
+  .card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .card-body {
+    padding: 0.75rem;
+  }
+
+  .card-title {
+    font-size: 0.8rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .alert-info {
+    background-color: #e7f3ff;
+    border-color: #b8daff;
+    color: #0c5460;
+  }
+}
+
+// Responsive modal adjustments
+@include respond-below(md) {
+  .modal-xl {
+    max-width: 100%;
+    margin: 0;
+  }
+  
+  .modal-body {
+    padding: 1rem;
+    
+    .table {
+      font-size: 0.8rem;
+      
+      th,
+      td {
+        padding: 0.25rem;
+      }
+    }
+    
+    .card-body {
+      padding: 0.5rem;
+    }
+    
+    .card-title {
+      font-size: 0.7rem;
+    }
+  }
+}

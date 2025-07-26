@@ -1,0 +1,9 @@
+{
+  "access_token": null,
+  "token_type": "bearer",
+  "generated_at": null,
+  "expires_in_days": 30,
+  "app_id": null,
+  "last_updated": null,
+  "note": "This file will be automatically updated by GitHub Actions every 30 days with a fresh Threads App Access Token. Do not manually edit this file."
+}

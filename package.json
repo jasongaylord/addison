@@ -1,0 +1,27 @@
+{
+  "name": "addison-gaylord-website",
+  "version": "1.0.0",
+  "description": "Addison Gaylord softball recruiting website with SASS build process",
+  "main": "index.html",
+  "scripts": {
+    "build:css": "sass src/scss/main.scss style.css --style=compressed --source-map",
+    "watch:css": "sass src/scss/main.scss style.css --watch --style=expanded --source-map",
+    "dev": "npm run watch:css",
+    "build": "npm run build:css",
+    "clean": "rm -f style.css style.css.map"
+  },
+  "keywords": [
+    "softball",
+    "recruiting",
+    "sass",
+    "bootstrap"
+  ],
+  "author": "Addison Gaylord",
+  "license": "MIT",
+  "devDependencies": {
+    "sass": "^1.77.0"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
