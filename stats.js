@@ -1153,6 +1153,22 @@ function populateIndexStatistics(allSeasonData) {
     if (seasons.length === 0) {
         html = '<div class="alert alert-info">No season data available.</div>';
     } else {
+        // Add month/year filter dropdown
+        html += `
+            <div class="row mb-3">
+                <div class="col-12">
+                    <div class="d-flex justify-content-center">
+                        <div class="me-3">
+                            <label for="month-year-filter" class="form-label">Filter by Month/Year:</label>
+                            <select class="form-select" id="month-year-filter">
+                                <option value="all">All Games</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        `;
+
         // Add summary cards
         html += `
             <div id="summary-cards">
@@ -1190,6 +1206,9 @@ function populateIndexStatistics(allSeasonData) {
     
     statsContainer.innerHTML = html;
     
+    // Populate month/year filter options
+    populateMonthYearFilter(allSeasonData);
+    
     // Add event listeners for main stats toggle
     document.querySelectorAll('input[name="main-stats-toggle"]').forEach(radio => {
         radio.addEventListener('change', function() {
@@ -1205,6 +1224,130 @@ function populateIndexStatistics(allSeasonData) {
             }
         });
     });
+
+    // Add event listener for month/year filter
+    const monthYearFilter = document.getElementById('month-year-filter');
+    if (monthYearFilter) {
+        monthYearFilter.addEventListener('change', function() {
+            applyMonthYearFilter(allSeasonData, this.value);
+        });
+    }
+}
+
+// Function to extract month/year from various date formats
+function extractMonthYear(dateString) {
+    if (!dateString) return null;
+    
+    // Handle various date formats
+    let date;
+    try {
+        // Try parsing different formats
+        if (dateString.includes('/')) {
+            // Handle formats like "07/24/2025 1:00pm", "3/19/25 4:15pm", etc.
+            const datePart = dateString.split(' ')[0]; // Get date part without time
+            const parts = datePart.split('/');
+            let month = parseInt(parts[0]);
+            let year = parseInt(parts[2]);
+            
+            // Handle 2-digit years
+            if (year < 100) {
+                year += year < 50 ? 2000 : 1900;
+            }
+            
+            return {
+                month: month,
+                year: year,
+                monthName: new Date(year, month - 1).toLocaleString('default', { month: 'long' }),
+                display: `${new Date(year, month - 1).toLocaleString('default', { month: 'long' })} ${year}`
+            };
+        }
+    } catch (error) {
+        console.warn('Could not parse date:', dateString, error);
+    }
+    
+    return null;
+}
+
+// Function to populate month/year filter options
+function populateMonthYearFilter(allSeasonData) {
+    const filter = document.getElementById('month-year-filter');
+    if (!filter) return;
+    
+    const monthYears = new Set();
+    
+    // Collect all unique month/year combinations from all games
+    Object.values(allSeasonData).forEach(seasonStats => {
+        seasonStats.games.forEach(game => {
+            const monthYear = extractMonthYear(game.date);
+            if (monthYear) {
+                monthYears.add(`${monthYear.year}-${monthYear.month.toString().padStart(2, '0')}`);
+            }
+        });
+    });
+    
+    // Sort month/years chronologically (newest first)
+    const sortedMonthYears = Array.from(monthYears).sort().reverse();
+    
+    // Populate filter options
+    sortedMonthYears.forEach(monthYearKey => {
+        const [year, month] = monthYearKey.split('-');
+        const monthName = new Date(parseInt(year), parseInt(month) - 1).toLocaleString('default', { month: 'long' });
+        const option = document.createElement('option');
+        option.value = monthYearKey;
+        option.textContent = `${monthName} ${year}`;
+        filter.appendChild(option);
+    });
+}
+
+// Function to apply month/year filter
+function applyMonthYearFilter(allSeasonData, filterValue) {
+    let filteredData = {};
+    
+    if (filterValue === 'all') {
+        // Show all data
+        filteredData = allSeasonData;
+    } else {
+        // Filter data by selected month/year
+        const [filterYear, filterMonth] = filterValue.split('-');
+        
+        Object.entries(allSeasonData).forEach(([key, seasonStats]) => {
+            const filteredGames = seasonStats.games.filter(game => {
+                const monthYear = extractMonthYear(game.date);
+                if (!monthYear) return false;
+                
+                return monthYear.year.toString() === filterYear && 
+                       monthYear.month.toString().padStart(2, '0') === filterMonth;
+            });
+            
+            if (filteredGames.length > 0) {
+                // Create new SeasonStats object with filtered games
+                const filteredSeasonData = {
+                    team: seasonStats.team,
+                    season: seasonStats.season,
+                    games: filteredGames
+                };
+                filteredData[key] = new SeasonStats(filteredSeasonData);
+            }
+        });
+    }
+    
+    // Update the summary cards
+    const summaryCards = document.getElementById('summary-cards');
+    if (summaryCards) {
+        summaryCards.innerHTML = renderCareerSummary(filteredData);
+    }
+    
+    // Update the tables
+    const battingView = document.getElementById('main-batting-view');
+    const fieldingView = document.getElementById('main-fielding-view');
+    
+    if (battingView) {
+        battingView.innerHTML = renderBattingSeasonTable(filteredData);
+    }
+    
+    if (fieldingView) {
+        fieldingView.innerHTML = renderFieldingSeasonTable(filteredData);
+    }
 }
 
 // Function to show game details in modal
