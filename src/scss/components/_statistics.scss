@@ -13,6 +13,11 @@
 
 // Statistics card styling for statistics section
 .statistics {
+  .fa-solid,
+  .fa-regular {
+      color: $highlight-purple;
+  }
+
   h5.card-title {
     color: $highlight-purple;
     text-transform: uppercase;

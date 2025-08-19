@@ -1146,7 +1146,7 @@ function populateIndexStatistics(allSeasonData) {
     const statsContainer = document.getElementById('stats-container');
     if (!statsContainer) return;
 
-    let html = '';
+    let html = '<h2 class="text-white mb-4"><i class="fa-solid fa-chart-simple me-2"></i>My Statistics</h2>';
     
     // Check if we have any season data
     const seasons = Object.keys(allSeasonData);
@@ -1159,7 +1159,7 @@ function populateIndexStatistics(allSeasonData) {
                 <div class="col-12">
                     <div class="d-flex justify-content-center">
                         <div class="me-3">
-                            <label for="month-year-filter" class="form-label">Filter by Month/Year:</label>
+                            <!--<label for="month-year-filter" class="form-label">Filter by Month/Year:</label>-->
                             <select class="form-select" id="month-year-filter">
                                 <option value="all">All Games</option>
                             </select>

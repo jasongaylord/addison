@@ -105,6 +105,9 @@
                         </li>
                         <li class="nav-item py-2 py-lg-1 col-12 col-lg-auto"> <div class="vr d-none d-lg-flex h-100 mx-lg-2 text-white"></div> <hr class="d-lg-none my-2"> </li>
                         <li class="nav-item col-12 col-lg-auto">
+                            <a class="nav-link" href="#schedule">Schedule</a>
+                        </li>
+                        <li class="nav-item col-12 col-lg-auto">
                             <a class="nav-link" href="#statistics">Statistics</a>
                         </li>
                         <li class="nav-item col-12 col-lg-auto">
@@ -205,13 +208,13 @@
                 <div class="col-md-6 py-3">
                     <h2>More About Addi</h2>
                     <p>
-                        I'm on track to graduate from Wyoming Area High School in 2027. I'll be entering my junior year of high school in August 2025 with a 3.8 grade point average. I have also been 
-                        elected to the National Honor Society. In college, I hope to pursue a degree in accounting or finance.
+                        I'm on track to graduate from Wyoming Area High School in 2027. I've entered my junior year of high school in August 2025 with a 3.8 grade point average. I have also been 
+                        elected to the National Honor Society. In college, I plan to pursue a degree in accounting or finance.
                     </p>
                     <p>
                         I've been a starter for both softball and basketball since my freshman year. I was chosen as a first team all-star of the Wyoming Valley Conference in my freshmen year and a 
                         second team all-star this past year. While my strongest sports passion is softball, I have played basketball since 2nd grade and have been a runner on the cross country team 
-                        since 7th grade. Regardless of sport, you'll typically find me wearing #2.
+                        since 7th grade. Regardless of sport, you'll typically find me wearing #2 and sometimes #11.
                     </p>
                     <p>
                         Outside of school and sports, I also enjoy spending time with my family and friends and working at a local ice cream shop. I have been involved in various community service 
@@ -236,6 +239,24 @@
                     <div class="feature-image-container">
                         <img src="img/gallery/addison-2025.jpg" alt="Addison Gaylord's Wyoming Area Warriors Softball pose." class="img-fluid" style="width: 100%;" id="feature-image" />
                         <div class="image-caption" id="image-caption">Addison Gaylord's Wyoming Area Warriors Softball pose.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-darkalt-purple schedule-section" id="schedule">
+        <div class="container pt-3">
+            <div class="row py-3">
+                <div class="col-12">
+                    <div class="p-3 mb-3">
+                        <div id="schedule-container" class="schedule">
+                            <div class="d-flex justify-content-center">
+                                <div class="spinner-border text-light" role="status">
+                                    <span class="visually-hidden">Loading schedule...</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -320,8 +341,10 @@
                         <p>
                             <img src="img/teams/wyoming-area-icon.png" alt="Wyoming Area High School"> <strong>Wyoming Area High School</strong>
                             <br /><br/>
-                            2026 Coach: TBD<br/><br/>
-                            2025 Coach: Dean Carey<br/>
+                            2026 Season: TBD<br/>
+                            Coach: TBD<br/><br/>
+                            2025 Season: #2<br/>
+                            Coach: Dean Carey<br/>
                             Phone: 570.417.0630<br/>
                             Email: sandlot329@verizon.net
                         </p>
@@ -333,10 +356,13 @@
                         <p>
                             <img src="img/teams/pa-outlaws-icon.png" alt="PA Outlaws 18U National"> <strong>PA Outlaws 18U National</strong>
                             <br /><br/>
-                            2026: Coach Jeff Fischl Jr<br/>
+                            
+                            2025/26 Season: #11<br/>
+                            Coach: Jeff Fischl Jr<br/>
                             Phone: 610.704.3821<br/>
                             Email: Phillynut21@hotmail.com<br/><br/>
-                            2025: Coach Brian Cole<br/>
+                            2024/25 Season: #2<br/>
+                            Coach: Brian Cole<br/>
                             Phone: 267.664.0188<br/>
                             Email: beoncole@rcn.com
                         </p>
@@ -367,16 +393,20 @@
     <script src="https://kit.fontawesome.com/ffda48b653.js" crossorigin="anonymous"></script>
     <script src="threads-reader.js"></script>
     <script src="stats.js"></script>
+    <script src="schedule.js"></script>
     <script src="script.js"></script>
     
     <script>
-        // Initialize Threads integration when page loads
+        // Initialize all components when page loads
         document.addEventListener('DOMContentLoaded', async function() {
             try {
+                // Load Schedule first
+                await loadSchedule('schedule-container');
+                
                 // Load Threads posts using the development/mock data
                 await loadThreadsPosts('threads-posts');
             } catch (error) {
-                console.error('Error loading Threads posts:', error);
+                console.error('Error loading page components:', error);
                 // Show error message if loading fails
                 const container = document.getElementById('threads-posts');
                 if (container) {

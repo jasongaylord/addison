@@ -1,0 +1,119 @@
+// Schedule Section Styles
+.schedule-section {
+    padding: 3rem 0;
+    //background-color: #6f42c1; // This specific purple doesn't match existing variables
+    color: $text-white;
+}
+
+.schedule-title {
+    color: $text-white;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.tournament-block {
+    margin-bottom: 2rem;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.tournament-header {
+    background-color: $primary-purple !important;
+    color: $text-white;
+    padding: 1.5rem;
+    border-radius: 8px 8px 0 0;
+
+    h4 {
+        margin-bottom: 0.5rem;
+        color: $text-white !important;
+    }
+
+    a {
+        color: $text-white !important;
+        text-decoration: none;
+
+        &:hover {
+            color: $highlight-purple !important;
+            text-decoration: underline;
+        }
+    }
+
+    .fa-solid,
+    .fa-regular {
+        color: $highlight-purple;
+    }
+}
+
+.bg-dark-purple {
+    background-color: $primary-purple !important;
+}
+
+.tournament-games {
+    background-color: $background-white;
+    padding: 0;
+}
+
+.game-row {
+    margin-bottom: 0.5rem;
+    border-radius: 4px;
+    transition: all $transition-fast;
+
+    &:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .fa-solid,
+    .fa-regular {
+        color: #6f42c1; // Using specific purple for games
+    }
+}
+
+.bg-light-purple {
+    background-color: #e6d7ff !important;
+    color: $primary-purple;
+}
+
+.bg-lighter-purple {
+    background-color: #f3edff !important;
+    color: $primary-purple;
+}
+
+.standalone-games {
+    margin-top: 2rem;
+
+    h5 {
+        color: $text-white;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid $highlight-purple;
+        padding-bottom: 0.5rem;
+    }
+
+    .game-row {
+        background-color: $background-white;
+        color: $primary-purple;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+}
+
+.schedule-section {
+    .fa-solid,
+    .fa-regular {
+        color: $highlight-purple;
+    }
+}
+
+// Responsive styles for schedule
+@media (max-width: 767px) {
+    .tournament-header .row > div,
+    .game-row .row > div {
+        margin-bottom: 0.5rem;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+    }
+}

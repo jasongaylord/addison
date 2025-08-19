@@ -35,19 +35,21 @@ header {
   @include respond-below(lg) {
     &:nth-child(1) { order: 1; } // Recruiting Sheet - first on mobile
     &:nth-child(2) { order: 2; } // HR separator
-    &:nth-child(3) { order: 3; } // Statistics
-    &:nth-child(4) { order: 4; } // Contact
-    &:nth-child(5) { order: 5; } // HR separator
-    &:nth-child(6) { order: 6; } // Social media
+    &:nth-child(3) { order: 3; } // Schedule
+    &:nth-child(4) { order: 4; } // Statistics
+    &:nth-child(5) { order: 5; } // Contact
+    &:nth-child(6) { order: 6; } // HR separator
+    &:nth-child(7) { order: 7; } // Social media
   }
 
   @include respond-to(lg) {
-    &:nth-child(1) { order: 6; } // Recruiting Sheet - last on desktop
-    &:nth-child(2) { order: 3; } // HR separator - before recruiting sheet
-    &:nth-child(3) { order: 1; } // Statistics - first on desktop
-    &:nth-child(4) { order: 2; } // Contact - second on desktop
-    &:nth-child(5) { order: 5; } // HR separator
-    &:nth-child(6) { order: 3; } // Social media
+    &:nth-child(1) { order: 7; } // Recruiting Sheet - last on desktop
+    &:nth-child(2) { order: 4; } // HR separator - before recruiting sheet
+    &:nth-child(3) { order: 1; } // Schedule - first on desktop
+    &:nth-child(4) { order: 2; } // Statistics - second on desktop
+    &:nth-child(5) { order: 3; } // Contact - third on desktop
+    &:nth-child(6) { order: 6; } // HR separator
+    &:nth-child(7) { order: 5; } // Social media
   }
 }
 
