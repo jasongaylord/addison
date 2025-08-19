@@ -13,7 +13,16 @@ class ScheduleManager {
             if (!response.ok) {
                 throw new Error(`HTTP error! status: ${response.status}`);
             }
-            this.scheduleData = await response.json();
+            
+            const textData = await response.text();
+            try {
+                this.scheduleData = JSON.parse(textData);
+            } catch (jsonError) {
+                console.error('JSON parsing error:', jsonError);
+                console.error('Raw JSON text:', textData);
+                throw new Error(`Invalid JSON format: ${jsonError.message}`);
+            }
+            
             return this.scheduleData;
         } catch (error) {
             console.error('Error loading schedule data:', error);
@@ -22,9 +31,10 @@ class ScheduleManager {
     }
 
     formatDate(dateString) {
-        const date = new Date(dateString);
+        // Parse date as local time to avoid timezone issues
+        const [year, month, day] = dateString.split('-');
+        const date = new Date(year, month - 1, day); // month is 0-indexed
         return date.toLocaleDateString('en-US', {
-            weekday: 'short',
             year: 'numeric',
             month: 'short',
             day: 'numeric'
@@ -32,8 +42,11 @@ class ScheduleManager {
     }
 
     formatDateRange(startDate, endDate) {
-        const start = new Date(startDate);
-        const end = new Date(endDate);
+        // Parse dates as local time to avoid timezone issues
+        const [startYear, startMonth, startDay] = startDate.split('-');
+        const [endYear, endMonth, endDay] = endDate.split('-');
+        const start = new Date(startYear, startMonth - 1, startDay);
+        const end = new Date(endYear, endMonth - 1, endDay);
         
         if (start.toDateString() === end.toDateString()) {
             return this.formatDate(startDate);
@@ -56,7 +69,9 @@ class ScheduleManager {
     }
 
     isUpcoming(dateString) {
-        const gameDate = new Date(dateString);
+        // Parse date as local time to avoid timezone issues
+        const [year, month, day] = dateString.split('-');
+        const gameDate = new Date(year, month - 1, day);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
         return gameDate >= today;
@@ -204,8 +219,12 @@ class ScheduleManager {
                 }
             }
 
+            // Check if we have any content to display (tournaments or games)
+            const hasTournaments = this.scheduleData.tournaments && this.scheduleData.tournaments.some(t => this.isUpcoming(t.startDate));
+            const hasGames = this.scheduleData.games && this.scheduleData.games.some(g => this.isUpcoming(g.date));
+
             // If no upcoming events
-            if (!html.includes('tournament-block') && !html.includes('standalone-games')) {
+            if (!hasTournaments && !hasGames) {
                 html += `
                     <div class="text-center text-white">
                         <i class="fa-solid fa-calendar-xmark fa-3x mb-3"></i>
@@ -219,12 +238,14 @@ class ScheduleManager {
 
         } catch (error) {
             console.error('Error rendering schedule:', error);
+            console.error('Schedule data:', this.scheduleData);
             const container = document.getElementById(containerId);
             if (container) {
                 container.innerHTML = `
                     <div class="text-center text-white">
                         <i class="fa-solid fa-exclamation-triangle fa-2x mb-3"></i>
                         <p>Unable to load schedule at this time.</p>
+                        <p class="small">Error: ${error.message}</p>
                     </div>
                 `;
             }
