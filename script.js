@@ -56,4 +56,32 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // Initialize contact header styling
     styleContactHeaders();
+
+    // Mobile navigation menu handling
+    function initMobileNavigation() {
+        // Get all navigation links that navigate to sections on the same page
+        const navLinks = document.querySelectorAll('.offcanvas-body .nav-link[href^="#"]');
+        const offcanvasElement = document.getElementById('navbarSupportedContent');
+        
+        if (offcanvasElement) {
+            // Create Bootstrap offcanvas instance
+            const offcanvas = new bootstrap.Offcanvas(offcanvasElement);
+            
+            // Add click handlers to navigation links
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Only close menu on mobile/tablet (when offcanvas is actually shown)
+                    if (offcanvasElement.classList.contains('show')) {
+                        // Small delay to ensure navigation happens first
+                        setTimeout(() => {
+                            offcanvas.hide();
+                        }, 100);
+                    }
+                });
+            });
+        }
+    }
+
+    // Initialize mobile navigation
+    initMobileNavigation();
 });
