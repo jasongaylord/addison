@@ -1,66 +1,76 @@
 {
   "tournaments": [
     {
-      "id": "winter-showcase-2025",
-      "name": "Winter Showcase 2025",
-      "location": "Myrtle Beach, SC",
-      "startDate": "2025-12-28",
-      "endDate": "2025-12-30",
-      "website": "https://www.wintershowcase.com",
-      "games": [
-        {
-          "id": "game-1",
-          "opponent": "Carolina Lightning",
-          "date": "2025-12-28",
-          "time": "10:00 AM",
-          "location": "Myrtle Beach Sports Complex",
-          "field": "Field 1"
-        },
-        {
-          "id": "game-2",
-          "opponent": "Georgia Firecrackers",
-          "date": "2025-12-29",
-          "time": "2:00 PM",
-          "location": "Myrtle Beach Sports Complex",
-          "field": "Field 3"
-        }
-      ]
+      "id": "xtreme-fall-kick-off-2025",
+      "name": "Xtreme Fall Kick-Off",
+      "location": "Ewing, NJ",
+      "startDate": "2025-09-14",
+      "endDate": "2025-09-14",
+      "website": "https://www.xtremedimensionsinc.com/xtreme-fall-kick-off.cfm"
     },
     {
-      "id": "spring-nationals-2026",
-      "name": "Spring Nationals 2026",
-      "location": "Huntsville, AL",
-      "startDate": "2026-03-15",
-      "endDate": "2026-03-17",
-      "website": "https://www.springnationals.com",
-      "games": [
-        {
-          "id": "game-3",
-          "opponent": "Alabama Elite",
-          "date": "2026-03-15",
-          "time": "9:00 AM",
-          "location": "John Hunt Park",
-          "field": "Field 2"
-        }
-      ]
-    }
-  ],
-  "games": [
-    {
-      "id": "scrimmage-1",
-      "opponent": "Keystone State Sharks",
-      "date": "2025-09-15",
-      "time": "11:00 AM",
-      "location": "Wyoming Area High School",
-      "field": null
+      "id": "lancaster-fall-showcase-2025",
+      "name": "Lancaster Fall Showcase",
+      "location": "Lancaster, PA",
+      "startDate": "2025-09-20",
+      "endDate": "2025-09-21",
+      "website": "https://hometeamsonline.com/teams/default.asp?u=RAZORBACKSOFTBALL&s=softball&p=custom&pagename=Lancaster+Fall+Showcase",
     },
     {
-      "id": "league-game-1",
-      "opponent": "Wilkes-Barre Lightning",
-      "date": "2025-10-05",
-      "time": "4:00 PM",
-      "location": "Memorial Stadium",
-      "field": "Main Field"
+      "id": "upperdeck-fall-showcase-2025",
+      "name": "UpperDeck Fall Showcase",
+      "location": "TBD",
+      "startDate": "2025-09-27",
+      "endDate": "2025-09-28",
+      "website": "#"
+    },
+    {
+      "id": "jersey-outlaws-fall-showcase",
+      "name": "Jersey Outlaws Fall Showcase",
+      "location": "Jackson, NJ",
+      "startDate": "2025-10-04",
+      "endDate": "2025-10-05",
+      "website": "https://www.jerseyoutlawsfp.com/softball-tournaments"
+    },
+    {
+      "id": "williamsport-fall-college-showcase-2025",
+      "name": "Williamsport Fall College Showcase",
+      "location": "Williamsport, PA",
+      "startDate": "2025-10-18",
+      "endDate": "2025-10-19",
+      "website": "https://razorbacksoftball.com/teams/default.asp?u=RAZORBACKSOFTBALL&s=softball&p=custom&pagename=Williamsport+Fall+Showcase"
+    },
+    {
+      "id": "east-coast-fall-showcase-2025",
+      "name": "East Coast Fall Showcase",
+      "location": "Pennsville, NJ",
+      "startDate": "2025-10-25",
+      "endDate": "2025-10-26",
+      "website": "https://www.eastcoastsoftballtournaments.com/fall"
+    },
+    {
+      "id": "octoberfest-showcase-2025",
+      "name": "Octoberfest Showcase",
+      "location": "Westampton, NJ",
+      "startDate": "2025-11-01",
+      "endDate": "2025-11-02",
+      "website": "https://www.nightmareevents.net/octoberfest-showcase_2025.cfm"
+    },
+    {
+      "id": "power-12-showcase-2025",
+      "name": "Power 12 Showcase",
+      "location": "Jackson, NJ",
+      "startDate": "2025-11-08",
+      "endDate": "2025-11-09",
+      "website": "https://www.nightmareevents.net/the-power-12.cfm"
+    },
+    {
+      "id": "early-thanksgiving-showcase-2025",
+      "name": "Early Thanksgiving Showcase",
+      "location": "Huntington Beach, CA",
+      "startDate": "2025-11-21",
+      "endDate": "2025-11-23",
+      "website": "https://live.surfcitytourneys.com/sam/bundles/ltd/server/index.php?regEventId=MTQzODM1MQ%3D%3D"
     }
   ]
 }
