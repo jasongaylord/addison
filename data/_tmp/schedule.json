@@ -1,0 +1,66 @@
+{
+  "tournaments": [
+    {
+      "id": "winter-showcase-2025",
+      "name": "Winter Showcase 2025",
+      "location": "Myrtle Beach, SC",
+      "startDate": "2025-12-28",
+      "endDate": "2025-12-30",
+      "website": "https://www.wintershowcase.com",
+      "games": [
+        {
+          "id": "game-1",
+          "opponent": "Carolina Lightning",
+          "date": "2025-12-28",
+          "time": "10:00 AM",
+          "location": "Myrtle Beach Sports Complex",
+          "field": "Field 1"
+        },
+        {
+          "id": "game-2",
+          "opponent": "Georgia Firecrackers",
+          "date": "2025-12-29",
+          "time": "2:00 PM",
+          "location": "Myrtle Beach Sports Complex",
+          "field": "Field 3"
+        }
+      ]
+    },
+    {
+      "id": "spring-nationals-2026",
+      "name": "Spring Nationals 2026",
+      "location": "Huntsville, AL",
+      "startDate": "2026-03-15",
+      "endDate": "2026-03-17",
+      "website": "https://www.springnationals.com",
+      "games": [
+        {
+          "id": "game-3",
+          "opponent": "Alabama Elite",
+          "date": "2026-03-15",
+          "time": "9:00 AM",
+          "location": "John Hunt Park",
+          "field": "Field 2"
+        }
+      ]
+    }
+  ],
+  "games": [
+    {
+      "id": "scrimmage-1",
+      "opponent": "Keystone State Sharks",
+      "date": "2025-09-15",
+      "time": "11:00 AM",
+      "location": "Wyoming Area High School",
+      "field": null
+    },
+    {
+      "id": "league-game-1",
+      "opponent": "Wilkes-Barre Lightning",
+      "date": "2025-10-05",
+      "time": "4:00 PM",
+      "location": "Memorial Stadium",
+      "field": "Main Field"
+    }
+  ]
+}
