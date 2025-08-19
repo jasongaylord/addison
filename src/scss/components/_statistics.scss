@@ -4,6 +4,11 @@
   background-color: $background-white;
 }
 
+// Add scroll margin to the statistics section for sticky header
+#statistics {
+  scroll-margin-top: 66px;
+}
+
 .stats-title {
   color: $primary-purple;
   text-align: center;
