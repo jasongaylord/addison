@@ -17,9 +17,9 @@
       "website": "https://hometeamsonline.com/teams/default.asp?u=RAZORBACKSOFTBALL&s=softball&p=custom&pagename=Lancaster+Fall+Showcase"
     },
     {
-      "id": "upperdeck-fall-showcase-2025",
-      "name": "UpperDeck Fall Showcase",
-      "location": "TBD",
+      "id": "upper-deck-fall-showcase-2025",
+      "name": "Upper Deck Fall Showcase",
+      "location": "Bath, PA",
       "startDate": "2025-09-27",
       "endDate": "2025-09-28",
       "website": "#"
@@ -49,28 +49,28 @@
       "website": "https://www.eastcoastsoftballtournaments.com/fall"
     },
     {
-      "id": "octoberfest-showcase-2025",
-      "name": "Octoberfest Showcase",
+      "id": "nightmare-octoberfest-showcase-2025",
+      "name": "Nightmare Octoberfest Showcase",
       "location": "Westampton, NJ",
       "startDate": "2025-11-01",
       "endDate": "2025-11-02",
       "website": "https://www.nightmareevents.net/octoberfest-showcase_2025.cfm"
     },
     {
-      "id": "power-12-showcase-2025",
-      "name": "Power 12 Showcase",
-      "location": "Jackson, NJ",
+      "id": "power-12-invitational-2025",
+      "name": "Power 12 Invitational",
+      "location": "Vorhees, NJ",
       "startDate": "2025-11-08",
       "endDate": "2025-11-09",
       "website": "https://www.nightmareevents.net/the-power-12.cfm"
     },
     {
-      "id": "early-thanksgiving-showcase-2025",
-      "name": "Early Thanksgiving Showcase",
-      "location": "Huntington Beach, CA",
-      "startDate": "2025-11-21",
-      "endDate": "2025-11-23",
-      "website": "https://live.surfcitytourneys.com/sam/bundles/ltd/server/index.php?regEventId=MTQzODM1MQ%3D%3D"
+      "id": "orlando-north-fall-invitational-2025",
+      "name": "Orlando North Fall Invitational",
+      "location": "Soldiers Creek Park, FL",
+      "startDate": "2025-11-14",
+      "endDate": "2025-11-16",
+      "website": "https://playorlandonorth.com/events/2025-orlando-north-fall-invitational/"
     }
   ]
 }
