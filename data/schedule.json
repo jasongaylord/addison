@@ -64,5 +64,23 @@
       "endDate": "2025-11-16",
       "website": "https://playorlandonorth.com/events/2025-orlando-north-fall-invitational/"
     }
+  ],
+  "games": [
+    {
+      "id": "scrimmage-1",
+      "opponent": "Boilermakers",
+      "date": "2025-08-31",
+      "time": "10:30 AM",
+      "location": "3149 Chester Ave, Bethlehem, PA 18020",
+      "field": "Freedom High School"
+    },
+    {
+      "id": "scrimmage-2",
+      "opponent": "Boilermakers",
+      "date": "2025-08-31",
+      "time": "12:00 PM",
+      "location": "3149 Chester Ave, Bethlehem, PA 18020",
+      "field": "Freedom High School"
+    }
   ]
 }
