@@ -1,4 +1,4 @@
-# Build script for compiling SASS to CSS
+# Watch script for automatic SASS compilation during development
 # This script requires Node.js and npm to be installed
 
 # Node.js paths
@@ -10,7 +10,7 @@ if (!(Test-Path $NodePath)) {
     Write-Host "Node.js is not installed. Please install Node.js from https://nodejs.org/" -ForegroundColor Red
     Write-Host "After installing Node.js, run the following commands:" -ForegroundColor Yellow
     Write-Host "1. npm install" -ForegroundColor Cyan
-    Write-Host "2. npm run build:css" -ForegroundColor Cyan
+    Write-Host "2. npm run watch:css" -ForegroundColor Cyan
     exit 1
 }
 
@@ -20,15 +20,8 @@ if (!(Test-Path "node_modules")) {
     & $NpmPath install
 }
 
-# Build CSS from SASS
-Write-Host "Building CSS from SASS..." -ForegroundColor Green
-& $NodePath .\node_modules\sass\sass.js src/scss/main.scss style.css --style=compressed --source-map
-
-if ($LASTEXITCODE -eq 0) {
-    Write-Host "✅ CSS build completed successfully!" -ForegroundColor Green
-    Write-Host "📄 Output: style.css" -ForegroundColor Cyan
-    Write-Host "🗺️  Source map: style.css.map" -ForegroundColor Cyan
-} else {
-    Write-Host "❌ CSS build failed!" -ForegroundColor Red
-    exit 1
-}
+# Start watch mode
+Write-Host "Starting SASS watch mode..." -ForegroundColor Green
+Write-Host "Watching src/scss/ for changes..." -ForegroundColor Cyan
+Write-Host "Press Ctrl+C to stop watching" -ForegroundColor Yellow
+& $NodePath .\node_modules\sass\sass.js src/scss/main.scss styles/style.css --watch --style=expanded --source-map

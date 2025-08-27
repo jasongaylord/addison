@@ -4,8 +4,8 @@
   "description": "Addison Gaylord softball recruiting website with SASS build process",
   "main": "index.html",
   "scripts": {
-    "build:css": "sass src/scss/main.scss style.css --style=compressed --source-map",
-    "watch:css": "sass src/scss/main.scss style.css --watch --style=expanded --source-map",
+    "build:css": "sass src/scss/main.scss styles/style.css --style=compressed --source-map",
+    "watch:css": "sass src/scss/main.scss styles/style.css --watch --style=expanded --source-map",
     "dev": "npm run watch:css",
     "build": "npm run build:css",
     "clean": "rm -f style.css style.css.map"
