@@ -82,68 +82,12 @@ class YouTubeManager {
         // Mock data for development/fallback
         return [
             {
-                id: 'dQw4w9WgXcQ',
-                title: 'Addison\'s Best Plays - Summer 2025',
-                description: 'Highlights from Addison\'s summer tournament season featuring her best defensive plays and hitting.',
-                thumbnail: 'https://img.youtube.com/vi/dQw4w9WgXcQ/mqdefault.jpg',
-                publishedAt: '2025-07-15T10:00:00Z',
-                channelTitle: 'Addison Gaylord Softball'
-            },
-            {
-                id: 'jNQXAC9IVRw',
-                title: 'Catching Skills Development',
-                description: 'Training session focused on improving catcher fundamentals and throwing mechanics.',
-                thumbnail: 'https://img.youtube.com/vi/jNQXAC9IVRw/mqdefault.jpg',
-                publishedAt: '2025-06-20T14:30:00Z',
-                channelTitle: 'Addison Gaylord Softball'
-            },
-            {
-                id: 'y6120QOlsfU',
-                title: 'Switch Hitting Practice',
-                description: 'Working on switch hitting techniques and improving batting stance from both sides of the plate.',
-                thumbnail: 'https://img.youtube.com/vi/y6120QOlsfU/mqdefault.jpg',
-                publishedAt: '2025-06-10T16:45:00Z',
-                channelTitle: 'Addison Gaylord Softball'
-            },
-            {
-                id: 'kJQP7kiw5Fk',
-                title: 'Tournament Game vs Eagles',
-                description: 'Full game highlights from the championship game against the Eagles featuring clutch hitting and defensive plays.',
-                thumbnail: 'https://img.youtube.com/vi/kJQP7kiw5Fk/mqdefault.jpg',
-                publishedAt: '2025-05-25T12:15:00Z',
-                channelTitle: 'Addison Gaylord Softball'
-            },
-            {
-                id: 'lDK9QqIzhwk',
-                title: 'Infield Drills and Techniques',
-                description: 'Comprehensive infield training covering shortstop positioning, double plays, and quick reactions.',
-                thumbnail: 'https://img.youtube.com/vi/lDK9QqIzhwk/mqdefault.jpg',
-                publishedAt: '2025-05-10T11:20:00Z',
-                channelTitle: 'Addison Gaylord Softball'
-            },
-            {
-                id: 'fJ9rUzIMcZQ',
-                title: 'PA Outlaws Team Introduction',
-                description: 'Meet the PA Outlaws 18U National team and learn about our goals for the upcoming season.',
-                thumbnail: 'https://img.youtube.com/vi/fJ9rUzIMcZQ/mqdefault.jpg',
-                publishedAt: '2025-04-30T09:00:00Z',
-                channelTitle: 'Addison Gaylord Softball'
-            },
-            {
-                id: 'gYkq2e4xKTU',
-                title: 'College Recruitment Tips',
-                description: 'Advice for student-athletes on the college recruitment process and what coaches are looking for.',
-                thumbnail: 'https://img.youtube.com/vi/gYkq2e4xKTU/mqdefault.jpg',
-                publishedAt: '2025-04-15T13:45:00Z',
-                channelTitle: 'Addison Gaylord Softball'
-            },
-            {
-                id: 'X_8Nh5XfRw0',
-                title: 'Off-Season Training Routine',
-                description: 'Follow along with Addison\'s off-season training routine including strength training and skill development.',
-                thumbnail: 'https://img.youtube.com/vi/X_8Nh5XfRw0/mqdefault.jpg',
-                publishedAt: '2025-03-20T15:30:00Z',
-                channelTitle: 'Addison Gaylord Softball'
+                id: '2S4mLceEGFA',
+                title: 'Slapped in the Go Ahead Runs to Win',
+                description: 'In the top of the 6th against Holy Redeemer, Addison slapped a single to right center passed the second baseman who was playing closer to first. As a result, she picked up 2 RBIs and the go ahead runs.',
+                thumbnail: 'https://i9.ytimg.com/vi_webp/2S4mLceEGFA/mq1.webp?sqp=COjCvcUG-oaymwEmCMACELQB8quKqQMa8AEB-AH-CYAC0AWKAgwIABABGFMgXShlMA8=&rs=AOn4CLDDhVVSWVbfzgRIj4M0UlVLDd-9OA',
+                publishedAt: '2025-08-27T10:00:00Z',
+                channelTitle: 'Offense - Slapping'
             }
         ];
     }
