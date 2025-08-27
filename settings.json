@@ -1,0 +1,9 @@
+{
+  "youtube": {
+    "channelId": "UCm4P84o_F_TuASl3jEalIkg",
+    "maxVideos": 8
+  },
+  "api": {
+    "youtubeApiKey": "AIzaSyCuB4sUYKH02GhQ692NcWM1GSkxj5-EJqk"
+  }
+}

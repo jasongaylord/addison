@@ -404,4 +404,5 @@ FodyWeavers.xsd
 *.py
 *.xlsx
 style-original*.*
+style.css
 style.css.map
