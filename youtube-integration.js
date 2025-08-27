@@ -126,51 +126,58 @@ class YouTubeManager {
             return;
         }
 
+        // Always show the title first
+        let html = `
+            <h2 class="mb-4" style="color: #29004f;">
+                <i class="fab fa-youtube me-2" style="color: #bf7cff;"></i>
+                My Latest Videos
+            </h2>
+        `;
+
         try {
             const videos = await this.fetchChannelVideos();
             
             if (videos.length === 0) {
-                container.innerHTML = `
+                html += `
                     <div class="text-center text-muted">
                         <i class="fab fa-youtube fa-3x mb-3"></i>
                         <p>No videos available at this time.</p>
                     </div>
                 `;
-                return;
+            } else {
+                const videosHtml = videos.map(video => this.createVideoCard(video)).join('');
+                html += `
+                    <div class="row">
+                        ${videosHtml}
+                    </div>
+                `;
             }
 
-            const videosHtml = videos.map(video => this.createVideoCard(video)).join('');
-            
-            container.innerHTML = `
-                <h2 class="text-center mb-4 text-white">
-                    <i class="fab fa-youtube me-2"></i>
-                    Latest Videos
-                </h2>
-                <div class="row">
-                    ${videosHtml}
-                </div>
-            `;
+            container.innerHTML = html;
 
-            // Add click event listeners to video cards
-            container.querySelectorAll('.video-card').forEach(card => {
-                card.addEventListener('click', (e) => {
-                    const videoId = card.dataset.videoId;
-                    const video = videos.find(v => v.id === videoId);
-                    if (video) {
-                        this.showVideoModal(video);
-                    }
+            // Add click event listeners to video cards if there are videos
+            if (videos.length > 0) {
+                container.querySelectorAll('.video-card').forEach(card => {
+                    card.addEventListener('click', (e) => {
+                        const videoId = card.dataset.videoId;
+                        const video = videos.find(v => v.id === videoId);
+                        if (video) {
+                            this.showVideoModal(video);
+                        }
+                    });
                 });
-            });
+            }
 
         } catch (error) {
             console.error('Error rendering videos:', error);
-            container.innerHTML = `
+            html += `
                 <div class="text-center text-muted">
                     <i class="fab fa-youtube fa-3x mb-3"></i>
                     <p>Unable to load videos at this time.</p>
                     <small class="text-muted">Error: ${error.message}</small>
                 </div>
             `;
+            container.innerHTML = html;
         }
     }
 
