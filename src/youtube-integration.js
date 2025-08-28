@@ -130,7 +130,7 @@ class YouTubeManager {
         let html = `
             <h2 class="mb-4" style="color: #29004f;">
                 <i class="fab fa-youtube me-2" style="color: #bf7cff;"></i>
-                My Latest Videos
+                Highlight Videos
             </h2>
         `;
 
