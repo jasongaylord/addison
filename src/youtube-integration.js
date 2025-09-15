@@ -30,8 +30,8 @@ class YouTubeManager {
             const apiKey = this.settings.api.youtubeApiKey;
 
             if (!apiKey || apiKey === 'YOUR_YOUTUBE_API_KEY_HERE') {
-                console.warn('YouTube API key not configured. Using mock data.');
-                return this.getMockVideos();
+                console.warn('YouTube API key not configured. Using cached/mock data.');
+                return this.getCachedVideos();
             }
 
             // First, get the uploads playlist ID
@@ -70,12 +70,79 @@ class YouTubeManager {
                 channelTitle: item.snippet.channelTitle
             }));
 
+            // Save the fetched videos as cached data for future use
+            this.saveCachedVideos(this.videos);
+
             return this.videos;
         } catch (error) {
             console.error('Error fetching YouTube videos:', error);
-            // Fallback to mock data
-            return this.getMockVideos();
+            // Fallback to cached videos or mock data
+            return this.getCachedVideos();
         }
+    }
+
+    // Save videos to localStorage for offline/fallback use
+    saveCachedVideos(videos) {
+        try {
+            const cacheData = {
+                videos: videos,
+                timestamp: new Date().toISOString(),
+                channelId: this.settings?.youtube?.channelId
+            };
+            localStorage.setItem('youtube_video_cache', JSON.stringify(cacheData));
+            console.log('✅ Cached', videos.length, 'videos for offline use');
+        } catch (error) {
+            console.warn('Could not save video cache:', error);
+        }
+    }
+
+    // Load cached videos or fall back to mock data
+    getCachedVideos() {
+        try {
+            const cacheData = localStorage.getItem('youtube_video_cache');
+            if (cacheData) {
+                const parsed = JSON.parse(cacheData);
+                console.log('📦 Using cached videos from:', parsed.timestamp);
+                return parsed.videos || this.getMockVideos();
+            }
+        } catch (error) {
+            console.warn('Could not load cached videos:', error);
+        }
+        
+        // Final fallback to mock data
+        return this.getMockVideos();
+    }
+
+    // Clear the video cache (useful for forcing fresh fetch)
+    clearVideoCache() {
+        try {
+            localStorage.removeItem('youtube_video_cache');
+            console.log('🗑️ Video cache cleared');
+            return true;
+        } catch (error) {
+            console.warn('Could not clear video cache:', error);
+            return false;
+        }
+    }
+
+    // Get cache info for debugging
+    getCacheInfo() {
+        try {
+            const cacheData = localStorage.getItem('youtube_video_cache');
+            if (cacheData) {
+                const parsed = JSON.parse(cacheData);
+                return {
+                    hasCache: true,
+                    videoCount: parsed.videos?.length || 0,
+                    timestamp: parsed.timestamp,
+                    channelId: parsed.channelId
+                };
+            }
+        } catch (error) {
+            console.warn('Could not get cache info:', error);
+        }
+        
+        return { hasCache: false };
     }
 
     getMockVideos() {
@@ -211,3 +278,59 @@ async function loadYouTubeVideos(containerId) {
     const youtubeManager = new YouTubeManager();
     await youtubeManager.renderVideos(containerId);
 }
+
+// Global utility functions for managing video cache
+window.YouTubeCache = {
+    // Force refresh videos from YouTube and save as new default
+    async captureCurrentVideos() {
+        const manager = new YouTubeManager();
+        try {
+            await manager.loadSettings();
+            
+            // Temporarily clear cache to force fresh fetch
+            manager.clearVideoCache();
+            
+            // Fetch fresh videos
+            const videos = await manager.fetchChannelVideos();
+            
+            console.log('📹 Captured', videos.length, 'videos from YouTube');
+            console.log('Videos captured:', videos.map(v => v.title));
+            
+            return videos;
+        } catch (error) {
+            console.error('Failed to capture videos:', error);
+            return null;
+        }
+    },
+    
+    // Clear the current cache
+    clearCache() {
+        const manager = new YouTubeManager();
+        return manager.clearVideoCache();
+    },
+    
+    // Get info about current cache
+    getCacheInfo() {
+        const manager = new YouTubeManager();
+        return manager.getCacheInfo();
+    },
+    
+    // Export current cached videos as JSON (for manual backup)
+    exportCachedVideos() {
+        try {
+            const cacheData = localStorage.getItem('youtube_video_cache');
+            if (cacheData) {
+                const parsed = JSON.parse(cacheData);
+                console.log('📄 Cached videos JSON:');
+                console.log(JSON.stringify(parsed.videos, null, 2));
+                return parsed.videos;
+            } else {
+                console.log('No cached videos found');
+                return null;
+            }
+        } catch (error) {
+            console.error('Failed to export cached videos:', error);
+            return null;
+        }
+    }
+};
