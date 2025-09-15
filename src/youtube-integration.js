@@ -25,14 +25,24 @@ class YouTubeManager {
                 await this.loadSettings();
             }
 
+            // Always try to load saved videos from server first
+            const savedVideos = await this.loadSavedVideosFromServer();
+            if (savedVideos && savedVideos.length > 0) {
+                console.log('📼 Using saved videos from server (', savedVideos.length, 'videos)');
+                return savedVideos;
+            }
+
+            // If no saved videos, try to fetch from API
             const channelId = this.settings.youtube.channelId;
             const maxVideos = this.settings.youtube.maxVideos || 8;
             const apiKey = this.settings.api.youtubeApiKey;
 
             if (!apiKey || apiKey === 'YOUR_YOUTUBE_API_KEY_HERE') {
-                console.warn('YouTube API key not configured. Using cached/mock data.');
-                return this.getCachedVideos();
+                console.warn('YouTube API key not configured. Using mock data.');
+                return this.getMockVideos();
             }
+
+            console.log('🔄 Fetching videos from YouTube API...');
 
             // First, get the uploads playlist ID
             const channelResponse = await fetch(
@@ -70,14 +80,101 @@ class YouTubeManager {
                 channelTitle: item.snippet.channelTitle
             }));
 
-            // Save the fetched videos as cached data for future use
-            this.saveCachedVideos(this.videos);
+            console.log('✅ Fetched', this.videos.length, 'videos from YouTube API');
+            console.log('💡 To make these your permanent videos, run: YouTubeVideos.saveCurrentAsDefault()');
 
             return this.videos;
         } catch (error) {
             console.error('Error fetching YouTube videos:', error);
-            // Fallback to cached videos or mock data
-            return this.getCachedVideos();
+            // Fallback to saved videos from server, then mock data
+            const savedVideos = await this.loadSavedVideosFromServer();
+            if (savedVideos && savedVideos.length > 0) {
+                console.log('📼 Falling back to saved videos from server');
+                return savedVideos;
+            }
+            return this.getMockVideos();
+        }
+    }
+
+    // Load saved videos from server (data/youtube-videos.json)
+    async loadSavedVideosFromServer() {
+        try {
+            const response = await fetch('data/youtube-videos.json');
+            if (!response.ok) {
+                if (response.status === 404) {
+                    console.log('📭 No saved videos file found on server');
+                    return null;
+                }
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            const data = await response.json();
+            console.log('� Loaded saved videos from server:', data.savedAt);
+            return data.videos || null;
+        } catch (error) {
+            console.warn('Could not load saved videos from server:', error);
+            return null;
+        }
+    }
+
+    // Generate JSON content for saved videos (to be manually saved to server)
+    generateSavedVideosJSON(videos) {
+        const saveData = {
+            videos: videos,
+            savedAt: new Date().toISOString(),
+            channelId: this.settings?.youtube?.channelId,
+            source: 'manual_save',
+            note: 'This file contains the curated YouTube videos displayed on the website. All visitors will see these videos.'
+        };
+        return JSON.stringify(saveData, null, 2);
+    }
+
+    // Save videos as default (generates file content for manual server upload)
+    saveVideosAsDefault(videos) {
+        try {
+            const jsonContent = this.generateSavedVideosJSON(videos);
+            
+            // Create downloadable file
+            const blob = new Blob([jsonContent], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'youtube-videos.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            console.log('💾 Generated youtube-videos.json file for download');
+            console.log('� Upload this file to your /data/ folder on the server');
+            console.log('📋 Videos to be saved:', videos.map(v => v.title));
+            console.log('📄 File content preview:');
+            console.log(jsonContent);
+            
+            return true;
+        } catch (error) {
+            console.error('Could not generate saved videos file:', error);
+            return false;
+        }
+    }
+
+    // Get info about saved videos from server
+    async getSavedVideoInfo() {
+        try {
+            const response = await fetch('data/youtube-videos.json');
+            if (!response.ok) {
+                return { hasSaved: false, message: 'No saved videos file on server' };
+            }
+            const data = await response.json();
+            return {
+                hasSaved: true,
+                videoCount: data.videos?.length || 0,
+                savedAt: data.savedAt,
+                channelId: data.channelId,
+                videos: data.videos?.map(v => ({ id: v.id, title: v.title })) || []
+            };
+        } catch (error) {
+            console.warn('Could not get saved video info:', error);
+            return { hasSaved: false, error: error.message };
         }
     }
 
@@ -279,57 +376,140 @@ async function loadYouTubeVideos(containerId) {
     await youtubeManager.renderVideos(containerId);
 }
 
-// Global utility functions for managing video cache
-window.YouTubeCache = {
-    // Force refresh videos from YouTube and save as new default
-    async captureCurrentVideos() {
+// Global utility functions for managing videos
+window.YouTubeVideos = {
+    // Save the currently displayed videos as the permanent defaults for all users
+    async saveCurrentAsDefault() {
         const manager = new YouTubeManager();
         try {
-            await manager.loadSettings();
+            // Get the current videos (either from API or server)
+            const currentVideos = await manager.fetchChannelVideos();
             
-            // Temporarily clear cache to force fresh fetch
-            manager.clearVideoCache();
-            
-            // Fetch fresh videos
-            const videos = await manager.fetchChannelVideos();
-            
-            console.log('📹 Captured', videos.length, 'videos from YouTube');
-            console.log('Videos captured:', videos.map(v => v.title));
-            
-            return videos;
+            if (currentVideos && currentVideos.length > 0) {
+                manager.saveVideosAsDefault(currentVideos);
+                console.log('✅ Generated youtube-videos.json file for server upload!');
+                console.log('� Upload the downloaded file to your /data/ folder');
+                console.log('🌍 Once uploaded, ALL visitors will see these videos');
+                return currentVideos;
+            } else {
+                console.log('❌ No videos found to save');
+                return null;
+            }
         } catch (error) {
-            console.error('Failed to capture videos:', error);
+            console.error('Failed to save current videos:', error);
             return null;
         }
     },
     
-    // Clear the current cache
-    clearCache() {
+    // Force fetch fresh videos from YouTube API (ignoring saved videos)
+    async fetchFreshFromAPI() {
         const manager = new YouTubeManager();
-        return manager.clearVideoCache();
-    },
-    
-    // Get info about current cache
-    getCacheInfo() {
-        const manager = new YouTubeManager();
-        return manager.getCacheInfo();
-    },
-    
-    // Export current cached videos as JSON (for manual backup)
-    exportCachedVideos() {
         try {
-            const cacheData = localStorage.getItem('youtube_video_cache');
-            if (cacheData) {
-                const parsed = JSON.parse(cacheData);
-                console.log('📄 Cached videos JSON:');
-                console.log(JSON.stringify(parsed.videos, null, 2));
-                return parsed.videos;
-            } else {
-                console.log('No cached videos found');
+            await manager.loadSettings();
+            
+            const channelId = manager.settings.youtube.channelId;
+            const maxVideos = manager.settings.youtube.maxVideos || 8;
+            const apiKey = manager.settings.api.youtubeApiKey;
+
+            if (!apiKey || apiKey === 'YOUR_YOUTUBE_API_KEY_HERE') {
+                console.log('❌ YouTube API key not configured');
                 return null;
             }
+
+            console.log('🔄 Fetching fresh videos directly from YouTube API...');
+
+            // Fetch directly from API, bypassing any saved videos
+            const channelResponse = await fetch(
+                `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${apiKey}`
+            );
+
+            if (!channelResponse.ok) {
+                throw new Error(`Channel API error! status: ${channelResponse.status}`);
+            }
+
+            const channelData = await channelResponse.json();
+            const uploadsPlaylistId = channelData.items[0].contentDetails.relatedPlaylists.uploads;
+
+            const videosResponse = await fetch(
+                `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=${maxVideos}&order=date&key=${apiKey}`
+            );
+
+            if (!videosResponse.ok) {
+                throw new Error(`Videos API error! status: ${videosResponse.status}`);
+            }
+
+            const videosData = await videosResponse.json();
+            
+            const videos = videosData.items.map(item => ({
+                id: item.snippet.resourceId.videoId,
+                title: item.snippet.title,
+                description: item.snippet.description,
+                thumbnail: item.snippet.thumbnails.medium?.url || item.snippet.thumbnails.default.url,
+                publishedAt: item.snippet.publishedAt,
+                channelTitle: item.snippet.channelTitle
+            }));
+            
+            console.log('🆕 Fetched', videos.length, 'fresh videos from YouTube API');
+            console.log('💡 To make these your new defaults, run: YouTubeVideos.saveCurrentAsDefault()');
+            
+            return videos;
         } catch (error) {
-            console.error('Failed to export cached videos:', error);
+            console.error('Failed to fetch fresh videos:', error);
+            return null;
+        }
+    },
+    
+    // Check if there are saved videos on the server
+    async checkServerVideos() {
+        const manager = new YouTubeManager();
+        const info = await manager.getSavedVideoInfo();
+        
+        if (info.hasSaved) {
+            console.log('🌍 Server has', info.videoCount, 'saved videos from', info.savedAt);
+            console.log('📋 Saved videos:', info.videos);
+            console.log('📁 File location: /data/youtube-videos.json');
+        } else {
+            console.log('📭 No saved videos on server - will fetch from API each time');
+            if (info.error) {
+                console.log('❌ Error:', info.error);
+            }
+        }
+        
+        return info;
+    },
+    
+    // Remove saved videos from server (you'll need to manually delete the file)
+    removeServerVideos() {
+        console.log('�️ To remove saved videos:');
+        console.log('1. Delete /data/youtube-videos.json from your server');
+        console.log('2. The site will then fetch fresh videos from YouTube API');
+        console.log('📁 File to delete: /data/youtube-videos.json');
+    },
+    
+    // Download current server videos as backup
+    async downloadServerVideos() {
+        try {
+            const response = await fetch('data/youtube-videos.json');
+            if (!response.ok) {
+                console.log('📭 No videos file on server to download');
+                return null;
+            }
+            
+            const data = await response.json();
+            const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'youtube-videos-backup.json';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            
+            console.log('� Downloaded server videos as backup');
+            return data.videos;
+        } catch (error) {
+            console.error('Failed to download server videos:', error);
             return null;
         }
     }
