@@ -833,8 +833,8 @@ function renderBattingSeasonTable(allSeasonData) {
         </div>
     `;
     
-    // Define the order of high school years (sophomore first, then freshman)
-    const yearOrder = ['Sophomore (2025)', 'Freshman (2024)', 'Junior (2026)', 'Senior (2027)'];
+    // Define the order of high school years (senior first, then junior, sophomore, freshman)
+    const yearOrder = ['Senior (2027)', 'Junior (2026)', 'Sophomore (2025)', 'Freshman (2024)'];
     
     // Create separate table for each high school year in the specified order
     yearOrder.forEach(yearLabel => {
@@ -1024,8 +1024,8 @@ function renderFieldingSeasonTable(allSeasonData) {
         </div>
     `;
     
-    // Create separate table for each high school year in order: Sophomore, then Freshman
-    const yearOrder = ['Sophomore (2025)', 'Freshman (2024)', 'Junior (2026)', 'Senior (2027)'];
+    // Create separate table for each high school year in order: Senior, Junior, Sophomore, then Freshman
+    const yearOrder = ['Senior (2027)', 'Junior (2026)', 'Sophomore (2025)', 'Freshman (2024)'];
     
     yearOrder.forEach(yearLabel => {
         const seasons = highSchoolYears[yearLabel];
