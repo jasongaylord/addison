@@ -148,6 +148,35 @@
                     "rcs": 0,
                     "pik": 0,
                     "game_result": "W 5-2"
+                },
+                {
+                    "opponent": "MD Stars FP DiM/Paraon 18U",
+                    "date": "09/20/2025 5:00pm",
+                    "location": "Strasburg, PA",
+                    "ab": 3,
+                    "r": 1,
+                    "h": 0,
+                    "rbi": 0,
+                    "bb": 0,
+                    "so": 0,
+                    "2b": 0,
+                    "3b": 0,
+                    "hr": 0,
+                    "gs": 0,
+                    "sb": 0,
+                    "cs": 0,
+                    "hbp": 0,
+                    "e": 0,
+                    "a": 1,
+                    "po": 0,
+                    "dp": 0,
+                    "tp": 0,
+                    "inn": 0,
+                    "pb": 0,
+                    "sba": 0,
+                    "rcs": 0,
+                    "pik": 0,
+                    "game_result": "L 5-6"
                 }
             ]
         }
