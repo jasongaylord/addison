@@ -298,7 +298,7 @@
                     "opponent": "EC Bullets Piening/Suarez 18U",
                     "date": "09/27/2025 10:30am",
                     "location": "Bath, PA",
-                    "ab": 0,
+                    "ab": 2,
                     "r": 0,
                     "h": 0,
                     "rbi": 0,
@@ -312,7 +312,7 @@
                     "cs": 0,
                     "hbp": 0,
                     "e": 0,
-                    "a": 0,
+                    "a": 2,
                     "po": 0,
                     "dp": 0,
                     "tp": 0,
@@ -321,7 +321,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "TBD"
+                    "game_result": "L 0-3"
                 },
                 {
                     "opponent": "Rock Gold Waye/Ambrosius 18U",
