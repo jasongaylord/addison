@@ -443,7 +443,7 @@
                     "opponent": "Force 18U",
                     "date": "09/27/2025 4:15pm",
                     "location": "Bath, PA",
-                    "ab": 0,
+                    "ab": 2,
                     "r": 0,
                     "h": 0,
                     "rbi": 0,
@@ -457,7 +457,7 @@
                     "cs": 0,
                     "hbp": 0,
                     "e": 0,
-                    "a": 0,
+                    "a": 1,
                     "po": 0,
                     "dp": 0,
                     "tp": 0,
@@ -466,7 +466,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "TBD"
+                    "game_result": "B2 4-0"
                 }
             ]
         }
