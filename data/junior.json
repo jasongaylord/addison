@@ -351,8 +351,36 @@
                     "rcs": 0,
                     "pik": 0,
                     "game_result": "W 14-2"
+               },
+               {
+                    "opponent": "Rock Gold Waye/Ambrosius 18U",
+                    "date": "09/27/2025 1:30pm",
+                    "location": "Bath, PA",
+                    "ab": 2,
+                    "r": 2,
+                    "h": 1,
+                    "rbi": 2,
+                    "bb": 1,
+                    "so": 0,
+                    "2b": 0,
+                    "3b": 0,
+                    "hr": 0,
+                    "gs": 0,
+                    "sb": 2,
+                    "cs": 0,
+                    "hbp": 0,
+                    "e": 0,
+                    "a": 0,
+                    "po": 0,
+                    "dp": 0,
+                    "tp": 0,
+                    "inn": 0,
+                    "pb": 0,
+                    "sba": 0,
+                    "rcs": 0,
+                    "pik": 0,
+                    "game_result": "W 12-3"
                }
-
             ]
         }
     ]
