@@ -354,7 +354,7 @@
                },
                {
                     "opponent": "Rock Gold Waye/Ambrosius 18U",
-                    "date": "09/27/2025 1:30pm",
+                    "date": "09/28/2025 10:45pm",
                     "location": "Bath, PA",
                     "ab": 2,
                     "r": 2,
@@ -380,7 +380,36 @@
                     "rcs": 0,
                     "pik": 0,
                     "game_result": "W 12-3"
-               }
+                },
+                {
+                    "opponent": "Boilermakers Premier 18U",
+                    "date": "09/28/2025 12:45pm",
+                    "location": "Bath, PA",
+                    "ab": 2,
+                    "r": 1,
+                    "h": 2,
+                    "rbi": 1,
+                    "bb": 0,
+                    "so": 0,
+                    "2b": 1,
+                    "3b": 0,
+                    "hr": 0,
+                    "gs": 0,
+                    "sb": 0,
+                    "cs": 0,
+                    "hbp": 0,
+                    "e": 0,
+                    "a": 1,
+                    "po": 0,
+                    "dp": 0,
+                    "tp": 0,
+                    "inn": 0,
+                    "pb": 0,
+                    "sba": 0,
+                    "rcs": 0,
+                    "pik": 0,
+                    "game_result": "W 8-0"
+                }
             ]
         }
     ]
