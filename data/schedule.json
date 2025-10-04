@@ -1,36 +1,46 @@
 {
   "tournaments": [
     {
-      "id": "xtreme-fall-kick-off-2025",
-      "name": "Xtreme Fall Kick-Off",
-      "location": "Ewing, NJ",
-      "startDate": "2025-09-14",
-      "endDate": "2025-09-14",
-      "website": "https://www.xtremedimensionsinc.com/xtreme-fall-kick-off.cfm"
-    },
-    {
-      "id": "lancaster-fall-showcase-2025",
-      "name": "Lancaster Fall Showcase",
-      "location": "Lancaster, PA",
-      "startDate": "2025-09-20",
-      "endDate": "2025-09-21",
-      "website": "https://hometeamsonline.com/teams/default.asp?u=RAZORBACKSOFTBALL&s=softball&p=custom&pagename=Lancaster+Fall+Showcase"
-    },
-    {
-      "id": "upper-deck-fall-showcase-2025",
-      "name": "Upper Deck Fall Showcase",
-      "location": "Bath, PA",
-      "startDate": "2025-09-27",
-      "endDate": "2025-09-28",
-      "website": "#"
-    },
-    {
       "id": "jersey-outlaws-fall-showcase",
       "name": "Jersey Outlaws Fall Showcase",
       "location": "Jackson, NJ",
       "startDate": "2025-10-04",
       "endDate": "2025-10-05",
-      "website": "https://www.jerseyoutlawsfp.com/softball-tournaments"
+      "website": "https://www.jerseyoutlawsfp.com/softball-tournaments",
+      "games": [
+        {
+          "id": "game-1",
+          "opponent": "EC Bullets Gold",
+          "date": "2025-10-04",
+          "time": "9:40 AM",
+          "location": "Adventure Sports & Entertainment",
+          "field": "Field A2"
+        },
+        {
+          "id": "game-2",
+          "opponent": "Rock Gold Waye - Mahoney",
+          "date": "2025-10-04",
+          "time": "2:40 PM",
+          "location": "Adventure Sports & Entertainment",
+          "field": "Field A2"
+        },
+        {
+          "id": "game-3",
+          "opponent": "NJ Gators Gold",
+          "date": "2025-10-04",
+          "time": "4:20 PM",
+          "location": "Adventure Sports & Entertainment",
+          "field": "Field A2"
+        },
+        {
+          "id": "game-4",
+          "opponent": "Lady Nightmare Gold",
+          "date": "2025-10-05",
+          "time": "9:40 AM",
+          "location": "Adventure Sports & Entertainment",
+          "field": "Field C2"
+        }
+      ]
     },
     {
       "id": "williamsport-fall-college-showcase-2025",
