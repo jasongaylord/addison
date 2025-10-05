@@ -612,6 +612,35 @@
                     "rcs": 0,
                     "pik": 0,
                     "game_result": "W 5-1"
+                },
+                {
+                    "opponent": "Mystics National Garrett 18U",
+                    "date": "10/05/2025 1:00pm",
+                    "location": "Ewing, NJ",
+                    "ab": 0,
+                    "r": 0,
+                    "h": 0,
+                    "rbi": 0,
+                    "bb": 0,
+                    "so": 0,
+                    "2b": 0,
+                    "3b": 0,
+                    "hr": 0,
+                    "gs": 0,
+                    "sb": 0,
+                    "cs": 0,
+                    "hbp": 0,
+                    "e": 0,
+                    "a": 0,
+                    "po": 0,
+                    "dp": 0,
+                    "tp": 0,
+                    "inn": 0,
+                    "pb": 0,
+                    "sba": 0,
+                    "rcs": 0,
+                    "pik": 0,
+                    "game_result": "TBD"
                 }
             ]
         }
