@@ -1,54 +1,46 @@
 {
   "tournaments": [
     {
-      "id": "jersey-outlaws-fall-showcase",
-      "name": "Jersey Outlaws Fall Showcase",
-      "location": "Jackson, NJ",
-      "startDate": "2025-10-04",
-      "endDate": "2025-10-05",
-      "website": "https://www.jerseyoutlawsfp.com/softball-tournaments",
-      "games": [
-        {
-          "id": "game-1",
-          "opponent": "EC Bullets Gold",
-          "date": "2025-10-04",
-          "time": "9:40 AM",
-          "location": "Adventure Sports & Entertainment",
-          "field": "Field A2"
-        },
-        {
-          "id": "game-2",
-          "opponent": "Rock Gold Waye - Mahoney",
-          "date": "2025-10-04",
-          "time": "2:40 PM",
-          "location": "Adventure Sports & Entertainment",
-          "field": "Field A2"
-        },
-        {
-          "id": "game-3",
-          "opponent": "NJ Gators Gold",
-          "date": "2025-10-04",
-          "time": "4:20 PM",
-          "location": "Adventure Sports & Entertainment",
-          "field": "Field A2"
-        },
-        {
-          "id": "game-4",
-          "opponent": "Lady Nightmare Gold",
-          "date": "2025-10-05",
-          "time": "9:40 AM",
-          "location": "Adventure Sports & Entertainment",
-          "field": "Field C2"
-        }
-      ]
-    },
-    {
       "id": "williamsport-fall-college-showcase-2025",
       "name": "Williamsport Fall College Showcase",
       "location": "Williamsport, PA",
       "startDate": "2025-10-18",
       "endDate": "2025-10-19",
-      "website": "https://razorbacksoftball.com/teams/default.asp?u=RAZORBACKSOFTBALL&s=softball&p=custom&pagename=Williamsport+Fall+Showcase"
+      "website": "https://razorbacksoftball.com/teams/default.asp?u=RAZORBACKSOFTBALL&s=softball&p=custom&pagename=Williamsport+Fall+Showcase",
+      "games": [
+        {
+          "id": "game-01",
+          "opponent": "Razorbacks Flick 18U",
+          "date": "2025-10-18",
+          "time": "11:15 AM",
+          "location": "Elm Park",
+          "field": "Field 1"
+        },
+        {
+          "id": "game-02",
+          "opponent": "Vikings 18U",
+          "date": "2025-10-18",
+          "time": "3:45 PM",
+          "location": "Elm Park",
+          "field": "Field 1"
+        },
+        {
+          "id": "game-03",
+          "opponent": "TNT West Elite 18U",
+          "date": "2025-10-18",
+          "time": "5:15 PM",
+          "location": "Elm Park",
+          "field": "Field 1"
+        },
+        {
+          "id": "game-04",
+          "opponent": "TBD",
+          "date": "2025-10-19",
+          "time": "TBD",
+          "location": "Elm Park",
+          "field": "TBD"
+        }
+      ]
     },
     {
       "id": "east-coast-fall-showcase-2025",
@@ -56,7 +48,49 @@
       "location": "Pennsville, NJ",
       "startDate": "2025-10-25",
       "endDate": "2025-10-26",
-      "website": "https://www.eastcoastsoftballtournaments.com/fall"
+      "website": "https://www.eastcoastsoftballtournaments.com/fall",
+      "games": [
+        {
+          "id": "game-11",
+          "opponent": "Team Long Island 18U",
+          "date": "2025-10-25",
+          "time": "11:10 AM",
+          "location": "Pennsville Little League",
+          "field": "Field 1"
+        },
+        {
+          "id": "game-12",
+          "opponent": "NJ Pride National Stern 16U",
+          "date": "2025-10-25",
+          "time": "2:30 PM",
+          "location": "Pennsville Little League",
+          "field": "Field 4"
+        },
+        {
+          "id": "game-13",
+          "opponent": "Unity Torres/McHale 18U",
+          "date": "2025-10-25",
+          "time": "4:10 PM",
+          "location": "Pennsville Little League",
+          "field": "Field 4"
+        },
+        {
+          "id": "game-14",
+          "opponent": "PA Chaos Spina 16U",
+          "date": "2025-10-26",
+          "time": "12:50 PM",
+          "location": "Pennsville Little League",
+          "field": "Field 4"
+        },
+        {
+          "id": "game-15",
+          "opponent": "NJ Pride National Stern 18U",
+          "date": "2025-10-26",
+          "time": "2:30 PM",
+          "location": "Pennsville Little League",
+          "field": "Field 4"
+        }
+      ]
     },
     {
       "id": "nightmare-octoberfest-showcase-2025",
