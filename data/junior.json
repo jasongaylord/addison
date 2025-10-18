@@ -675,7 +675,7 @@
                     "opponent": "Vikings 18U",
                     "date": "10/18/2025 3:45pm",
                     "location": "Williamsport, PA",
-                    "ab": 2,
+                    "ab": 3,
                     "r": 1,
                     "h": 0,
                     "rbi": 0,
@@ -690,7 +690,7 @@
                     "hbp": 0,
                     "e": 0,
                     "a": 0,
-                    "po": 0,
+                    "po": 2,
                     "dp": 0,
                     "tp": 0,
                     "inn": 0,
@@ -698,7 +698,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "T4 3-1"
+                    "game_result": "W 3-1"
                 },
                 {
                     "opponent": "TNT West Elite 18U",
