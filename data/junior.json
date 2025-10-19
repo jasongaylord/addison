@@ -762,12 +762,12 @@
                     "opponent": "Razorbacks of PA Spriggle 18U",
                     "date": "10/19/2025 1:45 pm",
                     "location": "Williamsport, PA",
-                    "ab": 0,
+                    "ab": 3,
                     "r": 0,
                     "h": 0,
                     "rbi": 0,
                     "bb": 0,
-                    "so": 0,
+                    "so": 3,
                     "2b": 0,
                     "3b": 0,
                     "hr": 0,
@@ -777,7 +777,7 @@
                     "hbp": 0,
                     "e": 0,
                     "a": 0,
-                    "po": 0,
+                    "po": 2,
                     "dp": 0,
                     "tp": 0,
                     "inn": 0,
@@ -785,7 +785,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "TBD"
+                    "game_result": "L 1-2"
                 }
             ]
         }
