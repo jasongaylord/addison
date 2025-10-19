@@ -39,22 +39,6 @@
           "time": "12:00 PM",
           "location": "Elm Park",
           "field": "Field 1"
-        },
-        {
-          "id": "game-05",
-          "opponent": "TBD",
-          "date": "2025-10-19",
-          "time": "1:45 PM",
-          "location": "Elm Park",
-          "field": "Field 1"
-        },
-        {
-          "id": "game-06",
-          "opponent": "TBD",
-          "date": "2025-10-19",
-          "time": "3:45 PM",
-          "location": "Elm Park",
-          "field": "Field 1"
         }
       ]
     },
