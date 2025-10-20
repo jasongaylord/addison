@@ -1,48 +1,6 @@
 {
   "tournaments": [
     {
-      "id": "williamsport-fall-college-showcase-2025",
-      "name": "Williamsport Fall College Showcase",
-      "location": "Williamsport, PA",
-      "startDate": "2025-10-18",
-      "endDate": "2025-10-19",
-      "website": "https://razorbacksoftball.com/teams/default.asp?u=RAZORBACKSOFTBALL&s=softball&p=custom&pagename=Williamsport+Fall+Showcase",
-      "games": [
-        {
-          "id": "game-01",
-          "opponent": "Razorbacks Flick 18U",
-          "date": "2025-10-18",
-          "time": "11:15 AM",
-          "location": "Elm Park",
-          "field": "Field 1"
-        },
-        {
-          "id": "game-02",
-          "opponent": "Vikings 18U",
-          "date": "2025-10-18",
-          "time": "3:45 PM",
-          "location": "Elm Park",
-          "field": "Field 1"
-        },
-        {
-          "id": "game-03",
-          "opponent": "TNT West Elite 18U",
-          "date": "2025-10-18",
-          "time": "5:15 PM",
-          "location": "Elm Park",
-          "field": "Field 1"
-        },
-        {
-          "id": "game-04",
-          "opponent": "PA Krunch 18U Zubier",
-          "date": "2025-10-19",
-          "time": "12:00 PM",
-          "location": "Elm Park",
-          "field": "Field 1"
-        }
-      ]
-    },
-    {
       "id": "east-coast-fall-showcase-2025",
       "name": "East Coast Fall Showcase",
       "location": "Pennsville, NJ",
