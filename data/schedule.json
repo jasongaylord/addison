@@ -12,12 +12,28 @@
           "id": "game-11",
           "opponent": "Team Long Island 18U",
           "date": "2025-10-25",
-          "time": "11:10 AM",
+          "time": "7:50 AM",
           "location": "Pennsville Little League",
           "field": "Field 1"
         },
         {
           "id": "game-12",
+          "opponent": "Team Long Island 16U",
+          "date": "2025-10-25",
+          "time": "9:30 AM",
+          "location": "Pennsville Little League",
+          "field": "Field 1"
+        },
+        {
+          "id": "game-13",
+          "opponent": "Team Long Island 18U",
+          "date": "2025-10-25",
+          "time": "11:10 AM",
+          "location": "Pennsville Little League",
+          "field": "Field 1"
+        },
+        {
+          "id": "game-14",
           "opponent": "NJ Pride National Stern 16U",
           "date": "2025-10-25",
           "time": "2:30 PM",
@@ -25,7 +41,7 @@
           "field": "Field 4"
         },
         {
-          "id": "game-13",
+          "id": "game-15",
           "opponent": "Unity Torres/McHale 18U",
           "date": "2025-10-25",
           "time": "4:10 PM",
@@ -33,7 +49,7 @@
           "field": "Field 4"
         },
         {
-          "id": "game-14",
+          "id": "game-16",
           "opponent": "PA Chaos Spina 16U",
           "date": "2025-10-26",
           "time": "12:50 PM",
@@ -41,7 +57,7 @@
           "field": "Field 4"
         },
         {
-          "id": "game-15",
+          "id": "game-17",
           "opponent": "NJ Pride National Stern 18U",
           "date": "2025-10-26",
           "time": "2:30 PM",
