@@ -856,10 +856,10 @@
                     "date": "10/25/2025 11:10pm",
                     "location": "Pennsville, NJ",
                     "ab": 0,
-                    "r": 0,
+                    "r": 1,
                     "h": 0,
                     "rbi": 0,
-                    "bb": 0,
+                    "bb": 2,
                     "so": 0,
                     "2b": 0,
                     "3b": 0,
@@ -878,7 +878,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "TBD"
+                    "game_result": "W 10-6"
                 },
                 {
                     "opponent": "NJ Pride National Stern 16U",
