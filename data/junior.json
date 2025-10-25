@@ -8,12 +8,12 @@
                     "opponent": "Team Long Island NY 18U",
                     "date": "10/25/2025 7:50pm",
                     "location": "Pennsville, NJ",
-                    "ab": 0,
+                    "ab": 2,
                     "r": 0,
                     "h": 0,
                     "rbi": 0,
-                    "bb": 0,
-                    "so": 0,
+                    "bb": 1,
+                    "so": 1,
                     "2b": 0,
                     "3b": 0,
                     "hr": 0,
@@ -31,18 +31,18 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "TBD"
+                    "game_result": "W 5-0"
                 },
                 {
                     "opponent": "Team Long Island NY 16U",
                     "date": "10/25/2025 9:30pm",
                     "location": "Pennsville, NJ",
-                    "ab": 0,
+                    "ab": 1,
                     "r": 0,
                     "h": 0,
                     "rbi": 0,
                     "bb": 0,
-                    "so": 0,
+                    "so": 1,
                     "2b": 0,
                     "3b": 0,
                     "hr": 0,
@@ -60,7 +60,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "TBD"
+                    "game_result": "T1 0-0"
                 }
             ]
         },
