@@ -37,9 +37,9 @@
                     "opponent": "Team Long Island NY 16U",
                     "date": "10/25/2025 9:30pm",
                     "location": "Pennsville, NJ",
-                    "ab": 1,
+                    "ab": 2,
                     "r": 0,
-                    "h": 0,
+                    "h": 1,
                     "rbi": 0,
                     "bb": 0,
                     "so": 1,
@@ -60,7 +60,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "T1 0-0"
+                    "game_result": "B2 2-1"
                 }
             ]
         },
