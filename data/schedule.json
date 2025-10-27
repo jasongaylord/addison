@@ -1,78 +1,46 @@
 {
   "tournaments": [
     {
-      "id": "east-coast-fall-showcase-2025",
-      "name": "East Coast Fall Showcase",
-      "location": "Pennsville, NJ",
-      "startDate": "2025-10-25",
-      "endDate": "2025-10-26",
-      "website": "https://www.eastcoastsoftballtournaments.com/fall",
-      "games": [
-        {
-          "id": "game-11",
-          "opponent": "Team Long Island 18U",
-          "date": "2025-10-25",
-          "time": "7:50 AM",
-          "location": "Pennsville Little League",
-          "field": "Field 1"
-        },
-        {
-          "id": "game-12",
-          "opponent": "Team Long Island 16U",
-          "date": "2025-10-25",
-          "time": "9:30 AM",
-          "location": "Pennsville Little League",
-          "field": "Field 1"
-        },
-        {
-          "id": "game-13",
-          "opponent": "Team Long Island 18U",
-          "date": "2025-10-25",
-          "time": "11:10 AM",
-          "location": "Pennsville Little League",
-          "field": "Field 1"
-        },
-        {
-          "id": "game-14",
-          "opponent": "NJ Pride National Stern 16U",
-          "date": "2025-10-25",
-          "time": "2:30 PM",
-          "location": "Pennsville Little League",
-          "field": "Field 4"
-        },
-        {
-          "id": "game-15",
-          "opponent": "Unity Torres/McHale 18U",
-          "date": "2025-10-25",
-          "time": "4:10 PM",
-          "location": "Pennsville Little League",
-          "field": "Field 4"
-        },
-        {
-          "id": "game-16",
-          "opponent": "PA Chaos Spina 16U",
-          "date": "2025-10-26",
-          "time": "12:50 PM",
-          "location": "Pennsville Little League",
-          "field": "Field 4"
-        },
-        {
-          "id": "game-17",
-          "opponent": "NJ Pride National Stern 18U",
-          "date": "2025-10-26",
-          "time": "2:30 PM",
-          "location": "Pennsville Little League",
-          "field": "Field 4"
-        }
-      ]
-    },
-    {
       "id": "nightmare-octoberfest-showcase-2025",
       "name": "Nightmare Octoberfest Showcase",
       "location": "Westampton, NJ",
       "startDate": "2025-11-01",
       "endDate": "2025-11-02",
-      "website": "https://www.nightmareevents.net/octoberfest-showcase_2025.cfm"
+      "website": "https://www.nightmareevents.net/octoberfest-showcase_2025.cfm",
+      "games": [
+        {
+          "id": "game-11",
+          "opponent": "PA Batbusters Kresley",
+          "date": "2025-11-01",
+          "time": "11:20 AM",
+          "location": "Westampton Sports Complex",
+          "field": "Field 2"
+        },
+        {
+          "id": "game-12",
+          "opponent": "Team Long Island Angel",
+          "date": "2025-11-01",
+          "time": "2:40 PM",
+          "location": "Westampton Sports Complex",
+          "field": "Field 1"
+        },
+        {
+          "id": "game-13",
+          "opponent": "Empire State Huskies Porcelli",
+          "date": "2025-11-01",
+          "time": "4:20 PM",
+          "location": "Westampton Sports Complex",
+          "field": "Field 2"
+        }
+      ]
+    },
+    {
+      "id": "power-12-showcase-2025",
+      "name": "Power 12 Showcase",
+      "location": "Adventure Sports Complex, NJ",
+      "startDate": "2025-11-8",
+      "endDate": "2025-11-8",
+      "website": "https://playorlandonorth.com/events/2025-orlando-north-fall-invitational/"
     },
     {
       "id": "orlando-north-fall-invitational-2025",
