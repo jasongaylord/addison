@@ -1058,9 +1058,9 @@
                     "opponent": "Empire State Huskies National Porcelli 16U",
                     "date": "11/1/2025 4:30pm",
                     "location": "Westampton, NJ",
-                    "ab": 0,
-                    "r": 0,
-                    "h": 0,
+                    "ab": 2,
+                    "r": 1,
+                    "h": 1,
                     "rbi": 0,
                     "bb": 0,
                     "so": 0,
@@ -1071,8 +1071,8 @@
                     "sb": 0,
                     "cs": 0,
                     "hbp": 0,
-                    "e": 0,
-                    "a": 0,
+                    "e": 1,
+                    "a": 1,
                     "po": 0,
                     "dp": 0,
                     "tp": 0,
@@ -1081,7 +1081,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "TBD"
+                    "game_result": "L 3-4"
                 }
             ]
         }
