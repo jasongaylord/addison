@@ -1082,7 +1082,36 @@
                     "rcs": 0,
                     "pik": 0,
                     "game_result": "L 3-4"
-                }
+                },
+                {
+                    "opponent": "Unity NY Coppola/Arvidson 18U",
+                    "date": "11/2/2025 11:30am",
+                    "location": "Westampton, NJ",
+                    "ab": 3,
+                    "r": 0,
+                    "h": 0,
+                    "rbi": 0,
+                    "bb": 0,
+                    "so": 1,
+                    "2b": 0,
+                    "3b": 0,
+                    "hr": 0,
+                    "gs": 0,
+                    "sb": 0,
+                    "cs": 0,
+                    "hbp": 0,
+                    "e": 0,
+                    "a": 4,
+                    "po": 2,
+                    "dp": 0,
+                    "tp": 0,
+                    "inn": 0,
+                    "pb": 0,
+                    "sba": 0,
+                    "rcs": 0,
+                    "pik": 0,
+                    "game_result": "W 7-4"
+                 }
             ]
         }
     ]
