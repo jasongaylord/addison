@@ -18,7 +18,7 @@
       "games": [
         {
           "id": "game-21",
-          "opponent": "FL Unity",
+          "opponent": "FL Unity - Meadows-Luke",
           "date": "2025-11-14",
           "time": "11:30 AM",
           "location": "Soldiers Creek Park",
@@ -26,7 +26,7 @@
         },
         {
           "id": "game-22",
-          "opponent": "RI Fury",
+          "opponent": "RI Fury - Platinum Roumelis",
           "date": "2025-11-14",
           "time": "1:15 PM",
           "location": "Soldiers Creek Park",
@@ -34,7 +34,7 @@
         },
         {
           "id": "game-23",
-          "opponent": "MA Raiders",
+          "opponent": "MA Raiders - Premier McGloin",
           "date": "2025-11-15",
           "time": "8:00 AM",
           "location": "Soldiers Creek Park",
@@ -42,7 +42,7 @@
         },
         {
           "id": "game-24",
-          "opponent": "CT Lightning",
+          "opponent": "CT Lightning - Gold-Hoag",
           "date": "2025-11-15",
           "time": "9:45 AM",
           "location": "Soldiers Creek Park",
@@ -50,7 +50,7 @@
         },
         {
           "id": "game-25",
-          "opponent": "OH Miami Valley",
+          "opponent": "OH Miami Valley Xpress - Hutchinson",
           "date": "2025-11-16",
           "time": "8:00 AM",
           "location": "Soldiers Creek Park",
@@ -58,8 +58,8 @@
         },
         {
           "id": "game-26",
-          "opponent": "MA Polar Bear Crush",
-          "date": "2025-11-15",
+          "opponent": "MA Polar Crush - Gold Carbone",
+          "date": "2025-11-16",
           "time": "9:45 AM",
           "location": "Soldiers Creek Park",
           "field": "Field 5"
