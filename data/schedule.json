@@ -1,40 +1,6 @@
 {
   "tournaments": [
     {
-      "id": "nightmare-octoberfest-showcase-2025",
-      "name": "Nightmare Octoberfest Showcase",
-      "location": "Westampton, NJ",
-      "startDate": "2025-11-01",
-      "endDate": "2025-11-02",
-      "website": "https://www.nightmareevents.net/octoberfest-showcase_2025.cfm",
-      "games": [
-        {
-          "id": "game-11",
-          "opponent": "PA Batbusters Kresley",
-          "date": "2025-11-01",
-          "time": "11:20 AM",
-          "location": "Westampton Sports Complex",
-          "field": "Field 2"
-        },
-        {
-          "id": "game-12",
-          "opponent": "Team Long Island Angel",
-          "date": "2025-11-01",
-          "time": "2:40 PM",
-          "location": "Westampton Sports Complex",
-          "field": "Field 1"
-        },
-        {
-          "id": "game-13",
-          "opponent": "Empire State Huskies Porcelli",
-          "date": "2025-11-01",
-          "time": "4:20 PM",
-          "location": "Westampton Sports Complex",
-          "field": "Field 2"
-        }
-      ]
-    },
-    {
       "id": "power-12-showcase-2025",
       "name": "Power 12 Showcase",
       "location": "Adventure Sports Complex, NJ",
