@@ -48,7 +48,57 @@
       "location": "Soldiers Creek Park, FL",
       "startDate": "2025-11-14",
       "endDate": "2025-11-16",
-      "website": "https://playorlandonorth.com/events/2025-orlando-north-fall-invitational/"
+      "website": "https://playorlandonorth.com/events/2025-orlando-north-fall-invitational/",
+      "games": [
+        {
+          "id": "game-21",
+          "opponent": "FL Unity",
+          "date": "2025-11-14",
+          "time": "11:30 AM",
+          "location": "Soldiers Creek Park",
+          "field": "Field 2"
+        },
+        {
+          "id": "game-22",
+          "opponent": "RI Fury",
+          "date": "2025-11-14",
+          "time": "1:15 PM",
+          "location": "Soldiers Creek Park",
+          "field": "Field 2"
+        },
+        {
+          "id": "game-23",
+          "opponent": "MA Raiders",
+          "date": "2025-11-15",
+          "time": "8:00 AM",
+          "location": "Soldiers Creek Park",
+          "field": "Field 4"
+        },
+        {
+          "id": "game-24",
+          "opponent": "CT Lightning",
+          "date": "2025-11-15",
+          "time": "9:45 AM",
+          "location": "Soldiers Creek Park",
+          "field": "Field 3"
+        },
+        {
+          "id": "game-25",
+          "opponent": "OH Miami Valley",
+          "date": "2025-11-16",
+          "time": "8:00 AM",
+          "location": "Soldiers Creek Park",
+          "field": "Field 4"
+        },
+        {
+          "id": "game-26",
+          "opponent": "MA Polar Bear Crush",
+          "date": "2025-11-15",
+          "time": "9:45 AM",
+          "location": "Soldiers Creek Park",
+          "field": "Field 5"
+        }
+      ]
     }
   ],
   "games": [
