@@ -1261,9 +1261,9 @@
                     "opponent": "FL Unity Meadows-Luke",
                     "date": "11/14/2025 1:15pm",
                     "location": "Longwood, FL",
-                    "ab": 0,
+                    "ab": 3,
                     "r": 0,
-                    "h": 0,
+                    "h": 1,
                     "rbi": 0,
                     "bb": 0,
                     "so": 0,
@@ -1275,7 +1275,7 @@
                     "cs": 0,
                     "hbp": 0,
                     "e": 0,
-                    "a": 0,
+                    "a": 1,
                     "po": 0,
                     "dp": 0,
                     "tp": 0,
@@ -1284,7 +1284,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "TBD"
+                    "game_result": "L 4-6"
                 },
                 {
                     "opponent": "NJ Heist Gold Rodriguez",
