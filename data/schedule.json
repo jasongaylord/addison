@@ -18,15 +18,15 @@
       "games": [
         {
           "id": "game-21",
-          "opponent": "FL Unity - Meadows-Luke",
+          "opponent": "NJ Jersey Gators Premier Coroneos-Biasi",
           "date": "2025-11-14",
           "time": "11:30 AM",
           "location": "Soldiers Creek Park",
-          "field": "Field 2"
+          "field": "Field 3"
         },
         {
           "id": "game-22",
-          "opponent": "RI Fury - Platinum Roumelis",
+          "opponent": "FL Unity Meadows-Luke",
           "date": "2025-11-14",
           "time": "1:15 PM",
           "location": "Soldiers Creek Park",
@@ -34,19 +34,19 @@
         },
         {
           "id": "game-23",
-          "opponent": "MA Raiders - Premier McGloin",
+          "opponent": "NJ Heist Gold Rodriguez",
           "date": "2025-11-15",
-          "time": "8:00 AM",
+          "time": "11:30 AM",
           "location": "Soldiers Creek Park",
-          "field": "Field 4"
+          "field": "Field 2"
         },
         {
           "id": "game-24",
-          "opponent": "CT Lightning - Gold-Hoag",
+          "opponent": "RI Fury - Platinum Roumelis",
           "date": "2025-11-15",
-          "time": "9:45 AM",
+          "time": "1:15 AM",
           "location": "Soldiers Creek Park",
-          "field": "Field 3"
+          "field": "Field 1"
         },
         {
           "id": "game-25",
