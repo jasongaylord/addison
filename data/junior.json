@@ -1371,18 +1371,18 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "T2 2-0"
+                    "game_result": "W 8-3"
                 },
                 {
                     "opponent": "MA Polar Crush Gold Carbone",
                     "date": "11/16/2025 9:45am",
                     "location": "Longwood, FL",
-                    "ab": 0,
+                    "ab": 2,
                     "r": 0,
                     "h": 0,
                     "rbi": 0,
                     "bb": 0,
-                    "so": 0,
+                    "so": 1,
                     "2b": 0,
                     "3b": 0,
                     "hr": 0,
@@ -1391,7 +1391,7 @@
                     "cs": 0,
                     "hbp": 0,
                     "e": 0,
-                    "a": 0,
+                    "a": 4,
                     "po": 0,
                     "dp": 0,
                     "tp": 0,
@@ -1400,7 +1400,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "TBD"
+                    "game_result": "W 5-4"
                 }
             ]
         }
