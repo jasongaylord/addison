@@ -1,70 +1,60 @@
 {
   "tournaments": [
     {
-      "id": "power-12-showcase-2025",
-      "name": "Power 12 Showcase",
-      "location": "Adventure Sports Complex, NJ",
-      "startDate": "2025-11-8",
-      "endDate": "2025-11-8",
-      "website": "https://playorlandonorth.com/events/2025-orlando-north-fall-invitational/"
+      "id": "lancaster-college-showcase",
+      "name": "Lancaster College Showcase",
+      "location": "Lancaster, PA",
+      "startDate": "2026-05-30",
+      "endDate": "2026-05-31",
+      "website": "https://www.hometeamsonline.com/teams/default.asp?u=razorbacksoftball&p=home&s=softball"
     },
     {
-      "id": "orlando-north-fall-invitational-2025",
-      "name": "Orlando North Fall Invitational",
-      "location": "Soldiers Creek Park, FL",
-      "startDate": "2025-11-14",
-      "endDate": "2025-11-16",
-      "website": "https://playorlandonorth.com/events/2025-orlando-north-fall-invitational/",
-      "games": [
-        {
-          "id": "game-21",
-          "opponent": "FL Unity - Meadows-Luke",
-          "date": "2025-11-14",
-          "time": "11:30 AM",
-          "location": "Soldiers Creek Park",
-          "field": "Field 2"
-        },
-        {
-          "id": "game-22",
-          "opponent": "RI Fury - Platinum Roumelis",
-          "date": "2025-11-14",
-          "time": "1:15 PM",
-          "location": "Soldiers Creek Park",
-          "field": "Field 2"
-        },
-        {
-          "id": "game-23",
-          "opponent": "MA Raiders - Premier McGloin",
-          "date": "2025-11-15",
-          "time": "8:00 AM",
-          "location": "Soldiers Creek Park",
-          "field": "Field 4"
-        },
-        {
-          "id": "game-24",
-          "opponent": "CT Lightning - Gold-Hoag",
-          "date": "2025-11-15",
-          "time": "9:45 AM",
-          "location": "Soldiers Creek Park",
-          "field": "Field 3"
-        },
-        {
-          "id": "game-25",
-          "opponent": "OH Miami Valley Xpress - Hutchinson",
-          "date": "2025-11-16",
-          "time": "8:00 AM",
-          "location": "Soldiers Creek Park",
-          "field": "Field 4"
-        },
-        {
-          "id": "game-26",
-          "opponent": "MA Polar Crush - Gold Carbone",
-          "date": "2025-11-16",
-          "time": "9:45 AM",
-          "location": "Soldiers Creek Park",
-          "field": "Field 5"
-        }
-      ]
+      "id": "east-coast-showdown",
+      "name": "East Coast Showdown Summer 2026",
+      "location": "Pennsbury, NJ",
+      "startDate": "2026-6-6",
+      "endDate": "2026-6-7",
+      "website": "https://www.eastcoastsoftballtournaments.com/Summer"
+    },
+    {
+      "id": "power-24",
+      "name": "Power 24",
+      "location": "Westampton, NJ",
+      "startDate": "2026-6-13",
+      "endDate": "2026-6-14",
+      "website": "https://www.nightmareevents.net/the-power-24.cfm"
+    },
+    {
+      "id": "pennsbury-invitational",
+      "name": "Pennsbury Invitational",
+      "location": "Newtown, PA",
+      "startDate": "2026-6-18",
+      "endDate": "2026-6-20",
+      "website": "https://pennsburyinvitational.com/"
+    },
+    {
+      "id": "nightmare-classic",
+      "name": "Nightmare Classic",
+      "location": "Westampton, NJ",
+      "startDate": "2026-7-11",
+      "endDate": "2026-7-12",
+      "website": "https://www.nightmareevents.net/nightmare-classic_2026.cfm"
+    },
+    {
+      "id": "usa-eastern-national-championships",
+      "name": "USA Eastern National Championships",
+      "location": "Loudon County, VA",
+      "startDate": "2026-7-15",
+      "endDate": "2026-7-19",
+      "website": "https://www.usasoftball.com/event/girls-class-a-18-under-eastern/"
+    },
+    {
+      "id": "usa-national-championship",
+      "name": "USA National Championship",
+      "location": "Johnson City, TN",
+      "startDate": "2026-07-21",
+      "endDate": "2026-07-26",
+      "website": "https://www.usasoftball.com/event/girls-class-a-14-under-east/"
     }
   ],
   "games": [
