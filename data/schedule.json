@@ -59,20 +59,140 @@
   ],
   "games": [
     {
-      "id": "scrimmage-1",
-      "opponent": "Boilermakers",
-      "date": "2025-08-31",
-      "time": "10:30 AM",
-      "location": "3149 Chester Ave, Bethlehem, PA 18020",
-      "field": "Freedom High School"
+      "id": "wyoming-area-game-01",
+      "opponent": "Dallas High School",
+      "date": "2026-03-19",
+      "time": "4:15 PM",
+      "location": "130-198 Erie Ave, West Pittston, PA 18643",
+      "field": "Atlas Softball Field"
     },
     {
-      "id": "scrimmage-2",
-      "opponent": "Boilermakers",
-      "date": "2025-08-31",
-      "time": "12:00 PM",
-      "location": "3149 Chester Ave, Bethlehem, PA 18020",
-      "field": "Freedom High School"
+      "id": "wyoming-area-game-02",
+      "opponent": "Dunmore High School",
+      "date": "2026-03-21",
+      "time": "1:00 PM",
+      "location": "130-198 Erie Ave, West Pittston, PA 18643",
+      "field": "Atlas Softball Field"
+    },
+    {
+      "id": "wyoming-area-game-03",
+      "opponent": "Pittston Area High School",
+      "date": "2026-04-02",
+      "time": "4:15 PM",
+      "location": "120 New St, Pittston, PA 18640",
+      "field": "Mattei Middle School"
+    },
+    {
+      "id": "wyoming-area-game-04",
+      "opponent": "Hanover Area High School",
+      "date": "2026-04-06",
+      "time": "4:15 PM",
+      "location": "1600 Sans Souci Pkwy, Wilkes-Barre, PA 18702",
+      "field": "Hanover Area High School"
+    },
+    {
+      "id": "wyoming-area-game-05",
+      "opponent": "Greater Nanticoke High School",
+      "date": "2026-04-08",
+      "time": "4:15 PM",
+      "location": "600 East Union St, Nanticoke, PA 18634",
+      "field": "Terry Havens Field"
+    },
+    {
+      "id": "wyoming-area-game-06",
+      "opponent": "MMI Prepatory School",
+      "date": "2026-04-10",
+      "time": "4:15 PM",
+      "location": "130-198 Erie Ave, West Pittston, PA 18643",
+      "field": "Atlas Softball Field"
+    },
+    {
+      "id": "wyoming-area-game-07",
+      "opponent": "Berwick Area High School",
+      "date": "2026-04-14",
+      "time": "4:15 PM",
+      "location": "1199 Mulberry St, Berwick, PA 18603",
+      "field": "Crispin Field"
+    },
+    {
+      "id": "wyoming-area-game-08",
+      "opponent": "Lake-Lehman High School",
+      "date": "2026-04-16",
+      "time": "4:15 PM",
+      "location": "130-198 Erie Ave, West Pittston, PA 18643",
+      "field": "Atlas Softball Field"
+    },
+    {
+      "id": "wyoming-area-game-09",
+      "opponent": "Holy Redeemer High School",
+      "date": "2026-04-20",
+      "time": "4:15 PM",
+      "location": "130-198 Erie Ave, West Pittston, PA 18643",
+      "field": "Atlas Softball Field"
+    },
+    {
+      "id": "wyoming-area-game-10",
+      "opponent": "Crestwood High School",
+      "date": "2026-04-23",
+      "time": "4:15 PM",
+      "location": "130-198 Erie Ave, West Pittston, PA 18643",
+      "field": "Atlas Softball Field"
+    },
+    {
+      "id": "wyoming-area-game-11",
+      "opponent": "Hanover Area High School",
+      "date": "2026-04-24",
+      "time": "4:15 PM",
+      "location": "130-198 Erie Ave, West Pittston, PA 18643",
+      "field": "Atlas Softball Field"
+    },
+    {
+      "id": "wyoming-area-game-12",
+      "opponent": "Elk Lake High School",
+      "date": "2026-04-27",
+      "time": "4:30 PM",
+      "location": "2380 Elk Lake School Road, Springville, PA 18844",
+      "field": "Elk Lake High School"
+    },
+    {
+      "id": "wyoming-area-game-13",
+      "opponent": "Greater Nanticoke High School",
+      "date": "2026-04-28",
+      "time": "4:15 PM",
+      "location": "130-198 Erie Ave, West Pittston, PA 18643",
+      "field": "Atlas Softball Field"
+    },
+    {
+      "id": "wyoming-area-game-14",
+      "opponent": "MMI Prepatory School",
+      "date": "2026-04-30",
+      "time": "4:15 PM",
+      "location": "1054 Carbon St, Freeland, PA 18224",
+      "field": "MMI Athletic Complex"
+    },
+    {
+      "id": "wyoming-area-game-15",
+      "opponent": "Berwick Area High School",
+      "date": "2026-05-04",
+      "time": "4:15 PM",
+      "location": "130-198 Erie Ave, West Pittston, PA 18643",
+      "field": "Atlas Softball Field"
+    },
+    {
+      "id": "wyoming-area-game-16",
+      "opponent": "Lake-Lehman High School",
+      "date": "2026-05-06",
+      "time": "4:15 PM",
+      "location": "1128 Old Rt 115, Dallas, PA 18612",
+      "field": "Lake Lehman High School"
+    },
+    {
+      "id": "wyoming-area-game-17",
+      "opponent": "Holy Redeemer High School",
+      "date": "2026-05-08",
+      "time": "4:15 PM",
+      "location": "401 Coal St Dr, Wilkes-Barre, PA 18702",
+      "field": "Casey Park"
     }
   ]
 }
