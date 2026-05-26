@@ -89,20 +89,6 @@
           "time": "9:45 AM",
           "location": "Helen Randle Park",
           "field": "Field 5"
-        },
-        {
-          "id": "game-35",
-          "opponent": "Massachusetts Drifters",
-          "date": "2026-6-20",
-          "time": "3:30 PM",
-          "location": "Field 5"
-        },
-        {
-          "id": "game-36",
-          "opponent": "Newtown Rock",
-          "date": "2026-6-20",
-          "time": "5:15 PM",
-          "location": "Field 1"
         }
       ]
     },
