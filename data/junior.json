@@ -124,10 +124,10 @@
                     "opponent": "CGA Hawks Showcase DiCandeloro 18U",
                     "date": "5/31/2026 5:00pm",
                     "location": "Strasburg, PA",
-                    "ab": 0,
-                    "r": 0,
-                    "h": 0,
-                    "rbi": 0,
+                    "ab": 2,
+                    "r": 1,
+                    "h": 1,
+                    "rbi": 1,
                     "bb": 0,
                     "so": 0,
                     "2b": 0,
@@ -147,7 +147,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "TBD"
+                    "game_result": "W 7-2"
                 }
             ]
         },
