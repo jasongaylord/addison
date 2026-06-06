@@ -182,12 +182,12 @@
                     "opponent": "Connecticut Impact Premier",
                     "date": "6/6/2026 11:40am",
                     "location": "Pennsville, NJ",
-                    "ab": 0,
+                    "ab": 2,
                     "r": 0,
                     "h": 0,
                     "rbi": 0,
                     "bb": 0,
-                    "so": 0,
+                    "so": 1,
                     "2b": 0,
                     "3b": 0,
                     "hr": 0,
@@ -205,7 +205,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "TBD"
+                    "game_result": "W 5-4"
                 },
                 {
                     "opponent": "Unity Torres 2028 NJ",
