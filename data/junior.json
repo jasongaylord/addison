@@ -269,12 +269,12 @@
                     "opponent": "NJ Pride National Stern 16U",
                     "date": "6/7/2026 3:20pm",
                     "location": "Pennsville, NJ",
-                    "ab": 1,
+                    "ab": 2,
                     "r": 0,
                     "h": 0,
                     "rbi": 0,
                     "bb": 0,
-                    "so": 1,
+                    "so": 2,
                     "2b": 0,
                     "3b": 0,
                     "hr": 0,
@@ -282,9 +282,9 @@
                     "sb": 0,
                     "cs": 0,
                     "hbp": 0,
-                    "e": 0,
-                    "a": 0,
-                    "po": 1,
+                    "e": 3,
+                    "a": 1,
+                    "po": 3,
                     "dp": 0,
                     "tp": 0,
                     "inn": 0,
@@ -292,7 +292,7 @@
                     "sba": 0,
                     "rcs": 0,
                     "pik": 0,
-                    "game_result": "T4 1-0"
+                    "game_result": "T6 1-3"
                 }
             ]
         },
