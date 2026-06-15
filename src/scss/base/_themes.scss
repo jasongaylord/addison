@@ -1,5 +1,5 @@
 :root,
-[data-theme='outlaws'] {
+[data-theme='favorite-color'] {
   --color-primary: #29004f;
   --color-primary-dark: #1d0038;
   --color-dark: #250d57;
@@ -17,20 +17,38 @@
   --color-danger: #dc3545;
 }
 
-[data-theme='warriors'] {
-  --color-primary: #003b6f;
-  --color-primary-dark: #002447;
-  --color-dark: #002a52;
-  --color-light: #00579f;
-  --color-accent: #f3b217;
-  --color-leaderboard: #002f59;
-  --color-gradient-dark: #00447d;
-  --color-highlight: #ffd776;
+[data-theme='outlaws'] {
+  --color-primary: #7d1d1d;
+  --color-primary-dark: #5f1515;
+  --color-dark: #5d1111;
+  --color-light: #a73b3b;
+  --color-accent: #ff8f8f;
+  --color-leaderboard: #6f2020;
+  --color-gradient-dark: #8f2626;
+  --color-highlight: #ffc1c1;
   --color-background: #ffffff;
-  --color-background-alt: #eef5ff;
+  --color-background-alt: #fff5f5;
   --color-text-on-dark: #ffffff;
-  --color-text-soft: #dce9ff;
-  --color-text-muted: #5b677a;
-  --color-card-bg: #1f2f45;
+  --color-text-soft: #ffd6d6;
+  --color-text-muted: #7a5b5b;
+  --color-card-bg: #402020;
+  --color-danger: #dc3545;
+}
+
+[data-theme='warriors'] {
+  --color-primary: #1f6b2f;
+  --color-primary-dark: #14461f;
+  --color-dark: #1a5a28;
+  --color-light: #2f8a42;
+  --color-accent: #a6f08d;
+  --color-leaderboard: #245f33;
+  --color-gradient-dark: #277238;
+  --color-highlight: #d6ff9e;
+  --color-background: #ffffff;
+  --color-background-alt: #f0fbf2;
+  --color-text-on-dark: #ffffff;
+  --color-text-soft: #dff3df;
+  --color-text-muted: #5b7a60;
+  --color-card-bg: #203d28;
   --color-danger: #dc3545;
 }
