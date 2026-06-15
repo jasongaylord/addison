@@ -15,6 +15,9 @@
   --color-text-muted: #6c757d;
   --color-card-bg: #2c3e50;
   --color-danger: #dc3545;
+  /* light background variants used across components (defaults for purple theme) */
+  --bg-light-purple: #e6d7ff;
+  --bg-lighter-purple: #f3edff;
 }
 
 [data-theme='outlaws'] {
@@ -33,6 +36,9 @@
   --color-text-muted: #7a5b5b;
   --color-card-bg: #402020;
   --color-danger: #dc3545;
+  /* light background variants adjusted for Outlaws (reds/pinks) */
+  --bg-light-purple: #ffecec;
+  --bg-lighter-purple: #fff5f5;
 }
 
 [data-theme='warriors'] {
@@ -51,4 +57,7 @@
   --color-text-muted: #5b7a60;
   --color-card-bg: #203d28;
   --color-danger: #dc3545;
+  /* light background variants adjusted for Warriors (greens) */
+  --bg-light-purple: #e6f7e6;
+  --bg-lighter-purple: #f3fbf3;
 }

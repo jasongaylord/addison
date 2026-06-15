@@ -72,13 +72,13 @@
 }
 
 .bg-light-purple {
-    background-color: #e6d7ff; // !important
-    color: $primary-purple;
+    background-color: var(--bg-light-purple, #e6d7ff) !important;
+    color: var(--color-primary, #29004f);
 }
 
 .bg-lighter-purple {
-    background-color: #f3edff; // !important
-    color: $primary-purple;
+    background-color: var(--bg-lighter-purple, #f3edff) !important;
+    color: var(--color-primary, #29004f);
 }
 
 .standalone-games {
