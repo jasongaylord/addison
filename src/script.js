@@ -61,13 +61,13 @@ window.addEventListener('DOMContentLoaded', function() {
     function initThemeSwitcher() {
         const themeButtons = document.querySelectorAll('[data-theme-toggle]');
         const themeStatus = document.getElementById('theme-status');
-        const themes = ['favorite-color', 'outlaws', 'warriors'];
+        const themes = ['purple', 'outlaws', 'warriors'];
         const themeLabels = {
-            'favorite-color': 'Favorite Color',
+            purple: 'Favorite Color',
             outlaws: 'Outlaws',
             warriors: 'Warriors'
         };
-        const defaultTheme = 'favorite-color';
+        const defaultTheme = 'purple';
         const storageKey = 'preferred_theme';
 
         if (!themeButtons.length) {
