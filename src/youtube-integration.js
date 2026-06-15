@@ -292,10 +292,10 @@ class YouTubeManager {
 
         // Always show the title first
         let html = `
-            <h2 class="mb-4" style="color: #29004f;">
+            <!--<h2 class="mb-4" style="color: #29004f;">
                 <i class="fab fa-youtube me-2" style="color: #bf7cff;"></i>
                 Highlight Videos
-            </h2>
+            </h2>-->
         `;
 
         try {

@@ -17,19 +17,25 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // Photo gallery functionality
     function initPhotoGallery() {
-        const galleryImages = document.querySelectorAll('.photo-gallery img');
-        const featureImage = document.getElementById('feature-image');
-        const imageCaption = document.getElementById('image-caption');
-        
-        if (featureImage && imageCaption) {
-            galleryImages.forEach(img => {
-                img.addEventListener('click', function() {
-                    featureImage.src = this.src;
-                    featureImage.alt = this.alt;
-                    imageCaption.textContent = this.alt;
-                });
+        const galleryImages = document.querySelectorAll('.gallery-image');
+        const photoModalEl = document.getElementById('photoModal');
+        const photoModalLabel = document.getElementById('photoModalLabel');
+
+        if (!galleryImages.length || !photoModalEl) return;
+
+        const modalBody = photoModalEl.querySelector('.modal-body');
+
+        galleryImages.forEach(img => {
+            img.style.cursor = 'pointer';
+            img.addEventListener('click', function() {
+                const src = this.src;
+                const alt = this.alt || '';
+                if (photoModalLabel) photoModalLabel.textContent = alt;
+                if (modalBody) modalBody.innerHTML = `<img src="${src}" alt="${alt}" class="img-fluid" />`;
+                const modal = new bootstrap.Modal(photoModalEl);
+                modal.show();
             });
-        }
+        });
     }
 
     // Initialize photo gallery
