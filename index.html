@@ -84,6 +84,14 @@
                 Addison Gaylord
             </a>
             <div class="d-flex">
+                <div class="theme-switcher">
+                    <label for="theme-switcher">Theme</label>
+                    <select id="theme-switcher" class="form-select form-select-sm" aria-label="Choose color theme">
+                        <option value="outlaws">Outlaws</option>
+                        <option value="warriors">Warriors</option>
+                    </select>
+                    <span id="theme-status" class="visually-hidden" aria-live="polite" aria-atomic="true"></span>
+                </div>
                 <button class="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <i class="fa-solid fa-circle-ellipsis fa-xl"></i>
                 </button>
@@ -157,6 +165,23 @@
                     <p class="for-large">WYOMING AREA HIGH SCHOOL | EXETER, PA</p>
                     <p class="for-small">WYOMING AREA HS | EXETER, PA</p>
                     <p>POSITIONS: SS, C, UTIL</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- YouTube Videos Section -->
+    <div class="bg-white" id="videos">
+        <div class="container">
+            <div class="row py-5">
+                <div class="col-12">
+                    <div id="youtube-videos" class="p-3">
+                        <div class="d-flex justify-content-center">
+                            <div class="spinner-border text-primary" role="status">
+                                <span class="visually-hidden">Loading YouTube videos...</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -365,23 +390,6 @@
                         <div class="d-flex justify-content-center">
                             <div class="spinner-border text-primary" role="status">
                                 <span class="visually-hidden">Loading Threads posts...</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- YouTube Videos Section -->
-    <div class="bg-white" id="videos">
-        <div class="container">
-            <div class="row py-5">
-                <div class="col-12">
-                    <div id="youtube-videos" class="p-3">
-                        <div class="d-flex justify-content-center">
-                            <div class="spinner-border text-primary" role="status">
-                                <span class="visually-hidden">Loading YouTube videos...</span>
                             </div>
                         </div>
                     </div>
