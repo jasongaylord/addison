@@ -59,17 +59,18 @@ window.addEventListener('DOMContentLoaded', function() {
 
     // Theme switcher functionality
     function initThemeSwitcher() {
-        const themeSelect = document.getElementById('theme-switcher');
+        const themeButtons = document.querySelectorAll('[data-theme-toggle]');
         const themeStatus = document.getElementById('theme-status');
-        const themes = ['outlaws', 'warriors'];
+        const themes = ['purple', 'outlaws', 'warriors'];
         const themeLabels = {
+            purple: 'Favorite Color',
             outlaws: 'Outlaws',
             warriors: 'Warriors'
         };
-        const defaultTheme = 'outlaws';
+        const defaultTheme = 'purple';
         const storageKey = 'preferred_theme';
 
-        if (!themeSelect) {
+        if (!themeButtons.length) {
             return;
         }
 
@@ -87,7 +88,11 @@ window.addEventListener('DOMContentLoaded', function() {
             }
 
             document.documentElement.setAttribute('data-theme', theme);
-            themeSelect.value = theme;
+            themeButtons.forEach(button => {
+                const isActive = button.dataset.themeToggle === theme;
+                button.classList.toggle('is-active', isActive);
+                button.setAttribute('aria-pressed', String(isActive));
+            });
             if (announce) {
                 announceTheme(theme);
             }
@@ -113,35 +118,13 @@ window.addEventListener('DOMContentLoaded', function() {
         const initialTheme = themes.includes(savedTheme) ? savedTheme : defaultTheme;
         applyTheme(initialTheme);
 
-        themeSelect.addEventListener('change', function() {
-            const selectedTheme = this.value;
-            applyTheme(selectedTheme, true);
-            persistTheme(selectedTheme);
-        });
-
-        themeSelect.addEventListener('keydown', function(event) {
-            const currentIndex = themes.indexOf(this.value);
-            if (currentIndex === -1) {
-                return;
-            }
-
-            let nextTheme = null;
-
-            if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
-                nextTheme = themes[(currentIndex + 1) % themes.length];
-            } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
-                nextTheme = themes[(currentIndex - 1 + themes.length) % themes.length];
-            } else if (event.key === 'Home') {
-                nextTheme = themes[0];
-            } else if (event.key === 'End') {
-                nextTheme = themes[themes.length - 1];
-            }
-
-            if (nextTheme) {
-                event.preventDefault();
-                applyTheme(nextTheme, true);
-                persistTheme(nextTheme);
-            }
+        themeButtons.forEach(button => {
+            button.setAttribute('aria-pressed', String(button.dataset.themeToggle === initialTheme));
+            button.addEventListener('click', function() {
+                const selectedTheme = this.dataset.themeToggle;
+                applyTheme(selectedTheme, true);
+                persistTheme(selectedTheme);
+            });
         });
 
         document.addEventListener('keydown', function(event) {
@@ -149,7 +132,8 @@ window.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            const currentIndex = themes.indexOf(themeSelect.value);
+            const currentTheme = document.documentElement.getAttribute('data-theme') || defaultTheme;
+            const currentIndex = themes.indexOf(currentTheme);
             const nextTheme = themes[(currentIndex + 1) % themes.length];
             applyTheme(nextTheme, true);
             persistTheme(nextTheme);
