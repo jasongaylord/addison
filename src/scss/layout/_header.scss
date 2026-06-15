@@ -1,4 +1,6 @@
 // Header/Navbar styles
+$theme-swatch-radius: 0.65rem;
+
 header {
   background-color: $primary-purple;
 }
@@ -75,7 +77,7 @@ header {
     height: 2rem;
     padding: 0;
     border: 0;
-    border-radius: 0.65rem;
+    border-radius: $theme-swatch-radius;
     background: var(--theme-swatch-color);
     display: inline-flex;
     align-items: center;
