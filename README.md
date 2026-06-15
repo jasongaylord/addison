@@ -78,6 +78,7 @@ See `THREADS_SETUP.md` for detailed configuration instructions.
   - Standard select keyboard navigation works with arrow keys.
   - `Home` and `End` jump to first/last theme option.
   - `Alt` + `Shift` + `T` cycles themes from anywhere on the page.
+  - Note: `Alt` + `Shift` + `T` may conflict with OS/browser shortcuts depending on platform.
 
 ## Deployment
 

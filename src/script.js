@@ -60,7 +60,12 @@ window.addEventListener('DOMContentLoaded', function() {
     // Theme switcher functionality
     function initThemeSwitcher() {
         const themeSelect = document.getElementById('theme-switcher');
+        const themeStatus = document.getElementById('theme-status');
         const themes = ['outlaws', 'warriors'];
+        const themeLabels = {
+            outlaws: 'Outlaws',
+            warriors: 'Warriors'
+        };
         const defaultTheme = 'outlaws';
         const storageKey = 'preferred_theme';
 
@@ -68,13 +73,24 @@ window.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        const applyTheme = (theme) => {
+        const announceTheme = (theme) => {
+            if (!themeStatus) {
+                return;
+            }
+
+            themeStatus.textContent = `Theme set to ${themeLabels[theme] || theme}.`;
+        };
+
+        const applyTheme = (theme, announce = false) => {
             if (!themes.includes(theme)) {
                 return;
             }
 
             document.documentElement.setAttribute('data-theme', theme);
             themeSelect.value = theme;
+            if (announce) {
+                announceTheme(theme);
+            }
         };
 
         const persistTheme = (theme) => {
@@ -99,7 +115,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
         themeSelect.addEventListener('change', function() {
             const selectedTheme = this.value;
-            applyTheme(selectedTheme);
+            applyTheme(selectedTheme, true);
             persistTheme(selectedTheme);
         });
 
@@ -123,7 +139,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
             if (nextTheme) {
                 event.preventDefault();
-                applyTheme(nextTheme);
+                applyTheme(nextTheme, true);
                 persistTheme(nextTheme);
             }
         });
@@ -135,7 +151,7 @@ window.addEventListener('DOMContentLoaded', function() {
 
             const currentIndex = themes.indexOf(themeSelect.value);
             const nextTheme = themes[(currentIndex + 1) % themes.length];
-            applyTheme(nextTheme);
+            applyTheme(nextTheme, true);
             persistTheme(nextTheme);
         });
     }
