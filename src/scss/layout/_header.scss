@@ -33,12 +33,13 @@ header {
 // Navigation reordering for mobile and desktop
 .nav-item {
   @include respond-below(lg) {
-    &:nth-child(1) { order: 3; } // Schedule
-    &:nth-child(2) { order: 4; } // Statistics
-    &:nth-child(3) { order: 5; } // Videos
-    &:nth-child(4) { order: 6; } // Contact
-    &:nth-child(5) { order: 2; } // Divider
-    &:nth-child(6) { order: 1; } // Recruiting Sheet + Theme
+    &:nth-child(1) { order: 4; } // Schedule
+    &:nth-child(2) { order: 5; } // Statistics
+    &:nth-child(3) { order: 6; } // Videos
+    &:nth-child(4) { order: 7; } // Contact
+    &:nth-child(5) { order: 3; } // Theme Selector
+    &:nth-child(6) { order: 2; } // Divider
+    &:nth-child(7) { order: 1; } // Recruiting Sheet + Theme
   }
 
   @include respond-to(lg) {
@@ -46,8 +47,9 @@ header {
     &:nth-child(2) { order: 2; } // Statistics
     &:nth-child(3) { order: 3; } // Videos
     &:nth-child(4) { order: 4; } // Contact
-    &:nth-child(5) { order: 5; } // Divider
-    &:nth-child(6) { order: 6; } // Recruiting Sheet + Theme
+    &:nth-child(5) { order: 5; } // Theme Selector
+    &:nth-child(6) { order: 6; } // Divider
+    &:nth-child(7) { order: 7; } // Recruiting Sheet + Theme
   }
 }
 
@@ -112,6 +114,80 @@ header {
   --theme-swatch-color: #1e7e34;
 }
 
+/* Generic theme switcher placement (works when moved out of .nav-recruiting) */
+.theme-switcher {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Global theme swatch styles (apply regardless of DOM location) */
+.theme-swatch {
+  width: 2rem;
+  height: 2rem;
+  padding: 0;
+  border: 0;
+  border-radius: 0.65rem; /* rounded square */
+  background: var(--theme-swatch-color, #8e44ad);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0.35rem 0.75rem rgba(0, 0, 0, 0.18);
+  opacity: 0.9;
+  cursor: pointer;
+  transition: transform $transition-fast, opacity $transition-fast, box-shadow $transition-fast;
+
+  &:hover,
+  &:focus-visible {
+    transform: translateY(-1px);
+    opacity: 1;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.24);
+  }
+
+  &.is-active {
+    opacity: 1;
+    box-shadow: 0 0 0 2px $text-white, 0 0.5rem 1rem rgba(0, 0, 0, 0.24);
+  }
+}
+
+/* Floating bubble styles when moved to body for desktop positioning */
+.contact-bubble.floating {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  background: var(--color-background, #fff);
+  border: 1px solid rgba(0,0,0,0.08);
+  border-radius: 0.5rem;
+  max-width: 360px;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.18);
+  z-index: 1060;
+  pointer-events: auto;
+
+  a {
+    width: 2.5rem;
+    height: 2.5rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0.65rem;
+    color: var(--color-text-on-dark, #fff);
+    background: var(--color-primary, #29004f);
+    text-decoration: none;
+  }
+}
+
+/* Nav theme wrapper spacing: desktop left margin, mobile bottom margin */
+.nav-theme {
+  @include respond-to(lg) {
+    margin-left: 1rem;
+  }
+
+  @include respond-below(lg) {
+    margin-bottom: 1rem;
+  }
+}
+
 // Contact bubble
 .nav-contact {
   position: relative;
@@ -134,33 +210,80 @@ header {
   }
 
   .contact-bubble {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
-    padding: 0.75rem;
-    background: rgba(255, 255, 255, 0.12);
-    border: 1px solid rgba(255, 255, 255, 0.24);
-    border-radius: 999px;
-    width: fit-content;
-    max-width: 100%;
-    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.18);
+    display: none; /* hidden until .show */
+    /* Allow Bootstrap collapse to hide/show; only display when .show applied */
+    &.collapse { display: none; }
+    @include respond-to(lg) {
+      /* Desktop: render positioned below the Contact toggle (absolute relative to .nav-contact) */
+      &.collapse.show {
+        display: flex;
+        flex-wrap: nowrap;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        background: var(--color-background, #fff);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        border-radius: 0.5rem;
+        width: auto;
+        max-width: 360px;
+        box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.18);
+        position: absolute;
+        top: calc(100% + 0.5rem);
+        right: 0;
+        z-index: 1060;
+        opacity: 0;
+        transform: translateY(-6px);
+        transition: opacity 160ms ease, transform 160ms ease;
+        pointer-events: none;
 
-    a {
-      width: 2.25rem;
-      height: 2.25rem;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      color: $text-white;
-      background: rgba(255, 255, 255, 0.14);
-      transition: transform $transition-fast, background-color $transition-fast;
+        /* when shown, animate into place and allow interaction */
+        &.show {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
 
-      &:hover,
-      &:focus-visible {
-        transform: translateY(-1px);
-        background: rgba(255, 255, 255, 0.24);
+        a {
+          width: 2.5rem;
+          height: 2.5rem;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 0.65rem; /* rounded square */
+          color: var(--color-text-on-dark, #fff);
+          background: var(--color-primary, #29004f);
+          transition: transform $transition-fast, background-color $transition-fast, box-shadow $transition-fast;
+
+          &:hover,
+          &:focus-visible {
+            transform: translateY(-2px);
+            box-shadow: 0 0.35rem 0.75rem rgba(0,0,0,0.12);
+          }
+        }
       }
+    }
+
+    @include respond-below(lg) {
+        /* Mobile: behave as inline block inside offcanvas collapse */
+        & {
+          width: 100%;
+          justify-content: flex-start;
+          display: flex !important; /* ensure visible inside offcanvas when JS shows it */
+          flex-wrap: wrap;
+          gap: 0.5rem;
+          padding: 0.5rem 0;
+          background: transparent;
+          border: none;
+          box-shadow: none;
+        }
+
+        /* Make the Contact toggle non-interactive and appear as simple text in mobile offcanvas */
+        .nav-contact-toggle {
+          pointer-events: none;
+          background: transparent;
+          color: $text-white;
+          padding: 0;
+          font-weight: 600;
+        }
     }
   }
 
@@ -186,9 +309,30 @@ header {
   }
 
   .nav-contact {
+    .nav-contact-toggle {
+      display: none !important; /* hide Contact link in mobile offcanvas */
+    }
+
     .contact-bubble {
       width: 100%;
       justify-content: flex-start;
+      gap: 1rem; /* larger spacing between icons */
+      padding: 0.6rem 0;
+
+      a {
+        /* Make icons visually larger on mobile (2x desktop size) */
+        width: 2.5rem;
+        height: 2.5rem;
+        margin-right: 0.5rem;
+        border-radius: 0.9rem; /* larger rounded squares */
+        background: transparent; /* keep background transparent on mobile */
+        color: var(--color-primary, #29004f); /* icon glyph uses theme primary color */
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem; /* increase icon font-size to match 2x visual scale */
+        text-decoration: none;
+      }
     }
   }
 }
