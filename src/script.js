@@ -132,7 +132,7 @@ window.addEventListener('DOMContentLoaded', function() {
                 return;
             }
 
-            const currentTheme = document.documentElement.getAttribute('data-theme') || initialTheme;
+            const currentTheme = document.documentElement.getAttribute('data-theme') || defaultTheme;
             const currentIndex = themes.indexOf(currentTheme);
             const nextTheme = themes[(currentIndex + 1) % themes.length];
             applyTheme(nextTheme, true);
