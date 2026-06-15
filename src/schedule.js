@@ -93,6 +93,7 @@ class ScheduleManager {
                     const zebraClass = index % 2 === 0 ? 'bg-light-purple' : 'bg-lighter-purple';
                     const fieldInfo = game.field ? ` - ${game.field}` : '';
                     
+                    // p-3
                     return `
                         <div class="game-row ${zebraClass} p-3 mb-2 rounded">
                             <div class="row align-items-center">
@@ -148,8 +149,9 @@ class ScheduleManager {
         const zebraClass = index % 2 === 0 ? 'bg-light-purple' : 'bg-lighter-purple';
         const fieldInfo = game.field ? ` - ${game.field}` : '';
 
+        // p-3
         return `
-            <div class="game-row ${zebraClass} p-3 mb-2 rounded">
+            <div class="game-row ${zebraClass} mb-2 rounded">
                 <div class="row align-items-center">
                     <div class="col-md-3">
                         <strong>vs ${game.opponent}</strong>
