@@ -57,6 +57,92 @@ window.addEventListener('DOMContentLoaded', function() {
     // Initialize contact header styling
     styleContactHeaders();
 
+    // Theme switcher functionality
+    function initThemeSwitcher() {
+        const themeSelect = document.getElementById('theme-switcher');
+        const themes = ['outlaws', 'warriors'];
+        const defaultTheme = 'outlaws';
+        const storageKey = 'preferred_theme';
+
+        if (!themeSelect) {
+            return;
+        }
+
+        const applyTheme = (theme) => {
+            if (!themes.includes(theme)) {
+                return;
+            }
+
+            document.documentElement.setAttribute('data-theme', theme);
+            themeSelect.value = theme;
+        };
+
+        const persistTheme = (theme) => {
+            try {
+                localStorage.setItem(storageKey, theme);
+            } catch (error) {
+                console.warn('Unable to persist theme preference:', error);
+            }
+        };
+
+        const readSavedTheme = () => {
+            try {
+                return localStorage.getItem(storageKey);
+            } catch (error) {
+                return null;
+            }
+        };
+
+        const savedTheme = readSavedTheme();
+        const initialTheme = themes.includes(savedTheme) ? savedTheme : defaultTheme;
+        applyTheme(initialTheme);
+
+        themeSelect.addEventListener('change', function() {
+            const selectedTheme = this.value;
+            applyTheme(selectedTheme);
+            persistTheme(selectedTheme);
+        });
+
+        themeSelect.addEventListener('keydown', function(event) {
+            const currentIndex = themes.indexOf(this.value);
+            if (currentIndex === -1) {
+                return;
+            }
+
+            let nextTheme = null;
+
+            if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+                nextTheme = themes[(currentIndex + 1) % themes.length];
+            } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+                nextTheme = themes[(currentIndex - 1 + themes.length) % themes.length];
+            } else if (event.key === 'Home') {
+                nextTheme = themes[0];
+            } else if (event.key === 'End') {
+                nextTheme = themes[themes.length - 1];
+            }
+
+            if (nextTheme) {
+                event.preventDefault();
+                applyTheme(nextTheme);
+                persistTheme(nextTheme);
+            }
+        });
+
+        document.addEventListener('keydown', function(event) {
+            if (!(event.altKey && event.shiftKey && event.key.toLowerCase() === 't')) {
+                return;
+            }
+
+            const currentIndex = themes.indexOf(themeSelect.value);
+            const nextTheme = themes[(currentIndex + 1) % themes.length];
+            applyTheme(nextTheme);
+            persistTheme(nextTheme);
+        });
+    }
+
+    // Initialize theme switcher
+    initThemeSwitcher();
+
     // Mobile navigation menu handling
     function initMobileNavigation() {
         // Get all navigation links that navigate to sections on the same page

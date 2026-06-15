@@ -1,8 +1,6 @@
-@use 'sass:color';
-
 // Hero section
 .hero-section {
-  background: linear-gradient(135deg, $primary-purple 0%, color.scale($primary-purple, $lightness: -20%) 100%);
+  background: linear-gradient(135deg, $primary-purple 0%, $primary-purple-dark 100%);
   color: $text-white;
   padding: 4rem 0;
   text-align: center;

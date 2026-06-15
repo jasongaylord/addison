@@ -9,6 +9,7 @@ A responsive website showcasing Addison Gaylord's softball statistics, achieveme
 - 🔗 Automated Threads social media integration
 - 📄 Downloadable recruiting materials and contact information
 - 🎨 Modern SASS-based CSS architecture
+- 🎛️ Header theme switcher with persistent preferences
 - ⚙️ Automated token refresh via GitHub Actions
 
 ## Prerequisites
@@ -68,6 +69,15 @@ See `THREADS_SETUP.md` for detailed configuration instructions.
 - **Run build command** to compile CSS: `npm run build:css`
 - **Use watch mode** for development: `npm run watch:css`
 - **Open `index.html`** in browser to view changes
+
+## Theme Switcher
+
+- The header includes a theme selector with `Outlaws` and `Warriors` options.
+- The selected theme is saved in `localStorage` under `preferred_theme` and restored on next page load.
+- Keyboard support:
+  - Standard select keyboard navigation works with arrow keys.
+  - `Home` and `End` jump to first/last theme option.
+  - `Alt` + `Shift` + `T` cycles themes from anywhere on the page.
 
 ## Deployment
 

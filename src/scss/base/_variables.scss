@@ -1,18 +1,19 @@
 // Colors
-$primary-purple: #29004f;
-$dark-purple: #250d57;
-$light-purple: #3D1A85;
-$accent-purple: #8E44AD;
-$leaderboard-purple: #39006f;
-$gradient-dark: #430083;
-$highlight-purple: #bf7cff;
-$background-white: #ffffff;
-$background-gray: #f8f9fa;
-$text-white: #ffffff;
-$text-light: #ffcdde;
-$text-muted: #6c757d;
-$card-bg: #2c3e50;
-$danger-color: #dc3545;
+$primary-purple: var(--color-primary);
+$primary-purple-dark: var(--color-primary-dark);
+$dark-purple: var(--color-dark);
+$light-purple: var(--color-light);
+$accent-purple: var(--color-accent);
+$leaderboard-purple: var(--color-leaderboard);
+$gradient-dark: var(--color-gradient-dark);
+$highlight-purple: var(--color-highlight);
+$background-white: var(--color-background);
+$background-gray: var(--color-background-alt);
+$text-white: var(--color-text-on-dark);
+$text-light: var(--color-text-soft);
+$text-muted: var(--color-text-muted);
+$card-bg: var(--color-card-bg);
+$danger-color: var(--color-danger);
 
 // Fonts
 $font-primary: "Cabin", sans-serif;
