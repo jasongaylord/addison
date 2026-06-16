@@ -230,7 +230,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
 
             // Ensure the bubble is visible (inline style) and add show class so CSS transitions to visible state
-            contactBubble.style.display = 'flex';
+            contactBubble.style.display = 'block';
             contactBubble.classList.add('show');
             contactBubble.classList.remove('collapsing');
 
@@ -278,6 +278,7 @@ window.addEventListener('DOMContentLoaded', function() {
             }
 
             // Hide via inline style so it doesn't flash before CSS applies
+            contactBubble.attributes.removeNamedItem("style");
             contactBubble.style.display = 'none';
             if (docClickHandler) {
                 document.removeEventListener('pointerdown', docClickHandler, true);
@@ -331,6 +332,30 @@ window.addEventListener('DOMContentLoaded', function() {
                 if (window.innerWidth < 992) {
                     contactBubble.style.display = 'none';
                 }
+            });
+        }
+
+        // Click handler for the "view full contact details" link: scroll then hide
+        const contactFullLink = contactBubble.querySelector('.contact-full-link');
+        if (contactFullLink) {
+            contactFullLink.addEventListener('click', function (ev) {
+                ev.preventDefault();
+                const target = document.getElementById('contact-block');
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+
+                // After a short delay (allow scroll to start), hide the bubble or close offcanvas
+                setTimeout(() => {
+                    if (window.innerWidth >= 992) {
+                        // desktop overlay
+                        hideBubble();
+                    } else if (offcanvasEl) {
+                        // mobile: ensure offcanvas closes
+                        const bs = bootstrap.Offcanvas.getInstance(offcanvasEl) || new bootstrap.Offcanvas(offcanvasEl);
+                        try { bs.hide(); } catch (e) { /* ignore */ }
+                    }
+                }, 300);
             });
         }
 

@@ -152,8 +152,9 @@ header {
 
 /* Floating bubble styles when moved to body for desktop positioning */
 .contact-bubble.floating {
-  display: flex;
-  flex-wrap: nowrap;
+  display: block; 
+ // position: fixed;
+  /* flex-wrap: nowrap; */
   gap: 0.5rem;
   padding: 0.5rem;
   background: var(--color-background, #fff);
@@ -164,16 +165,38 @@ header {
   z-index: 1060;
   pointer-events: auto;
 
-  a {
-    width: 2.5rem;
-    height: 2.5rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 0.65rem;
-    color: var(--color-text-on-dark, #fff);
-    background: var(--color-primary, #29004f);
-    text-decoration: none;
+  .contact-icons {
+    display: block;
+    width: 100%;
+
+    a {
+        width: 2.5rem;
+        height: 2.5rem;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 0.65rem;
+        color: var(--color-text-on-dark, #fff);
+        background: var(--color-primary, #29004f);
+        text-decoration: none;
+
+        &:visited, &:active, &:hover, &:focus {
+            color: var(--color-text-on-dark, #fff) !important;
+        }
+    }
+  }
+
+
+  /* Link shown below icons in the contact bubble */
+  .contact-full-link {
+    display: block;
+    margin-top: 0.35rem; /* small spacing on desktop floating bubble */
+    font-size: 0.95rem;
+    text-decoration: underline;
+    color: var(--color-primary, #29004f);
+    background: transparent;
+    width: auto;
+    height: auto;
   }
 }
 
@@ -216,8 +239,7 @@ header {
     @include respond-to(lg) {
       /* Desktop: render positioned below the Contact toggle (absolute relative to .nav-contact) */
       &.collapse.show {
-        display: flex;
-        flex-wrap: nowrap;
+        display: block;
         gap: 0.5rem;
         padding: 0.5rem;
         background: var(--color-background, #fff);
@@ -259,6 +281,16 @@ header {
             box-shadow: 0 0.35rem 0.75rem rgba(0,0,0,0.12);
           }
         }
+        .contact-full-link {
+          display: block;
+          /* remove spacing above the link on mobile; add padding below instead */
+          margin-top: 0 !important;
+          padding-top: 0 !important;
+          padding-bottom: 0.5rem !important;
+          font-size: 1rem !important; /* normal rem size on mobile */
+          color: var(--color-primary, #29004f);
+          text-decoration: underline;
+        }
       }
     }
 
@@ -283,6 +315,15 @@ header {
           color: $text-white;
           padding: 0;
           font-weight: 600;
+        }
+        .contact-full-link {
+          width: 100%;
+          display: block;
+          margin-top: 0 !important; /* remove top spacing on mobile */
+          padding-bottom: 0.5rem !important; /* add padding below */
+          font-size: 1rem !important; /* normal rem size on mobile */
+          color: var(--color-primary, #29004f);
+          text-decoration: underline;
         }
     }
   }
