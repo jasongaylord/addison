@@ -140,6 +140,7 @@
           "date": "2026-6-18",
           "time": "11:45 AM",
           "location": "Helen Randle Park",
+          "address": "236 Swamp Rd, Newtown, PA 18940",
           "field": "Field 5"
         },
         {
@@ -148,6 +149,7 @@
           "date": "2026-6-18",
           "time": "1:30 PM",
           "location": "Helen Randle Park",
+          "address": "236 Swamp Rd, Newtown, PA 18940",
           "field": "Field 1"
         },
         {
@@ -156,6 +158,7 @@
           "date": "2026-6-19",
           "time": "8:00 AM",
           "location": "Helen Randle Park",
+          "address": "236 Swamp Rd, Newtown, PA 18940",
           "field": "Field 5"
         },
         {
@@ -164,6 +167,7 @@
           "date": "2026-6-19",
           "time": "9:45 AM",
           "location": "Helen Randle Park",
+          "address": "236 Swamp Rd, Newtown, PA 18940",
           "field": "Field 5"
         }
       ]

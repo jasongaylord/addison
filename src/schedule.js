@@ -85,6 +85,13 @@ class ScheduleManager {
             ? `<a href="${tournament.website}" target="_blank" class="text-white text-decoration-none">${tournament.name}</a>`
             : tournament.name;
 
+        // helper to generate google maps directions link
+        const makeMapLink = (address, label) => {
+            if (!address) return label;
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}&travelmode=driving`;
+            return `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+        };
+
         let gamesHtml = '';
         if (tournament.games && tournament.games.length > 0) {
             const upcomingGames = tournament.games.filter(game => this.isUpcoming(game.date));
@@ -92,6 +99,10 @@ class ScheduleManager {
                 gamesHtml = upcomingGames.map((game, index) => {
                     const zebraClass = index % 2 === 0 ? 'bg-light-purple' : 'bg-lighter-purple';
                     const fieldInfo = game.field ? ` - ${game.field}` : '';
+                    // prefer game.address, fall back to tournament.address
+                    const address = game.address || tournament.address || null;
+                    const locationLabel = game.location || '';
+                    const locationHtml = makeMapLink(address, locationLabel);
                     
                     // p-3
                     return `
@@ -107,7 +118,7 @@ class ScheduleManager {
                                     <i class="fa-solid fa-clock me-2"></i>${this.formatTime(game.time)}
                                 </div>
                                 <div class="col-md-4">
-                                    <i class="fa-solid fa-location-dot me-2"></i>${game.location}${fieldInfo}
+                                    <i class="fa-solid fa-location-dot me-2"></i>${locationHtml}${fieldInfo}
                                 </div>
                             </div>
                         </div>
@@ -132,7 +143,7 @@ class ScheduleManager {
                         </div>
                         <div class="col-md-3">
                             <span class="text-white">
-                                <i class="fa-solid fa-location-dot me-2"></i>${tournament.location}
+                                <i class="fa-solid fa-location-dot me-2"></i>${tournament.address ? `<a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(tournament.address)}&travelmode=driving" target="_blank" rel="noopener noreferrer" class="text-white text-decoration-none">${tournament.location || tournament.address}</a>` : (tournament.location || '')}
                             </span>
                         </div>
                     </div>
@@ -148,6 +159,14 @@ class ScheduleManager {
 
         const zebraClass = index % 2 === 0 ? 'bg-light-purple' : 'bg-lighter-purple';
         const fieldInfo = game.field ? ` - ${game.field}` : '';
+        const address = game.address || null;
+        const locationLabel = game.location || '';
+        const makeMapLink = (address, label) => {
+            if (!address) return label;
+            const url = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}&travelmode=driving`;
+            return `<a href="${url}" target="_blank" rel="noopener noreferrer">${label}</a>`;
+        };
+        const locationHtml = makeMapLink(address, locationLabel);
 
         // p-3
         return `
@@ -163,7 +182,7 @@ class ScheduleManager {
                         <i class="fa-solid fa-clock me-2"></i>${this.formatTime(game.time)}
                     </div>
                     <div class="col-md-4">
-                        <i class="fa-solid fa-location-dot me-2"></i>${game.location}${fieldInfo}
+                        <i class="fa-solid fa-location-dot me-2"></i>${locationHtml}${fieldInfo}
                     </div>
                 </div>
             </div>
