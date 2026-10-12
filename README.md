@@ -72,7 +72,7 @@ See `THREADS_SETUP.md` for detailed configuration instructions.
 
 ## Theme Switcher
 
-- The header includes a theme selector with `Outlaws` and `Warriors` options.
+- The header includes a theme selector with `Rock Gold` and `Warriors` options.
 - The selected theme is saved in `localStorage` under `preferred_theme` and restored on next page load.
 - Keyboard support:
   - Standard select keyboard navigation works with arrow keys.

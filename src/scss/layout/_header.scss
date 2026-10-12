@@ -106,6 +106,10 @@ header {
   --theme-swatch-color: #8e44ad;
 }
 
+.theme-swatch[data-theme-toggle='rockgold'] {
+  --theme-swatch-color: #c0392b;
+}
+
 .theme-swatch[data-theme-toggle='outlaws'] {
   --theme-swatch-color: #c0392b;
 }

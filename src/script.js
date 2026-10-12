@@ -67,10 +67,11 @@ window.addEventListener('DOMContentLoaded', function() {
     function initThemeSwitcher() {
         const themeButtons = document.querySelectorAll('[data-theme-toggle]');
         const themeStatus = document.getElementById('theme-status');
-        const themes = ['purple', 'outlaws', 'warriors'];
+        const themes = ['purple', 'warriors'];
         const themeLabels = {
             purple: 'Favorite Color',
-            outlaws: 'Outlaws',
+            // outlaws: 'Outlaws',
+            //rockgold: 'Rock Gold',
             warriors: 'Warriors'
         };
         const defaultTheme = 'purple';
